@@ -2,8 +2,7 @@
 .card_list{
     display: flex;
     padding: 10px;
-    border-top-left-radius: 22px;
-    border-top-right-radius: 22px;
+    border-radius: 22px;
     flex-direction: column;
     margin-top: 4%;
     margin-left: 3%;
