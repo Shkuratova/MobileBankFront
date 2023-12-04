@@ -1,0 +1,30 @@
+.cardItem{
+    display: flex;
+    text-align: left;
+    border: 1px solid grey;
+    flex-direction: column;
+    background: #F6F4F4;
+    padding:10px;
+
+}
+.cardItem:hover{
+    background: lightblue;
+}
+.card_info{
+    display: flex;
+    margin-top: 2%;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+.cardicon{
+    height: 50px;
+    width: 50px;
+    float:left;
+}
+.num{
+
+}
+.sum{
+    margin-left: auto;
+}

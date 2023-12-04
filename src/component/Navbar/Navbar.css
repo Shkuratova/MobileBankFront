@@ -1,0 +1,26 @@
+.navbar{
+    position: sticky;
+    top:0;
+    left: 0;
+    height: 70px;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background:#FFFFFF;
+}
+.left_links{
+    margin-right: auto;
+}
+.right_links{
+    margin-left: auto;
+}
+.navbar_link{
+    padding: 7px;
+    color: black;
+    text-decoration: none;
+    font-size:22px;
+}
+.navbar_link:hover{
+    color:#468ccb
+}
