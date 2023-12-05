@@ -1,12 +1,12 @@
 import React from 'react';
 import './CardItem.css'
-const CreditCard = () => {
+const CreditCard = (props) => {
     return (
         <div className="cardItem">
-            <p className="card_type">Ипотека</p>
+            <p className="card_type">{props.credit.creditType}</p>
             <div className="card_info">
-                <p>Платеж: 19.12.23</p>
-                <p className="sum">5000,00 ₽</p>
+                <p>Платеж: {props.credit.datePay}</p>
+                <p className="sum">{props.credit.balance} ₽</p>
             </div>
         </div>
     );

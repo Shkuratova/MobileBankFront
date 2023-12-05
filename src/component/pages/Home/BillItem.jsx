@@ -1,13 +1,13 @@
 import React from 'react';
 
-const BillItem = () => {
+const BillItem = (props) => {
     return (
         <div className="cardItem">
-            <p className="card_type">Текущий счет</p>
+            <p className="card_type">{props.bill.billType}</p>
             <div className="card_info">
-                <p>***123</p>
+                <p>***{props.bill.billNum}</p>
                 <p className="sum">
-                    111 000, 00 ₽
+                    {props.bill.balance} ₽
                 </p>
             </div>
         </div>

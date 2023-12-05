@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Payment = () => {
+const TopUp = () => {
     return (
         <div>
-            payment
+            To self from somewhere
         </div>
     );
 };
 
-export default Payment;
+export default TopUp;

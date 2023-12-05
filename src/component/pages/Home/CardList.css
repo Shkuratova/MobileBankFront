@@ -1,9 +1,9 @@
 
 .card_list{
-    display: flex;
+    display:inline-block;
     padding: 10px;
     border-radius: 22px;
-    flex-direction: column;
+    position: sticky;
     margin-top: 4%;
     margin-left: 3%;
     background: #FFFFFF;
