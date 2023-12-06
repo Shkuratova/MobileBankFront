@@ -6,7 +6,10 @@ const Action = (props) => {
     return (
         <div onClick={()=> router(props.path)}
             className="action">
-            <img className="act_img" src={props.img}/>
+            <img className="act_img"
+                 width={props.width}
+                 height={props.height}
+                 src={props.img}/>
             <p className='act_txt'>{props.name}</p>
         </div>
     );

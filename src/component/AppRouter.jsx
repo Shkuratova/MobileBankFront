@@ -14,7 +14,6 @@ const AppRouter = () => {
                element={route.component}
                key = {route.path}/>
            )}
-           <Route element={Home}/>
        </Routes>
     );
 };

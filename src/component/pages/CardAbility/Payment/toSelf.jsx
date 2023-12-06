@@ -1,11 +1,11 @@
 import React from 'react';
 
-const TopUp = () => {
+const ToSelf = () => {
     return (
         <div>
-            To self from somewhere
+            to self
         </div>
     );
 };
 
-export default TopUp;
+export default ToSelf;

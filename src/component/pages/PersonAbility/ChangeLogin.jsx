@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Payment = () => {
+const ChangeLogin = () => {
     return (
         <div>
-            to self or others
+            change login
         </div>
     );
 };
 
-export default Payment;
+export default ChangeLogin;

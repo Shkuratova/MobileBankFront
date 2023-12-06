@@ -7,7 +7,7 @@
 }
 
 .infor{
-margin-top: 10%;
+margin-top: 7%;
     border-radius: 22px;
     width: 60%;
     height: 70%;
@@ -24,6 +24,7 @@ margin-top: 10%;
 }
 .bl{
     padding: 1%;
+    margin-left: 1%;
 }
 .spec{
     font-size: 14px;

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {useParams} from "react-router-dom";
-import "../../styles/Common.css"
+import "../../styles/Common.css";
 import CardList from "../Home/CardList";
-import './idElements.css'
+import './idElements.css';
 import Action from "../../reUse/Action";
 const CardById = () => {
     const inf= useParams()
@@ -22,20 +22,28 @@ const CardById = () => {
                         <Action
                             path = {'/card/history/'+card.id}
                             img={'/images/history.png'}
+                            height={'50'}
+                            width={'50'}
                             name = {'История операций'}/>
                         <Action
-                            path = {'/card/plus/' + card.id}
-                            img={'/images/plus.png'}
-                            name = {'Пополнить'}/>
+                            path = {'/payment'}
+                            img={'/images/pay.png'}
+                            height={'50'}
+                            width={'50'}
+                            name = {'Оплатить'}/>
                     </div>
                     <div className="abil">
                         <Action
-                            path = {'/card/transfer/' + card.id}
-                            img={'/images/transact.png'}
-                            name = {'Перевести'}/>
+                            path = {'/card/rename/' + card.id}
+                            img={'/images/rename.png'}
+                            height={'50'}
+                            width={'50'}
+                            name = {'Переименовать'}/>
                         <Action
                             path = {'/card/block/' + card.id}
                             img={'/images/block.png'}
+                            height={'50'}
+                            width={'50'}
                             name = {'Заблокировать'}/>
                     </div>
                 </div>

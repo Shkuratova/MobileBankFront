@@ -1,0 +1,14 @@
+.pay_main{
+    background: #FFFFFF;
+    margin-top: 10%;
+    border-radius: 22px;
+    width: 60%;
+    height: 70%;
+    display: inline-block;
+    margin-left: 6%;
+}
+.pay_btn{
+    padding: 2%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}

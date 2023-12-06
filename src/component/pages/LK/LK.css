@@ -1,0 +1,37 @@
+.lk_i{
+    margin-top: 3%;
+    margin-left: 3%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #F6F4F4;
+}
+.person{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:100%;
+    padding: 2%;
+    border-radius: 22px;
+    margin-bottom: 5%;
+}
+.lk_name{
+    font-size: 22px;
+    margin-left: 3%;
+    margin-top: 4%;
+    font-weight: bold;
+}
+.personal{
+    margin-top: 8%;
+    border-radius: 22px;
+    width: 60%;
+    height: 70%;
+    display: inline-block;
+    margin-left: 6%;
+    background: #FFFFFF;
+    align-items: center;
+}
+.lk_act{
+    margin-left: 2%;
+    margin-bottom: 4%;
+}

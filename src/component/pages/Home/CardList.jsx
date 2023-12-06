@@ -10,12 +10,12 @@ const CardList = () => {
         {id:3,cardType:'Дебетовая карта', cardNum:'188', balance:'250000,65'}
     ])
     const [bills, setBills] = useState([
-        {billType:'Текущий счет', billNum:'458', balance:'25000,45'},
-        {billType:'Текущий счет', billNum:'485', balance:'280,05'}
+        {id:1, billType:'Текущий счет', billNum:'458', balance:'25000,45'},
+        {id:2, billType:'Текущий счет', billNum:'485', balance:'280,05'}
     ])
     const [credits, setCredits] =useState([
-        {creditType:'Кредит наличными', creditNum:'789',balance:'90999,45', datePay:'19.12.23'},
-        {creditType:'Ипотека', creditNum:'658',balance:'1250000,48', datePay:'12.01.24'}
+        {id:1,creditType:'Кредит наличными', creditNum:'789',balance:'90999,45', datePay:'19.12.23'},
+        {id:2, creditType:'Ипотека', creditNum:'658',balance:'1250000,48', datePay:'12.01.24'}
     ])
     return (
         <div className="card_list">

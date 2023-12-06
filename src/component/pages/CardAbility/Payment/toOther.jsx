@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Lk = () => {
+const ToOther = () => {
     return (
         <div>
-            lk
+            to other
         </div>
     );
 };
 
-export default Lk;
+export default ToOther;
