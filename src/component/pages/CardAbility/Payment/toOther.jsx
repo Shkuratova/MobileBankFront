@@ -1,9 +1,10 @@
 import React from 'react';
+import CardSelect from "./CardSelect";
 
 const ToOther = () => {
     return (
         <div>
-            to other
+            <CardSelect/>
         </div>
     );
 };

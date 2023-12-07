@@ -1,8 +1,8 @@
 import React from 'react';
-
+import '../styles/Common.css'
 const About = () => {
     return (
-        <div>
+        <div className="page_chr">
             Vanya && Partners
         </div>
     );
