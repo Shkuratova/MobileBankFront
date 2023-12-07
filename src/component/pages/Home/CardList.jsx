@@ -22,19 +22,21 @@ const CardList = () => {
             <p className="tit">Мои Карты</p>
             <div className="cardl">
                 {cards.map((card)=>
-                    <CardItem card={card}/>
+                    <CardItem  key={card.cardNum}
+                        card={card}/>
                 )}
             </div>
             <p className="tit">Мои Счета</p>
             <div className="cardl">
                 {bills.map((bill)=>
-                    <BillItem bill={bill}/>
+                    <BillItem key={bill.billNum}
+                        bill={bill}/>
                 )}
             </div>
             <p className="tit">Мои Кредиты</p>
             <div className="cardl">
                 {credits.map((credit)=>
-                <CreditCard credit={credit}/>
+                <CreditCard key={credit.creditNum} credit={credit}/>
                 )}
             </div>
         </div>
