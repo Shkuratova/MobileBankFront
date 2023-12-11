@@ -5,6 +5,7 @@
     flex-direction: column;
     background: #F6F4F4;
     padding:10px;
+    min-width: 100%;
 
 }
 .cardItem:hover{

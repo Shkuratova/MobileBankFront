@@ -9,6 +9,7 @@
     "axios": "^1.6.2",
     "i": "^0.3.7",
     "react": "^18.2.0",
+    "react-currency-input-field": "^3.6.12",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.0",
     "react-router-dom": "^6.20.1",

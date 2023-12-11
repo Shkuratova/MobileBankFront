@@ -4,6 +4,8 @@ import './../../../styles/Common.css'
 import CardList from "../../Home/CardList";
 import Confirm from "./Modal/Confirm";
 import Execute from "./Modal/Execute";
+import CurrencyInput from "react-currency-input-field";
+import valuteCourse from "../../ValuteCourse";
 
 const ToSelf = () => {
     const[cards, setCards] = useState([
@@ -14,7 +16,7 @@ const ToSelf = () => {
     const [card, setCard] = useState(cards[0].id)
     const [cardTo, setCardTo] = useState(cards[1].id)
     const [to, setTo] = useState(cards.filter(s=>s.id!==cards[0].id))
-    const [sum, setSum] = useState(0)
+    const [sum, setSum] = useState('')
     const [error, setError] = useState(false)
     const changeList = (e) => {
         setCard(e.target.value)
@@ -62,13 +64,13 @@ const ToSelf = () => {
                             </div>
                         </div>
                         <div className="submition">
-                            {error &&
-                                <p style={{color:"red"}}>Недостаточно средств</p>}
-                            <input  type={"number"}
-                                    onChange={e=>setSum(Number(e.target.value))}
-                                    className="cin"
-                                    placeholder="Сумма"
-                            />
+                            <CurrencyInput
+                                className='cin'
+                                placeholder='Сумма..'
+                                decimalsLimit={2}
+                                defaultValue={sum}
+                                onValueChange={(e)=>setSum(e)}
+                                />
                             <button className='myBtn'>Продолжить</button>
                         </div>
                     </form>

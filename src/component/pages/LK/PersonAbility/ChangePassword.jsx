@@ -2,6 +2,7 @@ import React from 'react';
 import '../../../styles/Common.css'
 import '../LK.css'
 import CardList from "../../Home/CardList";
+
 const ChangePassword = () => {
     return (
         <div className='page_chr'>

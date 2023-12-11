@@ -5,6 +5,7 @@ import './MoneyToSomewhere.css'
 import {useForm} from "react-hook-form";
 import Execute from "./Modal/Execute";
 import Confirm from "./Modal/Confirm";
+import CurrencyInput from "react-currency-input-field";
 
 const ToOther = () => {
     const {
@@ -27,7 +28,19 @@ const ToOther = () => {
     }
     const [card, setCard] = useState(cards[0].id)
     const[sum, setSum] = useState('')
-    console.log(Number(cards.find(c=>c.id==card).balance))
+
+    const cardFormat=(e)=>{
+        const p = e.target.value
+        const v = p.replace(/\s+/g, "")
+            .replace(/[^0-9]/gi, "")
+            .substring(0, 16);
+        const parts = []
+        for(let i =0; i<v.length;i+=4){
+            parts.push(v.substring(i, i+4));
+        }
+        parts.length >1? setBill(parts.join('-')):setBill(p)
+    }
+
     return (
         <div className='page_chr'>
             <CardList/>
@@ -37,14 +50,19 @@ const ToOther = () => {
                     <h1>Получатель</h1>
                     <p>Введите номер счета</p>
                     <input
+                        value={bill}
                         className={[errors.name, "cin"].join(" ")}
                         type="text"
                         {...register("name",{
-                            required:true
+                            required:true,
+                            pattern:/^[0-9-]+$/,
+                            minLength:16
                         })}
-                        onChange={e=>setBill(e.target.value)}
+                        onChange={e=>cardFormat(e)}
                     />
                          {errors.name?.type==="required" && <span style={{color:'red'}}>Поле не может быть пустым</span>}
+                         {errors.name?.type==="pattern" && <span style={{color:'red'}}>Неверно введен номер карты</span>}
+                         {errors.name?.type==="mxLength" && <span style={{color:'red'}}>Неверно введен 16  номер карты</span>}
                     <button className='myBtn'>Продолжить</button>
                 </form>
                     </div>
@@ -65,11 +83,14 @@ const ToOther = () => {
                                 )}
                             </select>
                         </div>
-                            <input value={sum}
-                                    className='cin'
-                                    placeholder='Сумма'
-                                    onChange={e=>setSum(e.target.value)}
-                            />
+                        <CurrencyInput
+                            className={[errors.name,'cin'].join(' ')}
+                            placeholder='Сумма..'
+                            decimalsLimit={2}
+                            required={true}
+                            defaultValue={sum}
+                            onValueChange={(e)=>setSum(e)}
+                        />
                             <button className='myBtn'>Продолжить</button>
                     </form>
                     </div>
