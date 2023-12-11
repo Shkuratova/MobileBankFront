@@ -22,21 +22,18 @@
 }
 .mySelect{
     display: block;
-    font-size: 16px;
+    font-size: 18px;
     font-family: sans-serif;
     font-weight: 700;
     color: #444;
     line-height: 1.3;
     width: 100%;
-    height: 20%;
+    height: 50%;
     max-width: 100%;
     box-sizing: border-box;
     border: 1px solid #aaa;
     box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
     border-radius: 5px;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
     background-color: #fff;
     margin-top: 2%;
 }
@@ -49,4 +46,17 @@
     margin-top: 5%;
     border-radius: 12px;
     text-align: left;
+}
+.access{
+    display: inline-block;
+    background: #FFFFFF;
+    width: 60%;
+    height: 70%;
+    border-radius: 22px;
+    font-size: 16px;
+    margin-top: 10%;
+    margin-left: 5%;
+    padding: 2%;
+    align-items: center;
+    text-align: center;
 }

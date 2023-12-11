@@ -4,3 +4,11 @@
     background: rgb(131,228,192);
     background: linear-gradient(0deg, rgba(131,228,192,1) 50%, rgba(158,206,251,1) 80%);
 }
+.myBtn{
+    height:100%;
+    width: 100%;
+    padding: 1%;
+    background:  rgb(131,228,192);
+    font-size: 20px;
+    border-radius: 12px;
+}

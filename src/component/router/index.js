@@ -6,9 +6,6 @@ import CardById from "../pages/GetItemById/CardById";
 import CardHistory from "../pages/CardAbility/history/CardHistory";
 import Block from "../pages/CardAbility/Block";
 import RenameCard from "../pages/CardAbility/RenameCard";
-import ChangePassword from "../pages/PersonAbility/ChangePassword";
-import ChangeLogin from "../pages/PersonAbility/ChangeLogin";
-import SessionHistory from "../pages/PersonAbility/SessionHistory";
 import About from "../pages/About";
 import BillById from "../pages/GetItemById/BillById";
 import CreditById from "../pages/GetItemById/CreditById";
@@ -16,6 +13,9 @@ import CreditInfo from "../pages/CardAbility/CreditInfo";
 import ToOther from "../pages/CardAbility/Payment/toOther";
 import Payment from "../pages/CardAbility/Payment/Payment";
 import ToSelf from "../pages/CardAbility/Payment/toSelf";
+import ChangePassword from "../pages/LK/PersonAbility/ChangePassword";
+import SessionHistory from "../pages/LK/PersonAbility/SessionHistory";
+import ChangeLogin from "../pages/LK/PersonAbility/ChangeLogin";
 
 export const privateRoutes=[
     {path:"/home", component:<Home/>},
