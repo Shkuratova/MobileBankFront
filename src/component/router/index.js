@@ -43,5 +43,6 @@ export const privateRoutes=[
 ]
 
 export const publicRoutes=[
-    {path:'/*', component:<Auth/>}
+    {path:'/*', component:<Auth/>},
+    {path:ATMS, component: <ATM/>}
 ]

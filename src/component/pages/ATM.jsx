@@ -1,9 +1,10 @@
 import React from 'react';
+import '../styles/Common.css'
 
 const ATM = () => {
     return (
         <div>
-            bankomats
+
         </div>
     );
 };

@@ -1,0 +1,70 @@
+.reg__modal{
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10%;
+    align-items: center;
+    background: white;
+    border-radius: 22px;
+    width: 35%;
+    height: 400px;
+}
+.head__reg{
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+.reg__link{
+    margin-left: 4%;
+    margin-right: auto;
+    background: white;
+    text-align: left;
+    border: none;
+    margin-top: 4%;
+    font-size: 14px;
+    color:grey;
+    width: 80%;
+}
+.reg__link:hover{
+    color: black;
+}
+.reg__input{
+    margin-top: 5%;
+    width: 80%;
+    padding: 2%;
+    height: 45px;
+    border-radius: 16px;
+}
+.reg__nav{
+    margin-top: 2%;
+    margin-left: 4%;
+    margin-right: auto;
+}
+.reg__button{
+    margin-top: 7%;
+    border-radius: 16px;
+    background: aquamarine;
+    width: 80%;
+    height: 50px;
+    border: none;
+    font-size: 18px;
+ }
+.reg__button:hover{
+    background: mediumaquamarine;
+}
+.email{
+    margin-left: 5%;
+    padding: 2%;
+    margin-top: 2%;
+    font-size: 16px;
+}
+.where{
+    margin-left: 5%;
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 2%;
+    color: #212121;
+}
+.user_email{
+display: inline-block;
+}
