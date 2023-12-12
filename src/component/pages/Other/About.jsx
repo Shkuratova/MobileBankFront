@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Common.css'
+import '../../styles/Common.css'
 const About = () => {
     return (
         <div className="page_chr">

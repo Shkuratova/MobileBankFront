@@ -1,10 +1,10 @@
 import React, {useContext, useState} from 'react';
 import '../../styles/Common.css'
 import './Auth.css'
-import {set} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {ATMS} from "../../utils/consts";
 import {AuthContext} from "../../../context";
+
 const Auth = () => {
     const{isAuth, setIsAuth} = useContext(AuthContext)
     const router = useNavigate()
