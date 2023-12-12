@@ -5,7 +5,7 @@ const CardItem = (props) => {
     const router = useNavigate()
     return (
         <div
-            onClick={()=>router(`/cards/${props.card.id}`)}
+            onClick={()=>router(`/card/${props.card.id}`)}
             className="cardItem">
             <p className="card_type">{props.card.cardType}</p>
             <div className="card_info">

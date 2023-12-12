@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ValuteCourse = () => {
+const ValutaCourse = () => {
     return (
         <div>
             valuteCourse
@@ -8,4 +8,4 @@ const ValuteCourse = () => {
     );
 };
 
-export default ValuteCourse;
+export default ValutaCourse;

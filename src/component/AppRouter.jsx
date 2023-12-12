@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Route, Routes, useNavigate} from "react-router-dom";
-import {privateRoutes} from "./router";
-import Home from "./pages/Home/Home";
-import App from "../App";
+import {privateRoutes, publicRoutes} from "./router";
+import {AuthContext} from "../context";
 
 const AppRouter = () => {
-    const router = useNavigate()
+    const {isAuth, setIsAuth} = useContext(AuthContext);
     return (
+        isAuth?
        <Routes>
            {privateRoutes.map(route=>
            <Route
@@ -15,6 +15,15 @@ const AppRouter = () => {
                key = {route.path}/>
            )}
        </Routes>
+            :
+            <Routes>
+                {publicRoutes.map(route =>
+                <Route
+                    path={route.path}
+                    element={route.component}
+                    key={route.path}/>
+                )}
+            </Routes>
     );
 };
 

@@ -11,8 +11,8 @@ const Navbar = () => {
             <div className='left_links'>
                 <NavLink to='/home' className="navbar_link">Главная</NavLink>
                 <NavLink to='/payment' className="navbar_link">Платежи и переводы</NavLink>
-                <NavLink to='/valute' className="navbar_link">Курсы валют</NavLink>
-                <NavLink to='/bankomats' className="navbar_link">Отделения банка</NavLink>
+                <NavLink to='/currency' className="navbar_link">Курсы валют</NavLink>
+                <NavLink to='/atm' className="navbar_link">Отделения банка</NavLink>
             </div>
             <div className='right_links'>
                 <NavLink to='/user/:login' className="navbar_link">Имя</NavLink>

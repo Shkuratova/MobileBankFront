@@ -30,6 +30,7 @@
 }
 .sum{
     margin-left: auto;
+    min-width: auto;
 }
 .abil{
     margin-left: 5%;

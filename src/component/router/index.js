@@ -1,6 +1,6 @@
 import Home from "../pages/Home/Home";
-import ValuteCourse from "../pages/ValuteCourse";
-import Bankomats from "../pages/Bankomats";
+import ValutaCourse from "../pages/ValutaCourse";
+import ATM from "../pages/ATM";
 import LK from "../pages/LK/LK";
 import CardById from "../pages/GetItemById/CardById";
 import CardHistory from "../pages/CardAbility/history/CardHistory";
@@ -16,26 +16,32 @@ import ToSelf from "../pages/CardAbility/Payment/toSelf";
 import ChangePassword from "../pages/LK/PersonAbility/ChangePassword";
 import SessionHistory from "../pages/LK/PersonAbility/SessionHistory";
 import ChangeLogin from "../pages/LK/PersonAbility/ChangeLogin";
+import Auth from "../pages/Auth/Auth";
+import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, HOME, PAY, USER} from "../utils/consts";
 
 export const privateRoutes=[
-    {path:"/home", component:<Home/>},
+    {path:HOME, component:<Home/>},
     {path:"/*", component:<Home/>},
-    {path:'/user/:login', component: <LK/>},
-    {path:'/valute', component: <ValuteCourse/>},
-    {path:'/bankomats', component: <Bankomats/>},
-    {path:'/cards/:id', component: <CardById/>},
-    {path:'/credit/info/:id', component: <CreditInfo/>},
-    {path:'/bill/:id', component: <BillById/>},
-    {path:'/credit/:id', component: <CreditById/>},
-    {path:'/card/history/:id', component: <CardHistory/>},
-    {path:'/credit/history/:id', component: <CardHistory/>},
-    {path:'/payment/toSelf', component: <ToSelf/>},
-    {path:'/payment/toOther', component: <ToOther/>},
-    {path:'/payment', component: <Payment/>},
-    {path:'/card/block/:id', component: <Block/>},
-    {path:'/card/rename/:id', component: <RenameCard/>},
+    {path:USER + '/:login', component: <LK/>},
+    {path:CURRENCY, component: <ValutaCourse/>},
+    {path:ATMS, component: <ATM/>},
+    {path: CARD+'/:id', component: <CardById/>},
+    {path:CREDIT+'/info/:id', component: <CreditInfo/>},
+    {path:BILL+'/:id', component: <BillById/>},
+    {path:CREDIT+':id', component: <CreditById/>},
+    {path:CARD+HISTORY+'/:id', component: <CardHistory/>},
+    {path:CREDIT+HISTORY+'/:id', component: <CardHistory/>},
+    {path:PAY+'/toSelf', component: <ToSelf/>},
+    {path:PAY+'/toOther', component: <ToOther/>},
+    {path:PAY, component: <Payment/>},
+    {path:CARD+'/block/:id', component: <Block/>},
+    {path:CARD+'/rename/:id', component: <RenameCard/>},
     {path:'/editpassword/:login', component: <ChangePassword/>},
     {path:'/editlogin/:login', component:<ChangeLogin/>},
     {path:'/lastlogin/:login', component: <SessionHistory/>},
     {path:'/about', component: <About/>}
+]
+
+export const publicRoutes=[
+    {path:'/*', component:<Auth/>}
 ]

@@ -5,7 +5,7 @@ import CardList from "../../Home/CardList";
 import Confirm from "./Modal/Confirm";
 import Execute from "./Modal/Execute";
 import CurrencyInput from "react-currency-input-field";
-import valuteCourse from "../../ValuteCourse";
+import valuteCourse from "../../ValutaCourse";
 
 const ToSelf = () => {
     const[cards, setCards] = useState([

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Bankomats = () => {
+const Auth = () => {
     return (
         <div>
-            bankomats
+            
         </div>
     );
 };
 
-export default Bankomats;
+export default Auth;

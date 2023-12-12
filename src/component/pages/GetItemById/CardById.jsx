@@ -4,6 +4,7 @@ import "../../styles/Common.css";
 import CardList from "../Home/CardList";
 import './idElements.css';
 import Action from "../../reUse/Action";
+import {CARD, HISTORY} from "../../utils/consts";
 const CardById = () => {
     const inf= useParams()
     const [card, setCard] = useState(
@@ -20,7 +21,7 @@ const CardById = () => {
                     <div className="abil">
                         <p className="descr_txt spec">Действия</p>
                         <Action
-                            path = {'/card/history/'+card.id}
+                            path = {CARD+HISTORY+'/'+card.id}
                             img={'/images/history.png'}
                             height={'50'}
                             width={'50'}
