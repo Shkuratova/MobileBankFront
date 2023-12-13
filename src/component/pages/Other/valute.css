@@ -1,0 +1,50 @@
+.valute__item{
+    border-radius: 16px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 4%;
+    padding: 2%;
+    width: 95%;
+    height: 20%;
+    align-items: center;
+    justify-content: left;
+}
+.valute__item:hover{
+    background: whitesmoke;
+}
+.val_list{
+    border-radius: 22px;
+    width: 95%;
+    margin: 5% auto;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.valute_name{
+}
+.info{
+    display: flex;
+    flex-direction: column;
+}
+.buy__sell{
+    display: flex;
+    flex-direction: row;
+    margin-left: 35%;
+}
+.buy_v{
+    margin-right: 30%;
+}
+.button_v{
+    margin-left: 7%;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 16px;
+    background: aquamarine;
+}
+.button_v:hover{
+    background: mediumaquamarine;
+}

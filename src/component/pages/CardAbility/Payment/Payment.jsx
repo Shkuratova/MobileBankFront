@@ -28,22 +28,10 @@ const Payment = () => {
                     <h1 style={{marginLeft:"2%"}}>Платежи</h1>
                     <Action
                         path={'/payment'}
-                        img={'/images/mobile.png'}
-                        width={'60'}
-                        height={'60'}
-                        name={'Мобильная связь'}/>
-                    <Action
-                        path={'/payment'}
-                        img={'/images/commune.png'}
-                        width={'60'}
-                        height={'60'}
-                        name={'Коммунальные услуги'}/>
-                    <Action
-                        path={'/payment'}
                         img={'/images/plus.png'}
                         width={'60'}
                         height={'60'}
-                        name={'Добавить шаблон'}/>
+                        name={'Оплатить услугу'}/>
                 </div>
             </div>
         </div>
