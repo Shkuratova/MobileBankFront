@@ -4,6 +4,7 @@ import '../../GetItemById/idElements.css'
 import './PaymentElem.css'
 import Action from "../../../reUse/Action";
 import CardList from "../../Home/CardList";
+import Window from "../../../reUse/Window";
 const Payment = () => {
     return (
         <div className='page_chr'>
