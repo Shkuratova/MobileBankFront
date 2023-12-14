@@ -1,4 +1,5 @@
 .valute__item{
+    min-width: 95%;
     border-radius: 16px;
     font-size: 18px;
     display: flex;
@@ -14,8 +15,8 @@
     background: whitesmoke;
 }
 .val_list{
+    min-width: 1400px;
     border-radius: 22px;
-    width: 95%;
     margin: 5% auto;
     background: white;
     display: flex;

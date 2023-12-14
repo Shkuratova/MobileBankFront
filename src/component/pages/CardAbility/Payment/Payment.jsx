@@ -28,7 +28,7 @@ const Payment = () => {
                 <div className='pay_btn'>
                     <h1 style={{marginLeft:"2%"}}>Платежи</h1>
                     <Action
-                        path={'/payment'}
+                        path={'/payment/service'}
                         img={'/images/plus.png'}
                         width={'60'}
                         height={'60'}

@@ -13,3 +13,38 @@
     margin-bottom: 2%;
     margin-top: 2%;
 }
+.pay_input{
+    width: 80%;
+    font-size: 16px;
+    height: 40px;
+    margin-top: 2%;
+    border-radius: 12px;
+    text-align: left;
+}
+.service{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    padding: 3%;
+}
+.paybtn{
+    margin-top: 8%;
+    height:50px;
+    width: 80%;
+    border: none;
+    background:  rgb(131,228,192);
+    font-size: 20px;
+    border-radius: 12px;
+}
+.pay_header{
+    margin-right: auto;
+    margin-left: 10%;
+    margin-top: 4%;
+}
+.pay_select{
+    margin-top: 2%;
+    border-radius: 12px;
+    width: 80%;
+    height: 40px;
+}

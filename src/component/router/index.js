@@ -18,6 +18,7 @@ import SessionHistory from "../pages/LK/PersonAbility/SessionHistory";
 import ChangeLogin from "../pages/LK/PersonAbility/ChangeLogin";
 import Auth from "../pages/Auth/Auth";
 import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, HOME, PAY, USER} from "../utils/consts";
+import PayService from "../pages/CardAbility/Payment/PayService";
 
 export const privateRoutes=[
     {path:HOME, component:<Home/>},
@@ -32,6 +33,7 @@ export const privateRoutes=[
     {path:CARD+HISTORY+'/:id', component: <CardHistory/>},
     {path:CREDIT+HISTORY+'/:id', component: <CardHistory/>},
     {path:PAY+'/toSelf', component: <ToSelf/>},
+    {path:PAY+'/service', component: <PayService/>},
     {path:PAY+'/toOther', component: <ToOther/>},
     {path:PAY, component: <Payment/>},
     {path:CARD+'/block/:id', component: <Block/>},

@@ -6,6 +6,7 @@ const Execute = (props) => {
             <h1>{props.title}</h1>
             <h2 style={{color:"gray", marginTop:"2%"}}>{props.txt1}</h2>
             <h2 style={{marginTop:"2%"}}>{props.txt2} Р</h2>
+            <h2 style={{marginTop:"2%", color:"gray"}}>{props.description}</h2>
         </div>
     );
 };

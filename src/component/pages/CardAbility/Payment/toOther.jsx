@@ -27,6 +27,7 @@ const ToOther = () => {
         setState('confirmation')
     }
     const [card, setCard] = useState(cards[0].id)
+
     const[sum, setSum] = useState('')
 
     const cardFormat=(e)=>{
