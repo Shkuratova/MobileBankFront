@@ -29,7 +29,7 @@ export const privateRoutes=[
     {path: CARD+'/:id', component: <CardById/>},
     {path:CREDIT+'/info/:id', component: <CreditInfo/>},
     {path:BILL+'/:id', component: <BillById/>},
-    {path:CREDIT+':id', component: <CreditById/>},
+    {path:CREDIT+'/:id', component: <CreditById/>},
     {path:CARD+HISTORY+'/:id', component: <CardHistory/>},
     {path:CREDIT+HISTORY+'/:id', component: <CardHistory/>},
     {path:PAY+'/toSelf', component: <ToSelf/>},

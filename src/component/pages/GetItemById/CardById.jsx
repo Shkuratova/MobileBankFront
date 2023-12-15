@@ -24,11 +24,11 @@ const CardById = () => {
                         <Block cardNum={card.cardNum} visible={visibleBlock} setVisible={setVisibleBlock}/>
                     </Window>
                     <Window setVisible={setVisibleRe} visible={visibleRe}>
-                      <RenameCard cardNum={card.cardNum} visible={visibleRe} setVisible={setVisibleRe} setCardName={setCardName}/>
+                      <RenameCard cardNum={card.cardNum}  cardId={card.id} visible={visibleRe} setVisible={setVisibleRe} setCardName={setCardName}/>
                     </Window>
                     <div className="descr">
                         <h1  className="descr_txt">МИР WorldSkills Card</h1>
-                        <h3 className='descr_txt'>{cardName}</h3>
+                        <h3 className='descr_txt'>{localStorage.getItem(card.id)}</h3>
                         <p className="descr_txt spec">***{card.cardNum} {card.cardType}</p>
                         <h2 className="bl">{card.balance} ₽</h2>
                     </div>

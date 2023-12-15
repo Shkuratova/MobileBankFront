@@ -1,14 +1,16 @@
 .reg__modal{
     display: flex;
+    padding: 0 0 2%;
     flex-direction: column;
     margin-right: auto;
     margin-left: auto;
     margin-top: 10%;
     align-items: center;
     background: white;
+    justify-content: space-around;
     border-radius: 22px;
     width: 35%;
-    height: 400px;
+    height: fit-content;
 }
 .head__reg{
     margin-top: 4%;
@@ -31,14 +33,13 @@
 .reg__input{
     margin-top: 5%;
     width: 80%;
+    font-size: 18px;
     padding: 2%;
     height: 45px;
     border-radius: 16px;
 }
 .reg__nav{
-    margin-top: 2%;
-    margin-left: 4%;
-    margin-right: auto;
+    margin: 5% auto 5% 4%;
 }
 .reg__button{
     margin-top: 7%;
@@ -67,4 +68,16 @@
 }
 .user_email{
 display: inline-block;
+}
+.toolTip{
+    background-color: whitesmoke;
+    color: grey;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    text-transform: none;
+    padding: 20px 18px 18px 22px;
+    border-radius: 10px;
+    display: block;
+    width: 256px;
 }

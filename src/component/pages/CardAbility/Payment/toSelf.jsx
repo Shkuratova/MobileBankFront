@@ -68,7 +68,9 @@ const ToSelf = () => {
                                 className='cin'
                                 placeholder='Сумма..'
                                 decimalsLimit={2}
+                                required={true}
                                 defaultValue={sum}
+                                allowNegativeValue={false}
                                 onValueChange={(e)=>setSum(e)}
                                 />
                             <button className='myBtn'>Продолжить</button>

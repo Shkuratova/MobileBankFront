@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import './abil.css'
-const RenameCard = ({visible, setVisible, cardNum, setCardName}) => {
+const RenameCard = ({visible, setVisible, cardNum, setCardName,cardId}) => {
     const[inp, setInp] = useState('')
     const rename =(e)=>{
         e.preventDefault()
         setCardName(inp)
+        localStorage.setItem(cardId, inp)
         setInp('')
         setVisible(false)
     }
