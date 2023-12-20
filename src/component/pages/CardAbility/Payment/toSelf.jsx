@@ -5,7 +5,7 @@ import CardList from "../../Home/CardList";
 import Confirm from "./Modal/Confirm";
 import Execute from "./Modal/Execute";
 import CurrencyInput from "react-currency-input-field";
-import valuteCourse from "../../ValutaCourse";
+import CardSelect from "./CardSelect";
 
 const ToSelf = () => {
     const[cards, setCards] = useState([
@@ -17,10 +17,10 @@ const ToSelf = () => {
     const [cardTo, setCardTo] = useState(cards[1].id)
     const [to, setTo] = useState(cards.filter(s=>s.id!==cards[0].id))
     const [sum, setSum] = useState('')
-    const [error, setError] = useState(false)
     const changeList = (e) => {
-        setCard(e.target.value)
-        setTo(cards.filter(s => s.id != e.target.value))
+        console.log(e)
+        setCard(e)
+        setTo(cards.filter(s => s.id != e))
     }
     const [status, setStatus]  =useState('input')
     const postPay = ()=>{
@@ -38,29 +38,11 @@ const ToSelf = () => {
                         <h1>Между своими счетами</h1>
                         <div className="cardFrom">
                             <p>Откуда</p>
-                            <select className="mySelect"
-                                    value={card}
-                                    onChange={e => changeList(e)}>
-                                {cards.map((e) =>
-                                    <option key={e.id}
-                                            value={e.id}>
-                                        {'****'+e.cardNum + '   [' + e.cardType +']   ' + e.balance + ' руб.'}
-                                    </option>)}
-                            </select>
+                            <CardSelect cards={cards} card={card} onChange={value => changeList(value)}/>
+
                             <div className="cardTo">
                                 <p>Куда</p>
-                                <select className="mySelect"
-                                        value={cardTo}
-                                        onChange={e =>
-                                            setCardTo(Number(e.target.value))}>
-                                    {to.map((e) =>
-                                        <option
-                                            key={e.id+1}
-                                            value={e.id}>
-                                            {'****'+e.cardNum + '   [' + e.cardType +']   ' + e.balance + ' руб.'}
-                                        </option>
-                                    )}
-                                </select>
+                                <CardSelect cards={to} card={cardTo} onChange={value => setCardTo(value)}/>
                             </div>
                         </div>
                         <div className="submition">

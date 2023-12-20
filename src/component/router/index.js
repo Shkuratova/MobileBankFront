@@ -1,5 +1,4 @@
 import Home from "../pages/Home/Home";
-import ValutaCourse from "../pages/ValutaCourse";
 import ATM from "../pages/Other/ATM";
 import LK from "../pages/LK/LK";
 import CardById from "../pages/GetItemById/CardById";
@@ -19,6 +18,9 @@ import ChangeLogin from "../pages/LK/PersonAbility/ChangeLogin";
 import Auth from "../pages/Auth/Auth";
 import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, HOME, PAY, USER} from "../utils/consts";
 import PayService from "../pages/CardAbility/Payment/PayService";
+import ValutaCourse from "../pages/Other/Valuta/ValutaCourse";
+import BuyValute from "../pages/Other/Valuta/BuyValute";
+
 
 export const privateRoutes=[
     {path:HOME, component:<Home/>},
@@ -41,7 +43,8 @@ export const privateRoutes=[
     {path:'/editpassword/:login', component: <ChangePassword/>},
     {path:'/editlogin/:login', component:<ChangeLogin/>},
     {path:'/lastlogin/:login', component: <SessionHistory/>},
-    {path:'/about', component: <About/>}
+    {path:'/about', component: <About/>},
+    {path:'/buyvalute:charcode', component: <BuyValute/>}
 ]
 
 export const publicRoutes=[

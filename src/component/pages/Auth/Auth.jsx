@@ -6,6 +6,8 @@ import {ATMS} from "../../utils/consts";
 import {AuthContext} from "../../../context";
 import {useForm} from "react-hook-form";
 
+//проверка по емэил при регистрации и входе в аккаунт
+
 const Auth = () => {
     const {
         handleSubmit,

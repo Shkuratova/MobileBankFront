@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../../styles/Common.css'
 import './Other.css'
-import ATMItem from "./ATMItem";
+
 
 const ATM = () => {
     return (

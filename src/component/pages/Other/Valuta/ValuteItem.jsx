@@ -1,6 +1,9 @@
 import React from 'react';
 import './valute.css'
+import {useNavigate} from "react-router-dom";
+
 const ValuteItem = ({CharCode, Name, Nominal, Value}) => {
+    const router = useNavigate()
     return (
         <div className='valute__item'>
 
@@ -19,7 +22,7 @@ const ValuteItem = ({CharCode, Name, Nominal, Value}) => {
                      <p style={{marginTop:"5px", marginLeft:"8px"}}>{(Value*1.04).toFixed(2).replace('.',',')}</p>
                     </div>
             </div>
-            <button  className='button_v'>Обменять</button>
+            <button  onClick={()=>router('/buyvalute' + CharCode)} className='button_v'>Обменять</button>
         </div>
     );
 };

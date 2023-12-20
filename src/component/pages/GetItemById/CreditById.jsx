@@ -18,27 +18,27 @@ const CreditById = () => {
                     <h3 className="descr_txt">Ближайший платеж: {credit.datePay}</h3>
                     <h2 className="bl">{credit.payPerMonth} ₽</h2>
                 </div>
-                <div className="abil">
-                    <p className="descr_txt spec">Действия</p>
-                    <Action
-                        path = {'/card/history/' +credit.id}
-                        img={'/images/history.png'}
-                        height={'50'}
-                        width={'50'}
-                        name = {'История операций'}/>
-                    <Action
-                        path = {'/payment'}
-                        img={'/images/pay.png'}
-                        height={'50'}
-                        width={'50'}
-                        name = {'Оплатить'}/>
-                    <Action
-                        path={'/credit/info/' + credit.id}
-                        img={'/images/info.png'}
-                        height={'50'}
-                        width={'50'}
-                        name = {'Детальная информация'}/>
-                </div>
+                {/*<div className="abil">*/}
+                {/*    <p className="descr_txt spec">Действия</p>*/}
+                {/*    <Action*/}
+                {/*        path = {'/card/history/' +credit.id}*/}
+                {/*        img={'/images/history.png'}*/}
+                {/*        height={'50'}*/}
+                {/*        width={'50'}*/}
+                {/*        name = {'История операций'}/>*/}
+                {/*    <Action*/}
+                {/*        path = {'/payment'}*/}
+                {/*        img={'/images/pay.png'}*/}
+                {/*        height={'50'}*/}
+                {/*        width={'50'}*/}
+                {/*        name = {'Оплатить'}/>*/}
+                {/*    <Action*/}
+                {/*        path={'/credit/info/' + credit.id}*/}
+                {/*        img={'/images/info.png'}*/}
+                {/*        height={'50'}*/}
+                {/*        width={'50'}*/}
+                {/*        name = {'Детальная информация'}/>*/}
+                {/*</div>*/}
 
             </div>
         </div>

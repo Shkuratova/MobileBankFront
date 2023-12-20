@@ -6,6 +6,8 @@ import {useForm} from "react-hook-form";
 import Execute from "./Modal/Execute";
 import Confirm from "./Modal/Confirm";
 import CurrencyInput from "react-currency-input-field";
+import {cardFormat} from "../../../utils/Format";
+import CardSelect from "./CardSelect";
 
 const ToOther = () => {
     const {
@@ -26,21 +28,10 @@ const ToOther = () => {
     const sendDuty =()=>{
         setState('confirmation')
     }
-    const [card, setCard] = useState(cards[0].id)
+    const [card, setCard] = useState(String(cards[0].id))
 
     const[sum, setSum] = useState('')
 
-    const cardFormat=(e)=>{
-        const p = e.target.value
-        const v = p.replace(/\s+/g, "")
-            .replace(/[^0-9]/gi, "")
-            .substring(0, 16);
-        const parts = []
-        for(let i =0; i<v.length;i+=4){
-            parts.push(v.substring(i, i+4));
-        }
-        parts.length >1? setBill(parts.join('-')):setBill(p)
-    }
 
     return (
         <div className='page_chr'>
@@ -56,14 +47,12 @@ const ToOther = () => {
                         type="text"
                         {...register("name",{
                             required:true,
-                            pattern:/^[0-9-]+$/,
-                            minLength:16
+                            minLength:19
                         })}
-                        onChange={e=>cardFormat(e)}
+                        onChange={e=>cardFormat(e, setBill)}
                     />
                          {errors.name?.type==="required" && <span style={{color:'red'}}>Поле не может быть пустым</span>}
-                         {errors.name?.type==="pattern" && <span style={{color:'red'}}>Неверно введен номер карты</span>}
-                         {errors.name?.type==="mxLength" && <span style={{color:'red'}}>Неверно введен 16  номер карты</span>}
+                         {errors.name?.type==="minLength" && <span style={{color:'red'}}>Неверно введен номер карты</span>}
                     <button className='myBtn'>Продолжить</button>
                 </form>
                     </div>
@@ -74,15 +63,7 @@ const ToOther = () => {
                         <h1>Детали перевода</h1>
                         <div className='cardFrom'>
                             <p>Откуда</p>
-                            <select className='mySelect'>
-                                {cards.map((c)=>
-                                    <option key={c.cardNum}
-                                            value={card.id}
-                                    >
-                                        {'****'+c.cardNum + '   [' + c.cardType +']   ' + c.balance + ' руб.'}
-                                    </option>
-                                )}
-                            </select>
+                           <CardSelect cards={cards} card={card} onChange={value=>setCard(value)}/>
                         </div>
                         <CurrencyInput
                             className={[errors.name,'cin'].join(' ')}

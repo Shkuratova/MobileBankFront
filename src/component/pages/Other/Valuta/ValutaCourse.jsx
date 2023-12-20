@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import ValuteItem from "./Other/ValuteItem";
-import '../styles/Common.css'
+import '../../../styles/Common.css'
+import ValuteItem from "./ValuteItem";
+import './valute.css'
 
 const ValutaCourse = () => {
     const[curr, setCurr] = useState([])
@@ -12,9 +13,7 @@ const ValutaCourse = () => {
             .then((response)=>{
                 setCurr(response.data)
                 setIsLoading(false)
-                console.log(response.data)
             })
-
     }, []);
     return (
         <div className='page_chr'>

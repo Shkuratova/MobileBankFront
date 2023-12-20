@@ -8,6 +8,17 @@
     display: inline-block;
     margin-left: 6%;
 }
+.pay_switch{
+    display: flex;
+    background-color:white;
+    border:none;
+    font-size: 18px;
+    height:40px;
+    color: grey;
+}
+.pay_switch:hover{
+    cursor: pointer;
+}
 .pay_btn{
     padding: 2%;
     margin-bottom: 2%;
@@ -20,6 +31,7 @@
     margin-top: 2%;
     border-radius: 12px;
     text-align: left;
+    padding: 2%;
 }
 .service{
     display: flex;
