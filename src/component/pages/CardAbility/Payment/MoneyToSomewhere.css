@@ -1,12 +1,13 @@
 .cardholder{
-    display: inline-block;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
     background: #FFFFFF;
     border-radius: 22px;
     width: 60%;
     height: 70%;
-    margin-top: 10%;
-    margin-left: 5%;
+    margin-top: 5%;
+    margin-left: 34%;
     padding: 2%;
 }
 .cardFrom{

@@ -1,15 +1,18 @@
 import React from 'react';
 import '../../CardAbility/Payment/PaymentElem.css'
-const BillSelect = ({bills, bill, onChange}) => {
+
+const BillSelect = ({ bills, bill, onChange}) => {
+    let dict  = new Map();
+    dict.set('debit', 'Текущий счет').set('credit','Кредитный счет')
     return (
         <select className='pay_select'
                 value={bill}
                 onChange={event => onChange(event.target.value)}>
             {bills.map((c)=>
-                <option key={c.billNum}
-                        value={c.id}
+                <option key={c.account_number}
+                        value={c.account_number}
                 >
-                    {'****'+c.billNum + '   [' + c.billType +']   ' + c.balance + ' руб.'}
+                    {'****'+c.account_number.slice(-4) + '   [' + dict.get(c.type_account) +']   ' + c.balance + ' ' + c.currency}
                 </option>
             )}
         </select>

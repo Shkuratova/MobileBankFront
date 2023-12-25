@@ -5,7 +5,6 @@ import CardList from "../../Home/CardList";
 const ChangeLogin = () => {
     return (
         <div className='page_chr'>
-            <CardList/>
             <div className="changefield">
                 <form>
                     <h1>Изменение Логина</h1>

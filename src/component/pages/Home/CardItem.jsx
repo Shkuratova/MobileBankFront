@@ -5,13 +5,13 @@ const CardItem = (props) => {
     const router = useNavigate()
     return (
         <div
-            onClick={()=>router(`/card/${props.card.id}`)}
+            onClick={()=>router(`/card/${props.card.token_card}`)}
             className="cardItem">
-            <p className="card_type">{props.card.cardType}</p>
+            <p className="card_type">{props.card.type_account==='credit'?'Кредитная карта':'Дебетовая карта'}</p>
             <div className="card_info">
                 <img src="/images/card.png" className="cardicon" />
-                <p className="num">***{props.card.cardNum}</p>
-                <p className="sum">{props.card.balance} ₽</p>
+                <p className="num">****{props.card.card_name.slice(-4)}</p>
+                <p className="sum">{props.card.balance} {props.card.currency}</p>
             </div>
         </div>
     );

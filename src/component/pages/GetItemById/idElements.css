@@ -1,18 +1,12 @@
-.idCard{
-    /*margin-bottom: 8%;*/
-    /*display: flex;*/
-    /*height: 100%;*/
-    /*width: 100%;*/
-    /*border-radius: 22px;*/
-}
+
 
 .infor{
-margin-top: 7%;
+    margin-top: 4%;
     border-radius: 22px;
     width: 60%;
     height: 70%;
     display: inline-block;
-    margin-left: 6%;
+    margin-left: 34%;
     background: #FFFFFF;
 }
 .descr{
@@ -27,7 +21,7 @@ margin-top: 7%;
     margin-left: 1%;
 }
 .spec{
-    font-size: 14px;
+    font-size: 16px;
     color:grey
 }
 .abil{

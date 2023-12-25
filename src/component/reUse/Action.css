@@ -9,6 +9,7 @@
 }
 .action:hover{
     background: lightblue;
+    cursor: pointer;
 }
 .act_img{
     float: left;

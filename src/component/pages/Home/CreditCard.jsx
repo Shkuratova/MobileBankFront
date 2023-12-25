@@ -5,12 +5,12 @@ const CreditCard = (props) => {
     const router = useNavigate()
     return (
         <div
-            onClick={()=>router(`/credit/${props.credit.id}`)}
+            onClick={()=>router(`/credit/${props.credit.account_number}`)}
             className="cardItem">
-            <p className="card_type">{props.credit.creditType}</p>
+            <p className="card_type">Кредит наличными</p>
             <div className="card_info">
-                <p>Платеж: {props.credit.datePay}</p>
-                <p className="sum">{props.credit.balance} ₽</p>
+                <p>****{props.credit.account_number.slice(-4)}</p>
+                <p className="sum">{props.credit.balance.replace('-','')} {props.credit.currency}</p>
             </div>
         </div>
     );

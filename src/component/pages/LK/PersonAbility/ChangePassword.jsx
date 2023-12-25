@@ -19,7 +19,6 @@ const ChangePassword = () => {
     }
     return (
         <div className='page_chr'>
-            <CardList/>
             <div className='changefield'>
                 {state === 'changePass'&&
                 <form onSubmit={e=>checkPas(e)}>

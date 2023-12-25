@@ -4,99 +4,87 @@ import './Auth.css'
 import {useNavigate} from "react-router-dom";
 import {ATMS} from "../../utils/consts";
 import {AuthContext} from "../../../context";
-import {useForm} from "react-hook-form";
+import axios from "axios";
 
-//проверка по емэил при регистрации и входе в аккаунт
 
 const Auth = () => {
-    const {
-        handleSubmit,
-        register,
-        formState:{errors},
-    } = useForm({mode:"onChange"});
     const{isAuth, setIsAuth} = useContext(AuthContext)
     const router = useNavigate()
     const[state, setState] = useState('SignIn')
-    const siqnIn=()=>{
-        //запрос
-       setIsAuth(true)
+
+    const [pas, setPas] = useState('')
+    const [log, setLog] = useState('')
+    const [tfa_token, setTfa] = useState('')
+    const[code, setCode] = useState('')
+
+
+    const siqnIn=(e)=>{
+        e.preventDefault()
+        axios
+            .post("/auth/", {login:log, password:pas})
+            .then((response)=>{
+                console.log(response.data);
+                setTfa(response.data.tfa_token)
+                setState('Confirm')
+            })
+            .catch(function (error){
+            if(error.response){
+                console.log(error.response.data)
+            }
+        });
     }
-    const inital=()=>{
-        setState('Reg')
+    const confirm=()=>{
+        axios
+            .put("/auth/", {tfa_token:tfa_token, confirm_code:code})
+            .then((response)=>{
+                localStorage.setItem('token', response.data.access_token);
+                localStorage.setItem('ref_token', response.data.refresh_token);
+                setIsAuth(true)
+            })
+            .catch(function (error){
+                if(error.response){
+                    console.log(error.response.data)
+                }
+            });
     }
-    const finalReg=()=>{
-        //запрос
-        setState('regSuc')
-    }
+
+
     return (
         <div className="page_chr">
             {state ==='SignIn' &&
-            <div className="reg__modal">
-                <h1 className='head__reg'>Добро пожаловать!</h1>
-                <form className='reg__modal' style={{width:"100%"}} onSubmit={handleSubmit(siqnIn)}>
-                <input className='reg__input'
-                placeholder='Логин'
-                />
-                <input className='reg__input'
-                placeholder='Пароль'
-                       {...register("name",{
-                           required:true,
-                           pattern:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/,
-                           minLength:8,
-                           maxLength:20
-                       })}/>
-                    {errors.name?.type==="required" && <span style={{color:'red'}}>Поле не может быть пустым</span>}
-                    {errors.name?.type==="pattern" && <span style={{color:'red'}}>Неверно введен пароль</span>}
-                    {errors.name?.type==="minLength" && <span style={{color:'red'}}>Пароль должен содержать от 8 до 20 символов</span>}
-                    {errors.name?.type==="maxLength" && <span style={{color:'red'}}>Пароль должен содержать от 8 до 20 символов</span>}
-                <button className="reg__button">Продолжить</button>
-                </form>
-                <div className='reg__nav'>
-                    <button  onClick={()=>setState('SignUp')} className='reg__link'>Зарегистрироваться</button>
-                    <button onClick={()=>router(ATMS)} className='reg__link'>Ближайшие банкоматы</button>
-                </div>
-            </div>
-            }
-            {state ==='SignUp' &&
-                <div className='reg__modal'>
-                    <button onClick={()=>setState('SignIn')}
-                        className='reg__link'>На главную</button>
-                    <h1 className='head__reg'>Регистрация</h1>
-                    <p>Введите номер счета</p>
-                    <input className='reg__input'
+                <div className="reg__modal">
+                    <h1 className='head__reg'>Добро пожаловать!</h1>
+                    <form className='reg__modal' style={{width:"100%"}} onSubmit={(e)=>siqnIn(e)}>
+                        <input className='reg__input'
+                               placeholder='Логин'
+                               value={log}
+                               onChange={(e)=>setLog(e.target.value)}
                         />
-                    <button onClick={inital}
-                        className="reg__button">Продолжить</button>
-                </div>
-            }
-            {
-                state==='Reg' &&
-                <div className="reg__modal">
-                    <button onClick={()=>setState('SignIn')}
-                            className='reg__link'>На главную</button>
-                    <h3>Логин</h3>
-                    <input className="reg__input"/>
-                    <h3>Пароль</h3>
-                    <input className="reg__input"/>
-                    <span className='toolTip'>
-                        Пароль должен содержать как минимум одну заглавную  и прописную буквы, цифры и хотя
-                        бы один символ:!@#$%^&*_=+-
-                    </span>
-                    <button onClick={finalReg}
-                        className="reg__button">Зарегистрироваться</button>
-                </div>
-            }
-            {state==='regSuc'&&
-                <div className="reg__modal">
-                    <div style={{marginTop:"auto", marginBottom:"auto"}}>
-                        <h1 className='head__reg'>Регистрация прошла успешно!</h1>
-                        <button
-                            onClick={()=>setState('SignIn')}
-                            className="reg__button"
-                            style={{marginLeft:"8%"}}>
-                            Войти</button>
+                        <input className='reg__input'
+                               placeholder='Пароль'
+                               value={pas}
+                               type={"password"}
+                        onChange={(e)=>setPas(e.target.value)}/>
+                        <button className="reg__button">Продолжить</button>
+                    </form>
+                    <div className='reg__nav'>
+                        <button  onClick={()=>router('/registration')} className='reg__link'>Зарегистрироваться</button>
+                        <button onClick={()=>router(ATMS)} className='reg__link'>Ближайшие банкоматы</button>
                     </div>
                 </div>
+            }
+            {state === 'Confirm' &&
+                <div className='reg__modal'>
+                    <h2>На вашу почту было выслано письмо с кодом подтверждения</h2>
+                    <input className='reg__input'
+                        placeholder='Код подтверждения'
+                            value={code}
+                            onChange={e=>setCode(e.target.value)}
+                    />
+                    <button onClick={confirm}
+                        className='reg__button'>Продолжить</button>
+                </div>
+
             }
         </div>
     );

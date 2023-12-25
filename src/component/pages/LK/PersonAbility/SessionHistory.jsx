@@ -2,7 +2,7 @@ import React from 'react';
 
 const SessionHistory = () => {
     return (
-        <div>
+        <div className='page_chr'>
             session history
         </div>
     );

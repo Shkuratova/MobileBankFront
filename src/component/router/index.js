@@ -9,9 +9,9 @@ import About from "../pages/Other/About";
 import BillById from "../pages/GetItemById/BillById";
 import CreditById from "../pages/GetItemById/CreditById";
 import CreditInfo from "../pages/CardAbility/CreditInfo";
-import ToOther from "../pages/CardAbility/Payment/toOther";
+import TransferUser from "../pages/CardAbility/Payment/TransferUser";
 import Payment from "../pages/CardAbility/Payment/Payment";
-import ToSelf from "../pages/CardAbility/Payment/toSelf";
+import TransferBetween from "../pages/CardAbility/Payment/TransferBetween";
 import ChangePassword from "../pages/LK/PersonAbility/ChangePassword";
 import SessionHistory from "../pages/LK/PersonAbility/SessionHistory";
 import ChangeLogin from "../pages/LK/PersonAbility/ChangeLogin";
@@ -20,23 +20,26 @@ import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, HOME, PAY, USER} from "../u
 import PayService from "../pages/CardAbility/Payment/PayService";
 import ValutaCourse from "../pages/Other/Valuta/ValutaCourse";
 import BuyValute from "../pages/Other/Valuta/BuyValute";
+import RegForm from "../pages/Auth/RegForm";
+import CreateBill from "../pages/Home/OpenBill/CreateBill";
 
 
 export const privateRoutes=[
     {path:HOME, component:<Home/>},
     {path:"/*", component:<Home/>},
-    {path:USER + '/:login', component: <LK/>},
+    {path:'/user/:login', component: <LK/>},
     {path:CURRENCY, component: <ValutaCourse/>},
     {path:ATMS, component: <ATM/>},
     {path: CARD+'/:id', component: <CardById/>},
     {path:CREDIT+'/info/:id', component: <CreditInfo/>},
     {path:BILL+'/:id', component: <BillById/>},
     {path:CREDIT+'/:id', component: <CreditById/>},
-    {path:CARD+HISTORY+'/:id', component: <CardHistory/>},
-    {path:CREDIT+HISTORY+'/:id', component: <CardHistory/>},
-    {path:PAY+'/toSelf', component: <ToSelf/>},
+    {path:CARD+HISTORY+'/:account_number/:token_card', component: <CardHistory/>},
+    {path:BILL+HISTORY+'/:account_number/', component: <CardHistory/>},
+    {path:CREDIT+HISTORY+'/:account_number/', component: <CardHistory/>},
+    {path:PAY+'/transfer/between', component: <TransferBetween/>},
     {path:PAY+'/service', component: <PayService/>},
-    {path:PAY+'/toOther', component: <ToOther/>},
+    {path:PAY+'/transfer/user', component: <TransferUser/>},
     {path:PAY, component: <Payment/>},
     {path:CARD+'/block/:id', component: <Block/>},
     {path:CARD+'/rename/:id', component: <RenameCard/>},
@@ -44,10 +47,12 @@ export const privateRoutes=[
     {path:'/editlogin/:login', component:<ChangeLogin/>},
     {path:'/lastlogin/:login', component: <SessionHistory/>},
     {path:'/about', component: <About/>},
-    {path:'/buyvalute:charcode', component: <BuyValute/>}
+    {path:'/buyvalute:charcode', component: <BuyValute/>},
+    {path:'/new_bill', component: <CreateBill/>}
 ]
 
 export const publicRoutes=[
     {path:'/*', component:<Auth/>},
+    {path: '/registration', component: <RegForm/>},
     {path:ATMS, component: <ATM/>}
 ]

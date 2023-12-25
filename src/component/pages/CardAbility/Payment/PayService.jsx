@@ -1,38 +1,34 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../styles/Common.css'
 import './MoneyToSomewhere.css'
 import CurrencyInput from "react-currency-input-field";
-import CardList from "../../Home/CardList";
 import './PaymentElem.css'
 import Confirm from "./Modal/Confirm";
-import Execute from "./Modal/Execute";
 import CardSelect from "./CardSelect";
 import BillSelect from "../../Other/Valuta/BillSelect";
-const PayService = () => {
+import CardService from "../../../../service/CardService";
+import {observer} from "mobx-react-lite";
+import AccountStore from "../../../../store/AccountStore";
+import CardStore from "../../../../store/CardStore";
 
+const PayService = observer(() => {
+    const {bills} = AccountStore;
+    const {cards} =CardStore;
+
+    const [bill, setBill] = useState('')
     const [state, setState] = useState('service')
-    const[cards, setCards] = useState([
-        {id:1,cardType:'Дебетовая карта', cardNum:'123', balance:'11000.20'},
-        {id:2,cardType:'Кредитная карта', cardNum:'253', balance:'1500.12'},
-        {id:3,cardType:'Дебетовая карта', cardNum:'188', balance:'250000.65'}
-    ]);
-    const [bills, setBills] = useState([
-        {id:1, billType:'Текущий счет', billNum:'458', balance:'25000,45'},
-        {id:2, billType:'Текущий счет', billNum:'485', balance:'280,05'}
-    ])
-    const[bill, setBill] = useState(bills[0].id)
     const[flag, setFlag] = useState(true)
-    const [card, setCard] = useState(cards[0].id)
+    const [card, setCard] = useState('')
     const[sum, setSum] = useState('')
     const[where, setWhere] = useState('')
+
     const sendDuty =()=>{
         setState('confirmation')
     }
-
     const[description, setDescription] = useState('')
+
     return (
         <div className='page_chr'>
-            <CardList/>
             {state==='service' &&
                 <div className='cardholder' style={{marginTop:"4%"}}>
                     <h1>Оплатить</h1>
@@ -67,7 +63,7 @@ const PayService = () => {
                                 defaultValue={sum}
                                 onValueChange={(e)=>setSum(e)}
                              />
-                        <button className='paybtn'>Продолжить</button>
+                        <button className='myBtn'>Продолжить</button>
                     </form>
                 </div>
             }
@@ -75,15 +71,11 @@ const PayService = () => {
                     <Confirm status={state} setStatus={setState}/>
             }
             {state ==='access' &&
-                <Execute
-                    title={'Оплачено'}
-                    txt1={where}
-                    txt2={sum}
-                    description={description}
-                />
+
+                <h1>Оплачено</h1>
             }
         </div>
     );
-};
+});
 
 export default PayService;

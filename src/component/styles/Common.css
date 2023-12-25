@@ -6,11 +6,18 @@
     font-family: sans-serif;
 }
 .myBtn{
-    height:100%;
+    height:45px;
     width: 100%;
     border: none;
     padding: 1%;
     background:  rgb(131,228,192);
     font-size: 20px;
     border-radius: 12px;
+    margin-top: 4%;
+}
+.error{
+    color:blueviolet;
+    font-size: 16px;
+    margin-top: 1%;
+
 }

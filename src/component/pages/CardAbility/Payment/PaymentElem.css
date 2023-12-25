@@ -6,7 +6,7 @@
     padding: 2%;
     height: 70%;
     display: inline-block;
-    margin-left: 6%;
+    margin-left: 34%;
 }
 .pay_switch{
     display: flex;
@@ -25,10 +25,10 @@
     margin-top: 2%;
 }
 .pay_input{
-    width: 80%;
+    width: 100%;
     font-size: 16px;
     height: 40px;
-    margin-top: 2%;
+    margin-top: 4%;
     border-radius: 12px;
     text-align: left;
     padding: 2%;
@@ -38,7 +38,7 @@
     flex-direction: column;
     align-items: center;
     font-size: 18px;
-    padding: 3%;
+    padding: 2%;
 }
 .paybtn{
     margin-top: 8%;
@@ -51,12 +51,13 @@
 }
 .pay_header{
     margin-right: auto;
-    margin-left: 10%;
+    margin-left: 1%;
     margin-top: 4%;
 }
 .pay_select{
     margin-top: 2%;
     border-radius: 12px;
-    width: 80%;
+    width: 100%;
+    font-size: 16px;
     height: 40px;
 }

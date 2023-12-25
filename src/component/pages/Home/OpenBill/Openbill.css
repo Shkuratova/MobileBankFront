@@ -1,0 +1,19 @@
+.valute_select{
+    width: 80%;
+    height: 30px;
+    margin-left: 3%;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.contract{
+    margin-top: 6%;
+}
+.add_bill{
+    font-size: 18px;
+    width: 55%;
+    justify-content: left;
+}
+p{
+    margin-top: 2%;
+    font-size: 18px;
+}

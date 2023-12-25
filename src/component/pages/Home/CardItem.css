@@ -6,10 +6,10 @@
     background: #F6F4F4;
     padding:10px;
     min-width: 100%;
-
 }
 .cardItem:hover{
     background: lightblue;
+    cursor: pointer;
 }
 .card_info{
     display: flex;

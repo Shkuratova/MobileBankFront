@@ -3,23 +3,21 @@ import '../../../styles/Common.css'
 import '../../GetItemById/idElements.css'
 import './PaymentElem.css'
 import Action from "../../../reUse/Action";
-import CardList from "../../Home/CardList";
 
 const Payment = () => {
     return (
         <div className='page_chr'>
-            <CardList/>
             <div className="pay_main">
                 <div className="pay_btn">
                     <h1 style={{marginLeft:"2%"}}>Переводы</h1>
                     <Action
-                        path={'/payment/toOther'}
+                        path={'/payment/transfer/user'}
                         img={'/images/crowd.png'}
                         width={'60'}
                         height={'60'}
                         name={'Другому человеку'}/>
                     <Action
-                        path={'/payment/toSelf'}
+                        path={'/payment/transfer/between'}
                         img={'/images/transact.png'}
                         width={'60'}
                         height={'60'}

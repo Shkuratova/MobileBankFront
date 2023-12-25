@@ -1,22 +1,31 @@
 
 .card_list{
-    display:inline-block;
+    display:flex;
+    flex-direction: column;
     padding: 10px;
     border-radius: 22px;
-    position: sticky;
+    position: fixed;
     margin-top: 4%;
-    margin-left: 3%;
+    margin-left: 2%;
     background: #FFFFFF;
     justify-content: center;
     width:25%;
-    min-height: 5px;
+    height:80%;
     font-size: 22px;
-    height: 50%;
     text-align: center;
     min-width: 25%;
+
 }
+
 .cardl{
     margin-bottom: 2%;
+    overflow-y:scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.cardl::-webkit-scrollbar{
+    width: 0;
+    height: 0;
 }
 .tit{
     margin-bottom: 3%;
