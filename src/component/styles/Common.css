@@ -6,18 +6,31 @@
     font-family: sans-serif;
 }
 .myBtn{
-    height:45px;
     width: 100%;
     border: none;
     padding: 1%;
-    background:  rgb(131,228,192);
-    font-size: 20px;
-    border-radius: 12px;
     margin-top: 4%;
+    border-radius: 16px;
+    background: aquamarine;
+    height: 50px;
+    font-size: 18px;
+}
+.myBtn:hover{
+    background: mediumaquamarine;
+    cursor: pointer;
+}
+.myInput{
+    width: 100%;
+    padding-left: 2%;
+    font-size: 20px;
+    height: 45px;
+    margin-bottom: 3%;
+    border-radius: 12px;
+    text-align: left;
 }
 .error{
     color:blueviolet;
     font-size: 16px;
-    margin-top: 1%;
+    margin-top: 3%;
 
 }

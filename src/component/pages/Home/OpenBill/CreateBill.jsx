@@ -2,29 +2,23 @@ import React, {useState} from 'react';
 import '../Home.css'
 import '../../../styles/Common.css'
 import './Openbill.css'
-import {valutaCharCode} from "../../../utils/consts";
-import CardList from "../CardList";
-import axios, {post} from "axios";
+import {valutaCharCode} from "../../../../utils/consts";
+import CardService from "../../../../service/CardService";
+
 const CreateBill = () => {
     const [valuta, setValuta] = useState("RUB")
     const [ans, setAns] = useState()
     const[state, setState] = useState('Open')
-    const OpenBill = ()=>{
-        axios
-            .post("/api/v1/create_account/", {currency:valuta}, {headers:
-                    {
-                        Authorization:localStorage.getItem('token')
-                    }})
-            .then((response)=>{
-                console.log(response.data);
-                setAns(response.data)
-                setState('Info')
-            })
-            .catch(function (error){
-                if(error.response){
-                    console.log(error.response.data)
-                }
-            });
+    const OpenBill = async ()=>{
+        try {
+            const response =await CardService.openBill(valuta);
+            console.log(response)
+            setAns(response.data)
+            setState('Info')
+        }
+        catch (e) {
+            console.log(e.response.data)
+        }
     }
     return (
         <div className='page_chr'>
@@ -38,7 +32,7 @@ const CreateBill = () => {
                             onChange={e=>setValuta(e.target.value)}>
                             <option key={"RUB"} value={"RUB"}>Рубль</option>
                                     {valutaCharCode.map((t)=>
-                             <option key={t} value={t}> {t} </option>
+                             <option key={t.CharCode} value={t.CharCode}> {t.Name} </option>
                                                                 )}
                         </select>
                     </div>

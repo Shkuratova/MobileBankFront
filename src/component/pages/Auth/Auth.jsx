@@ -2,50 +2,31 @@ import React, {useContext, useState} from 'react';
 import '../../styles/Common.css'
 import './Auth.css'
 import {useNavigate} from "react-router-dom";
-import {ATMS} from "../../utils/consts";
+import {ATMS} from "../../../utils/consts";
 import {AuthContext} from "../../../context";
 import axios from "axios";
+import {observer} from "mobx-react-lite";
+import PersonStore from "../../../store/PersonStore";
 
 
 const Auth = () => {
-    const{isAuth, setIsAuth} = useContext(AuthContext)
+    const{isAuth, setAuth, SiqnIn, ConfirmLogin, AuthError} = PersonStore
     const router = useNavigate()
     const[state, setState] = useState('SignIn')
 
     const [pas, setPas] = useState('')
     const [log, setLog] = useState('')
-    const [tfa_token, setTfa] = useState('')
     const[code, setCode] = useState('')
 
 
     const siqnIn=(e)=>{
         e.preventDefault()
-        axios
-            .post("/auth/", {login:log, password:pas})
-            .then((response)=>{
-                console.log(response.data);
-                setTfa(response.data.tfa_token)
-                setState('Confirm')
-            })
-            .catch(function (error){
-            if(error.response){
-                console.log(error.response.data)
-            }
-        });
+        SiqnIn(log, pas)
+        setState('Confirm')
     }
     const confirm=()=>{
-        axios
-            .put("/auth/", {tfa_token:tfa_token, confirm_code:code})
-            .then((response)=>{
-                localStorage.setItem('token', response.data.access_token);
-                localStorage.setItem('ref_token', response.data.refresh_token);
-                setIsAuth(true)
-            })
-            .catch(function (error){
-                if(error.response){
-                    console.log(error.response.data)
-                }
-            });
+        ConfirmLogin(code)
+
     }
 
 
@@ -65,6 +46,7 @@ const Auth = () => {
                                value={pas}
                                type={"password"}
                         onChange={(e)=>setPas(e.target.value)}/>
+                        {AuthError&& <p className='error'>{AuthError}</p>}
                         <button className="reg__button">Продолжить</button>
                     </form>
                     <div className='reg__nav'>
@@ -90,4 +72,4 @@ const Auth = () => {
     );
 };
 
-export default Auth;
+export default observer(Auth);

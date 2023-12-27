@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './abil.css'
+import '../../styles/Common.css'
 const RenameCard = ({visible, setVisible, cardNum, setCardName,cardId}) => {
     const[inp, setInp] = useState('')
     const rename =(e)=>{
@@ -14,7 +15,7 @@ const RenameCard = ({visible, setVisible, cardNum, setCardName,cardId}) => {
         <p className='blockContent'>Введите новое название для карты  ***{cardNum}?</p>
         <input onChange={(e)=>setInp(e.target.value)}
                className='pas' placeholder='Имя'/>
-        <button className='blockBtn'>Изменить</button>
+        <button className='myBtn'>Изменить</button>
     </form>
    );
 };

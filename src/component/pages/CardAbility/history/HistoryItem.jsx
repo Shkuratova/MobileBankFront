@@ -1,25 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './history.css'
+import Window from "../../../reUseComponents/Window";
+import FullInfo from "./FullInfo";
 const HistoryItem = ({transaction}) => {
     console.log(transaction)
-
+    const[visible, setVisible] = useState(false)
     return (
-        <div className='hisoty__item'>
-            <div className="general_info">
-                {transaction.description.From.full_name === transaction.description.To.full_name?
-                    <h3 className='description'>Перевод между своими счетами</h3>
-                    :
-                    <h3 className='description'>Перевод клиенту банка</h3>
-                }
-                <p className='description'>Откуда: {transaction.description.From.account_number}</p>
-                <p className='description'>Куда: {transaction.description.To.account_number}</p>
-
+        <>
+            <Window setVisible={setVisible} visible={visible}>
+                <FullInfo setVisible={setVisible} visible={visible} transaction={transaction}/>
+            </Window>
+            <div onClick={()=>setVisible(true)}
+                className='history_item'>
+                <h3  className='general_info'>{transaction.description.about}</h3>
+                <div className='total'>
+                    <h3>{transaction.description.amount_money} {transaction.description.currency}</h3>
+                    <p style={{marginTop:"10%"}}>{transaction.end_transaction.replace('T', ' ').slice(0, -15)}</p>
+                </div>
             </div>
-            <div className='total'>
-                <h3>{transaction.description.amount_money} {transaction.description.currency}</h3>
-                <p className='description'>{transaction.end_transaction.replace('T', ' ').slice(0, -7)}</p>
-            </div>
-        </div>
+        </>
     );
 };
 

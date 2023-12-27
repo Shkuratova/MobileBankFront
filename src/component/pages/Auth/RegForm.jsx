@@ -2,10 +2,10 @@ import React, {useContext, useState} from 'react';
 import axios from "axios";
 import {AuthContext} from "../../../context";
 import {useNavigate} from "react-router-dom";
+import {observer} from "mobx-react-lite";
 
 const RegForm = () => {
     const router = useNavigate()
-    const{isAuth, setIsAuth} = useContext(AuthContext)
     const [state, setState] = useState('SignUp')
 
     const[pas, setPas] = useState('')
@@ -22,33 +22,33 @@ const RegForm = () => {
     }
     const finalReg=(e)=>{
         e.preventDefault()
-        axios
-            .post("/auth/registration/", {login:log, password:pas, re_password:re_pas, account:account})
-            .then((response)=>{
-                console.log(response.data);
-                setTfa(response.data.tfa_token)
-                setState('RegConfirm')
-            })
-            .catch(function (error){
-                if(error.response){
-                    console.log(error.response.data)
-                }
-            });
+        // axios
+        //     .post("/auth/registration/", {login:log, password:pas, re_password:re_pas, account:account})
+        //     .then((response)=>{
+        //         console.log(response.data);
+        //         setTfa(response.data.tfa_token)
+        //         setState('RegConfirm')
+        //     })
+        //     .catch(function (error){
+        //         if(error.response){
+        //             console.log(error.response.data)
+        //         }
+        //     });
     }
     const RegConfirm = (e)=> {
         e.preventDefault()
-        axios
-            .put("/auth/registration/", {tfa_token:tfa_token, confirm_code:code})
-            .then((response)=>{
-                localStorage.setItem('token', response.data.access_token)
-                localStorage.setItem('refresh', response.data.refresh_token)
-                setIsAuth(true)
-            })
-            .catch(function (error){
-                if(error.response){
-                    console.log(error.response.data)
-                }
-            });
+        // axios
+        //     .put("/auth/registration/", {tfa_token:tfa_token, confirm_code:code})
+        //     .then((response)=>{
+        //         localStorage.setItem('token', response.data.access_token)
+        //         localStorage.setItem('refresh', response.data.refresh_token)
+        //         setIsAuth(true)
+        //     })
+        //     .catch(function (error){
+        //         if(error.response){
+        //             console.log(error.response.data)
+        //         }
+        //     });
     }
     return (
         <div className='page_chr'>
@@ -111,4 +111,4 @@ const RegForm = () => {
     );
 };
 
-export default RegForm;
+export default observer(RegForm);

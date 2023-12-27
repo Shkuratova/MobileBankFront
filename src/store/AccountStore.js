@@ -1,8 +1,8 @@
-import {makeAutoObservable, runInAction} from "mobx";
+import {makeAutoObservable, observable, runInAction} from "mobx";
 import CardService from "../service/CardService";
 
 class AccountStore {
-    bills = [];
+    bills = [{account_number:'', currency:''}];
     bill =''
     debit =[];
     credit = [];
@@ -14,7 +14,7 @@ class AccountStore {
     error = null;
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this, {bill:observable, bills:observable, debit:observable, credit:observable})
     }
 
     getAccounts = async () =>{

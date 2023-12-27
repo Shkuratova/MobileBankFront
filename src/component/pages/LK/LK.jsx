@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../../styles/Common.css'
 import './LK.css'
 import {useParams} from "react-router-dom";
-import Action from "../../reUse/Action";
+import Action from "../../reUseComponents/Action";
 import CardList from "../Home/CardList";
 import {observable} from "mobx";
 import {observer} from "mobx-react-lite";
@@ -26,19 +26,19 @@ export const Lk =observer (() => {
 
                 <div className='lk_act'>
                     <Action
-                        path = {'/editpassword/' + p.id}
+                        path = {'/editpassword' }
                         img={'/images/key.png'}
                         width = "50"
                         height = "50"
                         name = {'Изменить пароль'}/>
                     <Action
-                        path = {'/editlogin/' + p.id}
+                        path = {'/editlogin' }
                         img={'/images/change.png'}
                         width = "50"
                         height = "50"
                         name={'Изменить логин'}/>
                     <Action
-                        path={'/lastlogin/' + p.id}
+                        path={'/lastlogin' }
                         img={'/images/history.png'}
                         width = "50"
                         height = "50"

@@ -3,35 +3,37 @@
     width: 60%;
     background: white;
     height: 80%;
-    padding: 1%;
     border-radius: 22px;
     margin-top: 4%;
     margin-left: 32%;
+    padding: 3% 3% 4%;
 }
+
 .operations{
-    padding: 2%;
-    margin-left: 3%;
+    margin-top:5%;
 }
-.description{
-    margin-top: 2%;
-}
-.history__item{
+.history_item{
     display: flex;
     flex-direction: row;
-    width: 85%;
-    padding: 3%;
-    align-items: center;
+    width: 100%;
+    height: 10%;
+    padding: 1% ;
+    border-radius: 22px;
+}
+.history_item:hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+.operation_chr{
+    margin-top: 2%;
+}
+.general_info{
+    padding: 4%;
+    font-size: 22px;
 }
 
-.general_info{
-    height: 100%;
-    padding: 4%;
-    display: inline-block;
-}
 
 .total{
-    height: 100%;
-    display: inline-block;
-    float:right;
-    padding: 4%;
+    margin-left: auto;
+    margin-top: 2%;
 }

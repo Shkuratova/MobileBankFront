@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import CardList from "../Home/CardList";
 import '../../styles/Common.css'
-import Action from "../../reUse/Action";
+import Action from "../../reUseComponents/Action";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import CardService from "../../../service/CardService";
 const BillById = () => {
     const inf = useParams()
     const [bill, setBill] = useState(
@@ -11,22 +12,16 @@ const BillById = () => {
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         setIsLoading(true)
-        axios
-            .get(`/api/v1/get_accounts/?account_number=${inf.id}`, {headers:
-                    {
-                        Authorization:localStorage.getItem('token')
-                    }
-            })
-            .then((response)=>{
-                setBill(response.data[0]);
+        const getBill= async ()=>{
+            try{
+                const response = await CardService.billById(inf.id)
+                setBill(response.data[0])
                 setIsLoading(false)
-                console.log(bill)
-            })
-            .catch(function (error){
-                if(error.response){
-                    console.log(error.response.data)
-                }
-            });
+            }catch (e) {
+                console.log(e.response.data)
+            }
+        }
+       getBill()
     }, [inf.id]);
     return (
         <div className="page_chr">

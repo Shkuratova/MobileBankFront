@@ -1,10 +1,19 @@
-import React, {useContext} from 'react';
-import {Route, Routes, useNavigate} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {Route, Routes} from "react-router-dom";
 import {privateRoutes, publicRoutes} from "./router";
-import {AuthContext} from "../context";
+import {observer} from "mobx-react-lite";
+import PersonStore from "../store/PersonStore";
+import ValutaStore from "../store/ValutaStore";
 
 const AppRouter = () => {
-    const {isAuth, setIsAuth} = useContext(AuthContext);
+    const {isAuth, checkAuth} = PersonStore;
+    const {getCourse}= ValutaStore
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            checkAuth()
+        }
+    }, []);
+
     return (
         isAuth?
        <Routes>
@@ -27,4 +36,4 @@ const AppRouter = () => {
     );
 };
 
-export default AppRouter;
+export default observer(AppRouter);

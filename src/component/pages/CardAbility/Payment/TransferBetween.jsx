@@ -4,7 +4,7 @@ import './../../../styles/Common.css'
 import CurrencyInput from "react-currency-input-field";
 import {observer} from "mobx-react-lite";
 import AccountStore from "../../../../store/AccountStore";
-import BillSelect from "../../Other/Valuta/BillSelect";
+import BillSelect from "../../../Valuta/BillSelect";
 import TransferService from "../../../../service/TransferService";
 
 export const TransferBetween = observer(() => {

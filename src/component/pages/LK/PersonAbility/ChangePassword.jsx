@@ -1,45 +1,62 @@
 import React, {useState} from 'react';
 import '../../../styles/Common.css'
 import '../LK.css'
-import CardList from "../../Home/CardList";
 import '../../Auth/Auth.css'
 import {useNavigate} from "react-router-dom";
+import AccessChange from "./AccessChange";
+import EmailConfirm from "../../../reUsePages/EmailConfirm";
+import PersonService from "../../../../service/PersonService";
+
 const ChangePassword = () => {
     const[state, setState] = useState('changePass')
     const [error, setError] = useState(false)
-    const [pas, setPas] =useState('')
-    const[pas1, setPas1]= useState('')
+    const [pas, setPas] =useState()
+    const[pas1, setPas1]= useState()
+    const[tfa, setTfa] = useState()
     const router = useNavigate()
-    const checkPas = (e)=>{
+    const checkPas = async (e)=>{
         e.preventDefault()
-        if(pas!==pas1)
-            setError(true)
-        else
-            setState('execute')
+        if(pas!=pas1) {
+            setError('Пароли не совпадают')
+            return
+        }
+        try {
+            const response = await PersonService.changePas(pas, pas1)
+            setState('Confirm')
+            setTfa(response.data.tfa_token)
+            setError(null)
+            console.log(response.data)
+        }catch (e) {
+            setError(e.response.data)
+        }
     }
     return (
         <div className='page_chr'>
-            <div className='changefield'>
                 {state === 'changePass'&&
+                    <div className='changefield'>
                 <form onSubmit={e=>checkPas(e)}>
                 <h1>Изменение Пароля</h1>
-                <p className='que'>Старый пароль</p>
-                <input className='cin' type={'password'}/>
                 <p className='que'>Новый пароль</p>
-                    <input  onChange={e => setPas(e.target.value)} className='cin' type={'password'}/>
+                    <input style={error ? {borderColor: "blueviolet"}:{borderColor:'black'}}
+                           className='cin'
+                           type={'password'}
+                            onChange={e => setPas(e.target.value)} />
                     <p className='que'>Подтвердите пароль</p>
-                    <input onChange={e => setPas1(e.target.value)} className='cin' type={'password'}/>
-                    {error && <span style={{color:"red"}}>Пароли не совпадают</span>}
+                    <input style={error ? {borderColor: "blueviolet"}:{borderColor:'black'}}
+                            onChange={e => setPas1(e.target.value)}
+                           className='cin'
+                           type={'password'}/>
+                    {error && <p className='error'>Пароли не совпадают</p>}
                     <button className='myBtn'>Подтвердить</button>
                 </form>
+                    </div>
                 }
                 {state === 'execute' &&
-                    <>
-                        <h1 style={{marginBottom:"7%", marginTop:"10%", marginLeft:"20%"}}>Пароль успешно изменен</h1>
-                        <button onClick={()=>router('/home')} style={{marginLeft:"10%"}} className='reg__button'>На главную</button>
-                    </>
+                    <AccessChange action={'Пароль успешно изменен'}/>
                 }
-        </div>
+            {state ==='Confirm'&&
+                <EmailConfirm state={'execute'} tfa={tfa} setState={setState} request={PersonService.confirmChange}/>
+            }
         </div>
     );
 };

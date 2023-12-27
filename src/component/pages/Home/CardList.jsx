@@ -8,9 +8,10 @@ import AccountStore from "../../../store/AccountStore";
 import {observer} from "mobx-react-lite";
 import CardStore from "../../../store/CardStore";
 import {AuthContext} from "../../../context";
+import PersonStore from "../../../store/PersonStore";
 
 export const CardList = observer( () => {
-    const {isAuth, setIsAuth} = useContext(AuthContext);
+    const {isAuth} = PersonStore;
     const {getAccounts, credit,debit, isLoad} = AccountStore;
     const {getCards, isLoading, cards} = CardStore;
     const  p = useLocation()

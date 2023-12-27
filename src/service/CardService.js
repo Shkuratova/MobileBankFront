@@ -6,11 +6,37 @@ export default class CardService{
         return $api.get(API +'get_cards/')
     }
     static async accountsList(type){
-        const response = await  $api.get(API+'get_accounts/',
+        return  await  $api.get(API+'get_accounts/',
         { params:{
             type_account:type
             }
+        });
+    }
+    static async cardById(token_card){
+        return $api.get(API+'get_cards/', {
+            params:{
+                token_card:token_card
+            }
         })
-        return response
+    }
+    static async billById(account_number){
+        return $api.get(API+'get_accounts/',{
+            params:{
+                account_number:account_number
+            }
+        })
+    }
+    static async openBill(currency){
+        return await $api.post(API + 'create_account/',
+            {
+                currency:currency
+            });
+    }
+    static async openCard(account, paySystem){
+        return await $api.post(API + 'create_card/',
+            {
+                account:account,
+                payment_system:paySystem
+            })
     }
 }

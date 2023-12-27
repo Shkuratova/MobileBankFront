@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "../../styles/Common.css"
 import CardList from "./CardList";
-import Action from "../../reUse/Action";
+import Action from "../../reUseComponents/Action";
 import './Home.css'
 const Home = () => {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import '../../../styles/Common.css'
 import '../../GetItemById/idElements.css'
 import './PaymentElem.css'
-import Action from "../../../reUse/Action";
+import Action from "../../../reUseComponents/Action";
 
 const Payment = () => {
     return (

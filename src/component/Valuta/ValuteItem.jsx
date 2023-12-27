@@ -1,9 +1,16 @@
 import React from 'react';
 import './valute.css'
 import {useNavigate} from "react-router-dom";
+import ValutaStore from "../../store/ValutaStore";
 
 const ValuteItem = ({CharCode, Name, Nominal, SalePrice, PurchasePrice}) => {
+    const{setVal} = ValutaStore
     const router = useNavigate()
+
+    const buyVal = (e)=>{
+        setVal({Nominal, SalePrice, PurchasePrice})
+        router('/buyvalute/' + CharCode)
+    }
     return (
         <div className='valute__item'>
 
@@ -22,7 +29,7 @@ const ValuteItem = ({CharCode, Name, Nominal, SalePrice, PurchasePrice}) => {
                      <p style={{marginTop:"5px", marginLeft:"8px"}}>{PurchasePrice}</p>
                     </div>
             </div>
-            <button  onClick={()=>router('/buyvalute' + CharCode)} className='button_v'>Обменять</button>
+            <button  onClick={e=>buyVal()} className='button_v'>Обменять</button>
         </div>
     );
 };

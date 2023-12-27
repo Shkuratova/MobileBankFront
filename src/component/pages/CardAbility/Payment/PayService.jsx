@@ -5,17 +5,18 @@ import CurrencyInput from "react-currency-input-field";
 import './PaymentElem.css'
 import Confirm from "./Modal/Confirm";
 import CardSelect from "./CardSelect";
-import BillSelect from "../../Other/Valuta/BillSelect";
+import BillSelect from "../../../Valuta/BillSelect";
 import CardService from "../../../../service/CardService";
 import {observer} from "mobx-react-lite";
 import AccountStore from "../../../../store/AccountStore";
 import CardStore from "../../../../store/CardStore";
+import SelectAction from "../../../reUseComponents/SelectAction";
 
 const PayService = observer(() => {
     const {bills} = AccountStore;
     const {cards} =CardStore;
 
-    const [bill, setBill] = useState('')
+    const [bill, setBill] = useState(bills[0].account_number)
     const [state, setState] = useState('service')
     const[flag, setFlag] = useState(true)
     const [card, setCard] = useState('')
@@ -32,19 +33,7 @@ const PayService = observer(() => {
             {state==='service' &&
                 <div className='cardholder' style={{marginTop:"4%"}}>
                     <h1>Оплатить</h1>
-                    <div style={{width:'60%', marginLeft:"15%", marginTop:"5%", display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
-                        <button
-                            onClick={()=>setFlag(true)}
-                            style={flag?{color:'mediumaquamarine',textDecoration:'underline'}:{color:'gray'}}
-                            className='pay_switch'>Списать с карты
-                        </button>
-                        <button
-                            onClick={()=>setFlag(false)}
-                            style={flag?{color:'gray'}:{color:'mediumaquamarine',textDecoration:"underline"}}
-                            className='pay_switch'>
-                            Списать со счета
-                        </button>
-                    </div>
+                    <SelectAction flag={flag} setFlag={setFlag} case1={'Списать с карты'} case2={'Списать со счета'}/>
                     <form onSubmit={sendDuty} className='service'>
                         {flag?
                                 <CardSelect cards={cards} card={card} onChange={value=>setCard(value)}/>
@@ -52,7 +41,7 @@ const PayService = observer(() => {
                             <BillSelect bills={bills} bill={bill} onChange={value => setBill(value)}/>
                         }
                         <h4 className='pay_header'>Назначение платежа</h4>
-                            <input className='pay_input' placeholder={'Описание платежа'} onChange={(e)=>setDescription(e.target.value)}/>
+                            <input  className='pay_input' placeholder={'Описание платежа'} onChange={(e)=>setDescription(e.target.value)}/>
                         <h4 className='pay_header'>Номер счета для перевода</h4>
                             <input className='pay_input' placeholder='Cчет' onChange={(e)=>setWhere(e.target.value)}/>
                         <h4 className='pay_header'>Сумма перевода</h4>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../CardAbility/Payment/PaymentElem.css'
+import '../pages/CardAbility/Payment/PaymentElem.css'
 
 const BillSelect = ({ bills, bill, onChange}) => {
     let dict  = new Map();

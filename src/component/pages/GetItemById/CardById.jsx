@@ -1,41 +1,35 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import "../../styles/Common.css";
-import CardList from "../Home/CardList";
 import './idElements.css';
-import Action from "../../reUse/Action";
-import {CARD, HISTORY} from "../../utils/consts";
-import Window from "../../reUse/Window";
-import '../../reUse/Action.css'
+import Action from "../../reUseComponents/Action";
+import {CARD, HISTORY} from "../../../utils/consts";
+import Window from "../../reUseComponents/Window";
+import '../../reUseComponents/Action.css'
 import Block from "../CardAbility/Block";
 import RenameCard from "../CardAbility/RenameCard";
-import axios from "axios";
+import CardService from "../../../service/CardService";
+
 const CardById = () => {
     const inf= useParams()
-    const [card, setCard] = useState(
-        )
+    const [card, setCard] = useState()
     const[visibleBlock, setVisibleBlock] = useState(false)
     const[visibleRe, setVisibleRe] = useState(false)
     const[cardName, setCardName]=useState('')
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         setIsLoading(true)
-        axios
-            .get(`/api/v1/get_cards/?token_card=${inf.id}`, {headers:
-                    {
-                        Authorization:localStorage.getItem('token')
-                    }
-            })
-            .then((response)=>{
-                setCard(response.data[0]);
+        const getCard = async ()=>{
+            try {
+                const response = await CardService.cardById(inf.id)
+                setCard(response.data[0])
                 setIsLoading(false)
-                console.log(card)
-            })
-            .catch(function (error){
-                if(error.response){
-                    console.log(error.response.data)
-                }
-            });
+            }catch (e) {
+                console.log(e.response.data)
+            }
+        }
+        getCard()
+
     }, [inf.id]);
     return (
            <div className="page_chr">
@@ -43,12 +37,12 @@ const CardById = () => {
                    :
 
                 <div className="infor">
-                    {/*<Window setVisible={setVisibleBlock} visible={visibleBlock}>*/}
-                    {/*    <Block cardNum={card.cardNum} visible={visibleBlock} setVisible={setVisibleBlock}/>*/}
-                    {/*</Window>*/}
-                    {/*<Window setVisible={setVisibleRe} visible={visibleRe}>*/}
-                    {/*  <RenameCard cardNum={card.cardNum}  cardId={card.id} visible={visibleRe} setVisible={setVisibleRe} setCardName={setCardName}/>*/}
-                    {/*</Window>*/}
+                    <Window setVisible={setVisibleBlock} visible={visibleBlock}>
+                        <Block cardNum={card.card_name} visible={visibleBlock} setVisible={setVisibleBlock}/>
+                    </Window>
+                    <Window setVisible={setVisibleRe} visible={visibleRe}>
+                      <RenameCard cardNum={card.card_name}  cardId={card.token_card} visible={visibleRe} setVisible={setVisibleRe} setCardName={setCardName}/>
+                    </Window>
                     <div className="descr">
                         <h1  className="descr_txt">{card.payment_system} WorldSkills Card</h1>
                         <h3 className='descr_txt'>{localStorage.getItem(card.token_card)}</h3>

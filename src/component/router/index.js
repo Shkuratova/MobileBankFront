@@ -16,12 +16,13 @@ import ChangePassword from "../pages/LK/PersonAbility/ChangePassword";
 import SessionHistory from "../pages/LK/PersonAbility/SessionHistory";
 import ChangeLogin from "../pages/LK/PersonAbility/ChangeLogin";
 import Auth from "../pages/Auth/Auth";
-import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, HOME, PAY, USER} from "../utils/consts";
+import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, HOME, PAY, USER} from "../../utils/consts";
 import PayService from "../pages/CardAbility/Payment/PayService";
-import ValutaCourse from "../pages/Other/Valuta/ValutaCourse";
-import BuyValute from "../pages/Other/Valuta/BuyValute";
+import ValutaCourse from "../Valuta/ValutaCourse";
+import BuyValute from "../Valuta/CurerncyExchange/ExchangeValute";
 import RegForm from "../pages/Auth/RegForm";
 import CreateBill from "../pages/Home/OpenBill/CreateBill";
+import CreateCard from "../pages/Home/OpenBill/CreateCard";
 
 
 export const privateRoutes=[
@@ -43,16 +44,19 @@ export const privateRoutes=[
     {path:PAY, component: <Payment/>},
     {path:CARD+'/block/:id', component: <Block/>},
     {path:CARD+'/rename/:id', component: <RenameCard/>},
-    {path:'/editpassword/:login', component: <ChangePassword/>},
-    {path:'/editlogin/:login', component:<ChangeLogin/>},
-    {path:'/lastlogin/:login', component: <SessionHistory/>},
+    {path:'/editpassword', component: <ChangePassword/>},
+    {path:'/editlogin', component:<ChangeLogin/>},
+    {path:'/lastlogin', component: <SessionHistory/>},
     {path:'/about', component: <About/>},
-    {path:'/buyvalute:charcode', component: <BuyValute/>},
-    {path:'/new_bill', component: <CreateBill/>}
+    {path:'/buyvalute/:charcode', component: <BuyValute/>},
+    {path:'/new_bill', component: <CreateBill/>},
+    {path:'/new_card', component: <CreateCard/>},
+    {path:'/buyvalute/:code', component: <BuyValute/>}
 ]
 
 export const publicRoutes=[
     {path:'/*', component:<Auth/>},
     {path: '/registration', component: <RegForm/>},
-    {path:ATMS, component: <ATM/>}
+    {path:ATMS, component: <ATM/>},
+    {path:CURRENCY, component: <ValutaCourse/>}
 ]

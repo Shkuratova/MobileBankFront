@@ -44,16 +44,19 @@ export const CardHistory =observer( () => {
             {isLoading?<div></div>:
             <div className='history__list'>
                 {p.token_card?
-                <h1 style={{padding:"2%"}}>История операций
+                <h1>История операций
                     ****{cards.find((c)=>c.token_card===p.token_card).card_name.slice(-4)}</h1>
                     :
                     <h1>История операций ****{p.account_number.slice(-4)}</h1>
                 }
+                <div className='operations'>
                 {histList.map((h) =>
                     <HistoryItem key={h.start_transaction} transaction={h} />
                 )}
+                </div>
             </div>
             }
+
         </div>
     );
 });

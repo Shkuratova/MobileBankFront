@@ -4,9 +4,9 @@ import './MoneyToSomewhere.css'
 import CurrencyInput from "react-currency-input-field";
 import {observer} from "mobx-react-lite";
 import AccountStore from "../../../../store/AccountStore";
-import BillSelect from "../../Other/Valuta/BillSelect";
+import BillSelect from "../../../Valuta/BillSelect";
 import TransferService from "../../../../service/TransferService"
-import {billFormat} from "../../../utils/Format";
+import {billFormat} from "../../../../utils/Format";
 
 export const TransferUser = observer(() => {
     const {bills, bill, changeBill} = AccountStore
