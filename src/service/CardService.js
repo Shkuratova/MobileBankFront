@@ -39,4 +39,10 @@ export default class CardService{
                 payment_system:paySystem
             })
     }
+    static async ChangeCardState(token, status){
+        return await $api.post(API + 'change_status_card/',{
+            token_card:token,
+            is_activated:status
+        })
+    }
 }

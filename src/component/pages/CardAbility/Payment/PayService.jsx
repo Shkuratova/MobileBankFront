@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import '../../../styles/Common.css'
 import './MoneyToSomewhere.css'
 import CurrencyInput from "react-currency-input-field";
@@ -6,11 +6,11 @@ import './PaymentElem.css'
 import Confirm from "./Modal/Confirm";
 import CardSelect from "./CardSelect";
 import BillSelect from "../../../Valuta/BillSelect";
-import CardService from "../../../../service/CardService";
 import {observer} from "mobx-react-lite";
 import AccountStore from "../../../../store/AccountStore";
 import CardStore from "../../../../store/CardStore";
 import SelectAction from "../../../reUseComponents/SelectAction";
+import TransferService from "../../../../service/TransferService";
 
 const PayService = observer(() => {
     const {bills} = AccountStore;
@@ -23,7 +23,21 @@ const PayService = observer(() => {
     const[sum, setSum] = useState('')
     const[where, setWhere] = useState('')
 
-    const sendDuty =()=>{
+    const sendDuty = async ()=>{
+        if(!flag)
+        {
+        try {
+            const response = await TransferService.Transfer(sum, )
+        }catch (e){
+        }
+        }
+        else {
+            try {
+
+            }catch (e) {
+
+            }
+        }
         setState('confirmation')
     }
     const[description, setDescription] = useState('')

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import BillSelect from "../BillSelect";
 import CurrencyInput from "react-currency-input-field";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import '../../styles/Common.css'
 import '../valute.css'
 import ValutaStore from "../../../store/ValutaStore";
@@ -11,6 +11,7 @@ const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill,
 
     const{val, course, isLoad,getCourse, setVal} = ValutaStore
     const p = useParams()
+    const s = useNavigate()
     console.log(p.charcode)
     useEffect(() => {
         getCourse()
@@ -59,7 +60,7 @@ const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill,
                     <div className='vall_bill'>
                         <p>У вас нет подходящего счета для покупки</p>
                         <button className='open_bill'
-                                onClick={() => p('/new_bill')}>Открыть счет
+                                onClick={() => s('/new_bill')}>Открыть счет
                         </button>
                     </div>}
 

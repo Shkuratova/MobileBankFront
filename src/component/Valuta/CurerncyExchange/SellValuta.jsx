@@ -8,7 +8,6 @@ import {useParams} from "react-router-dom";
 const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, bill, setBill, sum, setSum, transact }) => {
     const{val, course, isLoad,getCourse, setVal} = ValutaStore
     const p = useParams()
-    console.log(p.charcode)
     useEffect(() => {
         getCourse()
     }, []);
