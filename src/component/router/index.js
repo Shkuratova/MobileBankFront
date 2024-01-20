@@ -23,14 +23,16 @@ import BuyValute from "../Valuta/CurerncyExchange/ExchangeValute";
 import RegForm from "../pages/Auth/RegForm";
 import CreateBill from "../pages/Home/OpenBill/CreateBill";
 import CreateCard from "../pages/Home/OpenBill/CreateCard";
+import YandexMap from "../Maps/YandexMap";
+import NewAccount from "../pages/Home/OpenBill/NewAccount";
 
 
 export const privateRoutes=[
-    {path:HOME, component:<Home/>},
-    {path:"/*", component:<Home/>},
+ //   {path:HOME, component:<Home/>},
+    {path:"/*", component:<NewAccount/>},
     {path:'/user/:login', component: <LK/>},
     {path:CURRENCY, component: <ValutaCourse/>},
-    {path:ATMS, component: <ATM/>},
+    {path:ATMS, component: <YandexMap/>},
     {path: CARD+'/:id', component: <CardById/>},
     {path:CREDIT+'/info/:id', component: <CreditInfo/>},
     {path:BILL+'/:id', component: <BillById/>},
@@ -57,6 +59,6 @@ export const privateRoutes=[
 export const publicRoutes=[
     {path:'/*', component:<Auth/>},
     {path: '/registration', component: <RegForm/>},
-    {path:ATMS, component: <ATM/>},
+    {path:ATMS, component: <YandexMap/>},
     {path:CURRENCY, component: <ValutaCourse/>}
 ]

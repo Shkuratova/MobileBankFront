@@ -8,8 +8,7 @@ import TransferService from "../../../service/TransferService";
 import EmailConfirm from "../../reUsePages/EmailConfirm";
 import BuyValuta from "./BuyValuta";
 import SellValuta from "./SellValuta";
-import SelectAction from "../../reUseComponents/SelectAction";
-import ValutaStore from "../../../store/ValutaStore";
+import SelectAction from "../../UI/SelectAction";
 
 const ExchangeValute = () => {
     const{bills} = AccountStore
@@ -21,6 +20,7 @@ const ExchangeValute = () => {
     const[flag, setFlag] = useState(true)
     const[total, setTotal] = useState(0)
     const[sum, setSum] = useState(0)
+    const [code,setCode] = useState('')
     const [state, setState] = useState('Valuta')
     const [tfa ,setTfa] = useState()
     const [error, setError] = useState(null)
@@ -52,9 +52,19 @@ const ExchangeValute = () => {
                 setError(e.response.data)
         }
     }
+    const Confirm = async (e)=>{
+        e.preventDefault()
+        try {
+            await TransferService.confirmTransfer(tfa, code)
+            setError(null)
+            setState('success')
+        } catch (e) {
+            setError(e.response.data)
+        }
+    }
 
     return (
-        <div className="page_chr">
+        <>
             {state === 'Valuta' &&
             <div className='buy_val'>
                 <h1>Обмен валюты</h1>
@@ -71,13 +81,13 @@ const ExchangeValute = () => {
             </div>
             }
             {state ==='Confirm' &&
-                <EmailConfirm state={'success'} setState={setState} request={TransferService.confirmTransfer} tfa={tfa}/>}
+                <EmailConfirm code={code} setCode={setCode} confirm={Confirm} />}
             {state === 'success' &&
                 <div className='buy_val'>
                     <h1>Успешно</h1>
                 </div>
             }
-        </div>
+        </>
     );
 };
 

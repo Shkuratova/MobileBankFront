@@ -14,17 +14,18 @@ const ValutaCourse = () => {
     }, []);
 
     return (
-        <div className='page_chr'>
+        <>
             {isLoad?
                 <h1>Загрузка...</h1>
-                :<div className='val_list'>
+               :
+                <div className='val_list'>
                     {Object.values(course).map((c) =>
                         <ValuteItem key={c.CharCode} CharCode={c.CharCode} Nominal={c.Nominal}
                          PurchasePrice={c.PurchasePrice} Name={c.Name} SalePrice={c.SalePrice}/>
                     )}
                 </div>
                 }
-            </div>
+            </>
     );
 };
 

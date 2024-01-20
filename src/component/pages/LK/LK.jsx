@@ -1,28 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import '../../styles/Common.css'
 import './LK.css'
-import {useParams} from "react-router-dom";
-import Action from "../../reUseComponents/Action";
-import CardList from "../Home/CardList";
-import {observable} from "mobx";
+import Action from "../../UI/Action";
 import {observer} from "mobx-react-lite";
 import PersonStore from "../../../store/PersonStore";
+import Description from "../../UI/Description";
+import Window from "../../UI/Window";
+import ChangeLogin from "./PersonAbility/ChangeLogin";
+
 export const Lk =observer (() => {
    const {person } = PersonStore
-    const p = useParams()
    console.log(person)
     return (
-        <div className="page_chr lk">
-            <div className="personal">
+        <>
+            <div className="personal info_box">
+                <h1>Личный кабинет</h1>
                 <div className='person'>
                     {person.sex==='female'?
                         <img className="lk_i" src = '/images/women.png'/>
                         :
                         <img className="lk_i" src = '/images/man.png'/>}
-                    <p className='lk_name' >{person.lastName} {person.firstName} {person.thirdName}</p>
+                    <p data-testid = "ln" className='lk_name' >{person.lastName} {person.firstName} {person.thirdName}</p>
                 </div>
-                <p className='lk_about'>Телефон: {person.telephone}</p>
-                <p className='lk_about' >Почта: {person.email}</p>
+                <div className="lk_about">
+                    <Description title={"Телефон:"} text={person.telephone}/>
+                    <Description title={"Почта:"} text={person.email}/>
+                </div>
+
 
                 <div className='lk_act'>
                     <Action
@@ -37,21 +41,21 @@ export const Lk =observer (() => {
                         width = "50"
                         height = "50"
                         name={'Изменить логин'}/>
-                    <Action
-                        path={'/lastlogin' }
-                        img={'/images/history.png'}
-                        width = "50"
-                        height = "50"
-                        name={'История посещений'}/>
-                    <Action
-                        path = {'/about'}
-                        width = "50"
-                        height = "50"
-                        img={'/images/info.png'}
-                        name={'О приложении'}/>
+                    {/*<Action*/}
+                    {/*    path={'/lastlogin' }*/}
+                    {/*    img={'/images/history.png'}*/}
+                    {/*    width = "50"*/}
+                    {/*    height = "50"*/}
+                    {/*    name={'История посещений'}/>*/}
+                    {/*<Action*/}
+                    {/*    path = {'/about'}*/}
+                    {/*    width = "50"*/}
+                    {/*    height = "50"*/}
+                    {/*    img={'/images/info.png'}*/}
+                    {/*    name={'О приложении'}/>*/}
                 </div>
             </div>
-        </div>
+        </>
     );
 });
 

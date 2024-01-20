@@ -15,7 +15,7 @@ const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, b
         if(!isLoad)
             setVal(course[p.charcode])
     }, [isLoad]);
-    console.log(val)
+    console.log(val.SalePrice)
     useEffect(() => {
         setTotal(Number(val.SalePrice*sum).toFixed(2))
     }, [sum]);

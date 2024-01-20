@@ -4,6 +4,7 @@ import '../LK.css'
 import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import AccessChange from "./AccessChange";
 import PersonService from "../../../../service/PersonService";
+import Input from "../../../UI/defaultUI/Input";
 
 const ChangeLogin = () => {
     const [state, setState] = useState('Login')
@@ -27,17 +28,17 @@ const ChangeLogin = () => {
     }
     
     return (
-        <div className='page_chr'>
+        <>
             {state ==='Login' &&
-            <div className="changefield">
+            <div className="changefield info_box">
                 <form onSubmit={changeLog}>
-                    <h1>Изменение Логина</h1>
-                    <p className='que'>Новый логин</p>
-                    <input style={error ? {borderColor: "blueviolet"}:{borderColor:'black'}}
-                        className="cin"
-                           value={login}
-                           onChange={(e)=>setLogin(e.target.value)}
-                        />
+                    <h1>Измененить логин</h1>
+                    <br/>
+                    <Input
+                        value={login}
+                        setValue={setLogin}
+                        text={"Новый логин"}
+                    />
                     {error&& <p className='error'>{error}</p>}
                     <button onClick={e=>changeLog(e)} className='myBtn'>Подтвердить</button>
                 </form>
@@ -49,7 +50,7 @@ const ChangeLogin = () => {
             {state==='execute' &&
                 <AccessChange action={'Логин успешно изменен'}/>
             }
-        </div>
+        </>
     );
 };
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import '../../../styles/Common.css'
 import './history.css'
+import getSymbolFromCurrency from "currency-symbol-map";
 const FullInfo = ({visible, setVisible, transaction}) => {
 
     return (
-        <div style={{padding:"2%"}}>
+        <div >
             <h1>Справка по операции</h1>
             <div className='operation_chr'>
                 <p>Операция совершена</p>
@@ -13,7 +14,7 @@ const FullInfo = ({visible, setVisible, transaction}) => {
 
             <div className='operation_chr'>
                 <p>Сумма в валюте операции</p>
-                <h3 className='operation_chr'>{transaction.description.amount_money} {transaction.description.currency}</h3>
+                <h3 className='operation_chr'>{transaction.description.amount_money} {getSymbolFromCurrency(transaction.description.currency)}</h3>
             </div>
 
             <div className='operation_chr'>

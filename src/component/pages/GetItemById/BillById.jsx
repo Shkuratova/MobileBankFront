@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import CardList from "../Home/CardList";
 import '../../styles/Common.css'
-import Action from "../../reUseComponents/Action";
+import Action from "../../UI/Action";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import CardService from "../../../service/CardService";
+import getSymbolFromCurrency from "currency-symbol-map";
 const BillById = () => {
     const inf = useParams()
     const [bill, setBill] = useState(
@@ -24,15 +25,15 @@ const BillById = () => {
        getBill()
     }, [inf.id]);
     return (
-        <div className="page_chr">
+        <>
             {isLoading? <div></div>:
-            <div className="infor">
+            <div className="infor info_box">
                 <div className="descr">
                     <h1  className="descr_txt">WorldSkills Счет</h1>
                     <p className="descr_txt spec">{bill.account_number}</p>
-                    <h2 className="bl">{bill.balance} {bill.currency}</h2>
+                    <h2 className="bl">{bill.balance} {getSymbolFromCurrency(bill.currency)}</h2>
                 </div>
-                <div className="abil">
+                <div className="descr">
                     <p className="descr_txt spec">Действия</p>
                     <Action
                         path = {'/bill/history/'+bill.account_number}
@@ -43,7 +44,7 @@ const BillById = () => {
                 </div>
             </div>
             }
-        </div>
+        </>
             );
 };
 

@@ -32,13 +32,16 @@ const Navbar = () => {
                         }
                     </div>
                     <div onClick={e=>logout()} className="navbar_link">
-                        <img src="/images/exit.png" width='20' height='20'/>
+                        <img src="/images/exit.png" className="exit-img"/>
                     </div>
                 </div>
 
                  :
-                <div>
-                        <img src="/images/mainIcon.png" className="navimg"/>
+                <div className="navbar" style={{background:"none", boxShadow:"none"}}>
+                        <img src="/images/mainIcon.png" />
+                    <div className="left_links">
+                        <h1 className="bank-title">World Skills Bank</h1>
+                    </div>
                 </div>
 
     );

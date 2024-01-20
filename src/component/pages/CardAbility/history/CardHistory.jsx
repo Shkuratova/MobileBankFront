@@ -40,9 +40,9 @@ export const CardHistory =observer( () => {
 
     }, []);
     return (
-        <div className='page_chr'>
+        <>
             {isLoading?<div></div>:
-            <div className='history__list'>
+            <div className='history__list info_box'>
                 {p.token_card?
                 <h1>История операций
                     ****{cards.find((c)=>c.token_card===p.token_card).card_name.slice(-4)}</h1>
@@ -57,7 +57,7 @@ export const CardHistory =observer( () => {
             </div>
             }
 
-        </div>
+        </>
     );
 });
 

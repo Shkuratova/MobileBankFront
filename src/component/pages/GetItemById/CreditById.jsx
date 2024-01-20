@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import CardList from "../Home/CardList";
-import Action from "../../reUseComponents/Action";
+import Action from "../../UI/Action";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import CardService from "../../../service/CardService";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 const CreditById = () => {
     const inf = useParams()
@@ -23,17 +24,16 @@ const CreditById = () => {
         getBill()
     }, [inf.id]);
     return (
-        <div className="page_chr">
+        <>
             {isLoading? <div></div>
                 :
-            <div className="infor">
+            <div className="infor info_box">
                 <div className="descr">
                     <h1  className="descr_txt">WorldSkills  Кредит наличными</h1>
                     <p className="descr_txt spec">{credit.account_number}</p>
-                    <h2 className="bl">Лимит {credit.description.max_debt_amount} {credit.currency}</h2>
-                    <p className="descr_txt">Беспроцентный период: {credit.description.description.grace_period} дней</p>
+                    <h2 className="bl">Лимит {credit.description.max_debt_amount} {getSymbolFromCurrency(credit.currency)}</h2>
                     <p className="bl">Процентная ставка: {credit.description.description.percent_rate}%</p>
-                    <p className="bl">Счет {credit.balance.replace('-','')} {credit.currency}</p>
+                    <p className="bl">Счет {credit.balance.replace('-','')} {getSymbolFromCurrency(credit.currency)}</p>
                     <Action path={'/credit/history/' + credit.account_number}
                             img={'/images/history.png'}
                             width={'50'}
@@ -43,7 +43,7 @@ const CreditById = () => {
                 </div>
             </div>
             }
-        </div>
+        </>
 
     );
 };

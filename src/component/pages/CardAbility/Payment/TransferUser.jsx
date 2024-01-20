@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../styles/Common.css'
 import './MoneyToSomewhere.css'
 import CurrencyInput from "react-currency-input-field";
@@ -7,18 +7,38 @@ import AccountStore from "../../../../store/AccountStore";
 import BillSelect from "../../../Valuta/BillSelect";
 import TransferService from "../../../../service/TransferService"
 import {billFormat} from "../../../../utils/Format";
+import VerifyInput from "../../../UI/VerifyInput";
+import EmailConfirm from "../../../reUsePages/EmailConfirm";
+import Execute from "./Modal/Execute";
+import getSymbolFromCurrency from "currency-symbol-map";
+import {TO_USER, TRANSFER_EXECUTE} from "../../../../consts/StringConsts";
+import {getCur} from "./utils";
 
 export const TransferUser = observer(() => {
-    const {bills, bill, changeBill} = AccountStore
+    const {bills} = AccountStore
 
     const [state, setState] = useState('chooseMan')
     const [error, setError] = useState(null)
     const [tfa, setTfa] = useState('')
+    const [bill, setBill] = useState(bills[0].account_number)
     const [code, setCode] = useState('')
-
     const [billUser, setBillUser] = useState('')
     const [sum, setSum] = useState('')
+    const[payBills, setPayBills] = useState([])
 
+    useEffect(() => {
+        setPayBills(bills.filter((c)=>c.balance != 0))
+        setBill(bills[0].account_number)
+    }, [bills]);
+    useEffect(()=>{
+        if(payBills.length!==0){
+            setBill(payBills[0].account_number)
+        }
+    },[payBills])
+
+    const getCur=()=>{
+        return  bills.filter((c) => c.account_number === bill);
+    }
     const checkBill = async (e) => {
         e.preventDefault()
         if (!billUser) {
@@ -52,6 +72,7 @@ export const TransferUser = observer(() => {
             setError(' ')
             return
         }
+        setError(null)
         try {
             const response = await TransferService.Transfer(sum.replace(',', '.'), bill,
                 billUser.replace(/\s/g, ''), 'Перевод клиенту банка')
@@ -74,18 +95,18 @@ export const TransferUser = observer(() => {
             setError(e.response.data)
         }
     }
-
+    console.log(bill)
 
     return (
-        <div className='page_chr'>
+        <>
             {state === 'chooseMan' &&
-                <div className='cardholder'>
+                <div className='cardholder info_box'>
                     <form onSubmit={(e) => checkBill(e)}>
                         <h1>Получатель</h1>
                         <p>Введите номер счета</p>
-                        <input style={error && {borderColor: "blueviolet"}}
+                        <input
                                value={billUser}
-                               className="cin"
+                               className={error ?"myInput error--input": "myInput"}
                                type="text"
                                onChange={e => billFormat(e.target.value, setBillUser)}
                         />
@@ -95,17 +116,17 @@ export const TransferUser = observer(() => {
                 </div>
             }
             {state === 'chooseCard' &&
-                <div className='cardholder'>
+                <div className='cardholder info_box'>
                     <form onSubmit={(e) => postPay(e)}>
                         <h1>Детали перевода</h1>
                         <div className='cardFrom'>
                             <p>Откуда</p>
                             {bills.length &&
-                                <BillSelect bills={bills} bill={bill} onChange={value => changeBill(value)}/>}
+                                <BillSelect bills={payBills} bill={bill} onChange={t=>setBill(t)}/>}
                         </div>
-                        <CurrencyInput style={error && {borderColor: "blueviolet"}}
-                                       className='cin'
-                                       placeholder='Сумма..'
+                        <CurrencyInput
+                                       className={error ?"myInput error--input": "myInput"}
+                                       placeholder='Сумма перевода'
                                        decimalsLimit={2}
                                        required={true}
                                        allowNegativeValue={false}
@@ -113,27 +134,23 @@ export const TransferUser = observer(() => {
                                        onValueChange={(e) => setSum(e)}
                         />
                         {error && <span style={{color: "blueviolet"}}>{error}</span>}
-                        <button className='myBtn'>Продолжить</button>
+                        <button className='myBtn' >Продолжить</button>
                     </form>
                 </div>
             }
             {state === 'Confirm' &&
-                <div className='cardholder'>
-                    <h2>На Вашу почту отправлено письмо с кодом подтверждения</h2>
-                    {error && <span>{error}</span>}
-                    <input className='pay_input' placeholder='Код подтверждения'
-                           value={code}
-                           onChange={(e) => setCode(e.target.value)}
-                    />
-                    <button onClick={e => Confirmation(e)} className='myBtn'>Подтвердить</button>
-                </div>
+                <EmailConfirm code={code} setCode={setCode} confirm={Confirmation}/>
             }
             {state === 'access' &&
-                <div className='cardholder'>
-                    <h1>Перевод выполнен</h1>
-                </div>
+               <Execute
+                   from={bill}
+                   to={billUser.replace(/\s/g, '')}
+                   sum={sum + getSymbolFromCurrency(getCur(payBills, bill)[0].currency)}
+                   type={TO_USER}
+                   title={TRANSFER_EXECUTE}
+               />
             }
-        </div>
+        </>
     );
 });
 

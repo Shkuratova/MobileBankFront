@@ -1,5 +1,6 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 const BillItem = (props) => {
     const router = useNavigate()
@@ -11,7 +12,7 @@ const BillItem = (props) => {
             <div className="card_info">
                 <p>***{(props.bill.account_number).slice(-4)}</p>
                 <p className="sum">
-                    {(props.bill.balance)} {props.bill.currency}
+                    {(props.bill.balance)} {getSymbolFromCurrency(props.bill.currency)}
                 </p>
             </div>
         </div>

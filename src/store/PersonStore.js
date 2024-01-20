@@ -2,13 +2,13 @@ import {action, makeObservable, observable, runInAction} from "mobx";
 import PersonService from "../service/PersonService";
 import AuthService from "../service/AuthService";
 import axios from "axios";
-import auth from "../component/pages/Auth/Auth";
 
 class PersonStore{
     person = {firstName:'', lastName:'', thirdName:'',sex:'', email:'', telephone:'', login:'' }
     Load = false
     isAuth = false
     tfa = ''
+    isLoad = false
     AuthError = null;
     constructor() {
 
@@ -19,8 +19,13 @@ class PersonStore{
             person:observable,
             setAuth:action,
             setAuthError:action,
+            isLoad:observable,
+            setIsLoad:action
 
         })
+    }
+    setIsLoad(b){
+        this.isLoad = b;
     }
     setAuth(b){
         this.isAuth = b;
@@ -36,26 +41,25 @@ class PersonStore{
         localStorage.removeItem('token')
         localStorage.removeItem('ref_token')
     }
-    SiqnIn = async (login, pas)=>{
-        try{
-            const response = await AuthService.login(login, pas)
-            this.tfa = response.data.tfa_token
-            this.setAuthError(null)
-            console.log(response.data)
-        }catch (e) {
-            this.setAuthError(e.response.data)
-        }
-    }
+    // SiqnIn = async (login, pas)=>{
+    //     try{
+    //         const response = await AuthService.login(login, pas)
+    //         this.tfa = response.data.tfa_token
+    //         this.setAuthError(null)
+    //         console.log(response.data)
+    //     }catch (e) {
+    //         this.setAuthError(e.response)
+    //         console.log(this.AuthError)
+    //     }
+    // }
     ConfirmLogin = async(code)=>{
         try{
             const response = await AuthService.confirmation(this.tfa, code)
-            localStorage.setItem('token', response.data.access_token)
-            localStorage.setItem('ref_token', response.data.refresh_token)
             this.setAuthError(null)
             this.setAuth(true)
-            console.log(response.data)
+           // console.log(response.data)
         }catch (e) {
-            this.setAuthError(e.response.data)
+            this.setAuthError(e)
         }
     }
     SiqnUp = async (login, pas, rePas)=>{
@@ -78,6 +82,7 @@ class PersonStore{
             this.setAuthError(null)
         }catch (e) {
             this.setAuthError(e.response.data)
+            console.log(e.response.data)
         }
     }
     checkAuth = async ()=>{

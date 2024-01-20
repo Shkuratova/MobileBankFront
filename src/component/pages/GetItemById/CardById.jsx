@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import "../../styles/Common.css";
 import './idElements.css';
-import '../../reUseComponents/Action.css'
+import '../../UI/Action.css'
 import CardService from "../../../service/CardService";
 import CardActive from "./CardActive";
 import CardBlocked from "./CardBlocked";
@@ -27,7 +27,7 @@ const CardById = () => {
 
     }, [inf.id]);
     return (
-           <div className="page_chr">
+           <>
                {isLoading? <div></div>
                    :
                    <>
@@ -38,7 +38,7 @@ const CardById = () => {
                    }
                    </>
                }
-           </div>
+           </>
     );
 };
 

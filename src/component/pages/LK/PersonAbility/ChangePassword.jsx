@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import AccessChange from "./AccessChange";
 import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import PersonService from "../../../../service/PersonService";
+import Input from "../../../UI/defaultUI/Input";
 
 const ChangePassword = () => {
     const[state, setState] = useState('changePass')
@@ -31,23 +32,27 @@ const ChangePassword = () => {
         }
     }
     return (
-        <div className='page_chr'>
+        <>
                 {state === 'changePass'&&
-                    <div className='changefield'>
+                    <div className='changefield info_box'>
                 <form onSubmit={e=>checkPas(e)}>
-                <h1>Изменение Пароля</h1>
-                <p className='que'>Новый пароль</p>
-                    <input style={error ? {borderColor: "blueviolet"}:{borderColor:'black'}}
-                           className='cin'
-                           type={'password'}
-                            onChange={e => setPas(e.target.value)} />
-                    <p className='que'>Подтвердите пароль</p>
-                    <input style={error ? {borderColor: "blueviolet"}:{borderColor:'black'}}
-                            onChange={e => setPas1(e.target.value)}
-                           className='cin'
-                           type={'password'}/>
+                <h1>Измененить пароль</h1>
+                    <br/>
+                    <Input
+                        value={pas}
+                        setValue={setPas}
+                        text={"Новый пароль"}
+                        error={error}
+                    />
+                    <Input
+                        value={pas1}
+                        setValue={setPas1}
+                        text={"Подтвердите пароль"}
+                        />
                     {error && <p className='error'>Пароли не совпадают</p>}
-                    <button className='myBtn'>Подтвердить</button>
+                    <div style={{display:"flex", flexDirection:"row"}}>
+                        <button className='myBtn'>Подтвердить</button>
+                    </div>
                 </form>
                     </div>
                 }
@@ -57,7 +62,7 @@ const ChangePassword = () => {
             {state ==='Confirm'&&
                 <EmailConfirm state={'execute'} tfa={tfa} setState={setState} request={PersonService.confirmChange}/>
             }
-        </div>
+        </>
     );
 };
 

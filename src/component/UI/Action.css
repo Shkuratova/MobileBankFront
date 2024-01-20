@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    width:98%;
+    width:100%;
     padding: 2%;
-    margin-top: 2%;
+    margin-top: 3%;
     border-radius: 22px;
 }
 .action:hover{
@@ -13,11 +13,13 @@
 }
 .act_img{
     float: left;
-    padding: 5px;
+    padding: 7px;
     border-radius: 50%;
     background: #F6F4F4;
 }
 .act_txt{
+    margin-bottom: 3%;
     margin-left: 3%;
+    margin-top: 2%;
     font-size: 20px;
 }

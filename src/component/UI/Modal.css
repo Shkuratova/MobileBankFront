@@ -5,13 +5,14 @@
     right: 0;
     left:0;
     display: none;
+    z-index: 100;
     background: rgba(0,0,0, 0.5);
 }
 .Content{
     padding: 25px;
     background: white;
     border-radius: 16px;
-    min-width:35%;
+    min-width: 35%;
     min-height: 30%;
 }
 

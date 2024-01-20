@@ -9,8 +9,10 @@ import BillSelect from "../../../Valuta/BillSelect";
 import {observer} from "mobx-react-lite";
 import AccountStore from "../../../../store/AccountStore";
 import CardStore from "../../../../store/CardStore";
-import SelectAction from "../../../reUseComponents/SelectAction";
+import SelectAction from "../../../UI/SelectAction";
 import TransferService from "../../../../service/TransferService";
+import Input from "../../../UI/defaultUI/Input";
+import CurInput from "../../../UI/defaultUI/CurInput";
 
 const PayService = observer(() => {
     const {bills} = AccountStore;
@@ -23,6 +25,9 @@ const PayService = observer(() => {
     const[sum, setSum] = useState('')
     const[where, setWhere] = useState('')
 
+    const [descError, setDescError] = useState(null)
+    const [whereError, setWhereError] = useState(null)
+    const [sumError, setSumError] = useState(null)
     const sendDuty = async ()=>{
         if(!flag)
         {
@@ -43,9 +48,9 @@ const PayService = observer(() => {
     const[description, setDescription] = useState('')
 
     return (
-        <div className='page_chr'>
+        <>
             {state==='service' &&
-                <div className='cardholder' style={{marginTop:"4%"}}>
+                <div className='cardholder info_box'>
                     <h1>Оплатить</h1>
                     <SelectAction flag={flag} setFlag={setFlag} case1={'Списать с карты'} case2={'Списать со счета'}/>
                     <form onSubmit={sendDuty} className='service'>
@@ -55,17 +60,25 @@ const PayService = observer(() => {
                             <BillSelect bills={bills} bill={bill} onChange={value => setBill(value)}/>
                         }
                         <h4 className='pay_header'>Назначение платежа</h4>
-                            <input  className='pay_input' placeholder={'Описание платежа'} onChange={(e)=>setDescription(e.target.value)}/>
-                        <h4 className='pay_header'>Номер счета для перевода</h4>
-                            <input className='pay_input' placeholder='Cчет' onChange={(e)=>setWhere(e.target.value)}/>
+                        <Input
+                            value={description}
+                            setValue={setDescription}
+                            text={"Описание платежа"}
+                            error={descError}
+                        />
+                        <h4 className='pay_header'>Номер счета для оплаты</h4>
+                        <Input
+                            value={where}
+                            setValue={setWhere}
+                            text={"Счет"}
+                            error={whereError}
+                        />
                         <h4 className='pay_header'>Сумма перевода</h4>
-                            <CurrencyInput className='pay_input'
-                                placeholder='Сумма..'
-                                decimalsLimit={2}
-                                required={true}
-                                defaultValue={sum}
-                                onValueChange={(e)=>setSum(e)}
-                             />
+                           <CurInput
+                               sum={sum}
+                               text={'0'}
+                               setSum={setSum}
+                               error={sumError}/>
                         <button className='myBtn'>Продолжить</button>
                     </form>
                 </div>
@@ -77,7 +90,7 @@ const PayService = observer(() => {
 
                 <h1>Оплачено</h1>
             }
-        </div>
+        </>
     );
 });
 

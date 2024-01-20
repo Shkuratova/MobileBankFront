@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './history.css'
-import Window from "../../../reUseComponents/Window";
+import Window from "../../../UI/Window";
 import FullInfo from "./FullInfo";
+import getSymbolFromCurrency from "currency-symbol-map";
 const HistoryItem = ({transaction}) => {
     console.log(transaction)
     const[visible, setVisible] = useState(false)
@@ -14,7 +15,7 @@ const HistoryItem = ({transaction}) => {
                 className='history_item'>
                 <h3  className='general_info'>{transaction.description.about}</h3>
                 <div className='total'>
-                    <h3>{transaction.description.amount_money} {transaction.description.currency}</h3>
+                    <h3>{transaction.description.amount_money} {getSymbolFromCurrency(transaction.description.currency)}</h3>
                     <p style={{marginTop:"10%"}}>{transaction.end_transaction.replace('T', ' ').slice(0, -15)}</p>
                 </div>
             </div>

@@ -13,17 +13,34 @@
     margin-top: 3%;
 }
 .pay_field{
-    margin-top: 4%;
+   padding-top: 4%;
+    padding-bottom: 2%;
+    padding-left: 2%;
 }
 .contract{
-    margin-top: 6%;
+    width: 40%;
+    margin-top: 5%;
+    height: 30%;
+    font-size: 20px;
 }
 .add_bill{
-    font-size: 18px;
-    width: 55%;
-    justify-content: left;
+    font-size: 20px;
+    width: 30%;
+    align-items: start;
+    height: 20%;
+    margin-left: 10%;
 }
-p{
+.add-title{
     margin-top: 2%;
-    font-size: 18px;
+    font-size: 22px;
+    margin-bottom: 4%;
+}
+.new_acc{
+    display: inline-block ;
+    width: 25%;
+    height: 25%;
+    margin-left: 8%;
+    padding: 2%;
+    align-items: center;
+    justify-content: center;
 }

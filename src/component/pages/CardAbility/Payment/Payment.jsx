@@ -2,12 +2,13 @@ import React from 'react';
 import '../../../styles/Common.css'
 import '../../GetItemById/idElements.css'
 import './PaymentElem.css'
-import Action from "../../../reUseComponents/Action";
+import Action from "../../../UI/Action";
+import CardList from "../../Home/CardList";
 
 const Payment = () => {
     return (
-        <div className='page_chr'>
-            <div className="pay_main">
+        <>
+            <div className="pay_main info_box">
                 <div className="pay_btn">
                     <h1 style={{marginLeft:"2%"}}>Переводы</h1>
                     <Action
@@ -33,7 +34,7 @@ const Payment = () => {
                         name={'Оплатить услугу'}/>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

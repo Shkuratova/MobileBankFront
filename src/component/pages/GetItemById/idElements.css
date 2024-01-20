@@ -1,31 +1,28 @@
 
 
 .infor{
-    margin-top: 4%;
-    border-radius: 22px;
-    width: 60%;
-    height: 70%;
+    width: 55%;
+   height: 20%;
+    position: relative;
     display: inline-block;
-    margin-left: 34%;
-    background: #FFFFFF;
+    margin-left: 10%;
 }
 .descr{
-    padding: 5%;
+    padding: 2%;
 }
 .descr_txt{
-    padding: 2%;
+   padding: 1%;
 
 }
 .bl{
     padding: 1%;
-    margin-left: 1%;
+    margin-top: 2%;
 }
 .spec{
-    font-size: 16px;
+    font-size: 20px;
     color:grey
 }
 .abil{
-    width: 40%;
-    display: inline-block;
-    margin-bottom: 4%;
+   padding: 3%;
+    width: 80%
 }

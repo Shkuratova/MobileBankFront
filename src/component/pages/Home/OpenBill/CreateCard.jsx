@@ -29,23 +29,24 @@ const CreateCard = () => {
     }
 
     return (
-        <div className='page_chr'>
+        <>
             {state==='Create' &&
-            <div className='add_bill'>
+            <div className='contract info_box'>
                 <h1>Заполнение заявки</h1>
                 <div>
                     <div className='pay_field'>
-                        <p>Выберите счет, к которому хотите привязать карту</p>
+                        <p className="add-title">Выберите счет, к которому хотите привязать карту</p>
                         <BillSelect bill={bill} bills={bills} onChange={value => setBill(value)}/>
                     </div>
                     <div className='pay_field'>
-                        <p>Выберите платежную систему</p>
+                        <p className="add-title">Выберите платежную систему</p>
                         <select className='pay_sys' value={paySys} onChange={(e) => setPaySys(e.target.value)}>
                             {PaySystem.map((p) =>
                                 <option key={p} value={p}>{p}</option>
                             )}
                         </select>
                     </div>
+                    <br/>
                     <button onClick={createCard}
                         className='myBtn'>Подтвердить</button>
                 </div>
@@ -60,7 +61,7 @@ const CreateCard = () => {
                     </div>
                 </div>
             }
-        </div>
+        </>
     );
 };
 

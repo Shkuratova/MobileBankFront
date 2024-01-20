@@ -1,35 +1,65 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './MoneyToSomewhere.css'
 import './../../../styles/Common.css'
 import CurrencyInput from "react-currency-input-field";
 import {observer} from "mobx-react-lite";
 import AccountStore from "../../../../store/AccountStore";
-import BillSelect from "../../../Valuta/BillSelect";
 import TransferService from "../../../../service/TransferService";
+import EmailConfirm from "../../../reUsePages/EmailConfirm";
+import {BETWEEN, EMPTY_FIELD, SUM_ERROR, TRANSFER_EXECUTE} from "../../../../consts/StringConsts";
+import Execute from "./Modal/Execute";
+import getSymbolFromCurrency from "currency-symbol-map";
+import ChooseBill from "./TransferSteps/ChooseBill";
 
 export const TransferBetween = observer(() => {
-    const{bills, bill, billExcept, billTo, changeBillTo, changeBillExcept} = AccountStore
+    const{bills} = AccountStore
 
     const [sum, setSum] = useState('')
     const[error, setError] = useState(null)
-
+    const[payBills, setPayBills] = useState([])
+    const [payBill, setPayBill] = useState('')
+    const[recieveBills, setRecieveBills] = useState([])
+    const [recieveBill, setRecieveBill] = useState('')
     const [state, setState]  =useState('input')
     const [tfa, setTfa] = useState('')
     const [code, setCode]= useState('')
 
-    const postPay = async (e)=>{
+
+    useEffect(() => {
+        if(bills.length !==0)
+            setPayBills(bills.filter((c) => c.balance != 0))
+
+    }, [bills]);
+
+    useEffect(()=>{
+        if(payBills.length !==0){
+            setPayBill(payBills[0].account_number)
+            setRecieveBills(bills.filter((c) =>
+                c.account_number !== payBills[0].account_number))
+        }
+    }, [payBills])
+    useEffect(()=>{
+        if(recieveBills.length !==0)
+            setRecieveBill(recieveBills[0].account_number)
+    }, [payBill])
+
+    const getCur=()=>{
+        return  bills.filter((c) => c.account_number === payBill);
+    }
+
+    const onSubmitHandler = async (e)=>{
         e.preventDefault()
         if (!sum) {
-            setError('Поле не может быть пустым')
+            setError(EMPTY_FIELD)
             return;
         }
         if (sum.replace(',', '.') < 0.01) {
-            setError(' ')
+            setError(SUM_ERROR)
             return
         }
         try {
-            const response = await TransferService.Transfer(sum.replace(',', '.'), bill, billTo,
-                'Перевод между своими счетами')
+            const response = await TransferService.Transfer(sum.replace(',', '.'), payBill, recieveBill,
+                BETWEEN)
             setTfa(response.data.tfa_token)
             setState('Confirm')
             setError(null)
@@ -39,7 +69,7 @@ export const TransferBetween = observer(() => {
         }
     }
 
-    const Confirmation = async (e)=>{
+    const TransferConfirm = async (e)=>{
         e.preventDefault()
         try {
             await TransferService.confirmTransfer(tfa, code)
@@ -51,26 +81,24 @@ export const TransferBetween = observer(() => {
     }
 
     return (
-        <div className="page_chr">
+        <>
                 {state === 'input' &&
-                <div className='cardholder'>
-                    <form onSubmit={(e)=>postPay(e)}>
+                <div className='cardholder info_box'>
+                    <form onSubmit={onSubmitHandler}>
                         <h1>Между своими счетами</h1>
-                        <div className="cardFrom">
-                            <p>Откуда</p>
-                            {bills.length &&
-                                <BillSelect bills={bills} bill={bill} onChange={value => changeBillExcept(value)}/>}
-
-                            <div className="cardTo">
-                                <p>Куда</p>
-                                {billExcept.length &&
-                                    <BillSelect bills={billExcept} bill={billTo}
-                                                onChange={value => changeBillTo(value)}/>}
-                            </div>
-                        </div>
+                        <ChooseBill
+                            allBills={bills}
+                            bill={payBill}
+                            bills={payBills}
+                            setBill={setPayBill}
+                            setBillTo={setRecieveBill}
+                            billTo={recieveBill}
+                            billExcept={recieveBills}
+                            setBillExcept={setRecieveBills}
+                        />
                         <div className="submition">
-                            <CurrencyInput style={error && {borderColor: "blueviolet"}}
-                                className='cin'
+                            <CurrencyInput
+                                className={error?"myInput error--input": "myInput"}
                                 placeholder='Сумма..'
                                 decimalsLimit={2}
                                 defaultValue={sum}
@@ -84,27 +112,19 @@ export const TransferBetween = observer(() => {
                 </div>
             }
             {state === 'Confirm' &&
-                <div className='cardholder'>
-                    <h2>На Вашу почту отправлено письмо с кодом подтверждения</h2>
-                     <input style={error && {borderColor: "blueviolet"}}
-                            className='pay_input'
-                            placeholder='Код подтверждения'
-                            value={code}
-                            onChange={(e)=>setCode(e.target.value)}
-                     />
-                    {error && <span className='error'>{error}</span>}
-                    <button onClick={e=>Confirmation(e)} className='myBtn'>Подтвердить</button>
-                </div>
+                    <EmailConfirm
+                        code={code}
+                        setCode={setCode}
+                        confirm={TransferConfirm}/>
             }
             {state === 'access' &&
-                <div className='cardholder'>
-                    <h1>Перевод выполнен</h1>
-                    <p>Между своими счетами</p>
-                    <h3>{bill}</h3>
-                </div>
-
+                <Execute
+                    title={TRANSFER_EXECUTE}
+                    type={BETWEEN} to={recieveBill}
+                    from={payBill}
+                    sum={sum + getSymbolFromCurrency(getCur()[0].currency)}/>
             }
-        </div>
+        </>
     );
 });
 

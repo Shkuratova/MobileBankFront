@@ -12,8 +12,8 @@ export const ATMS = "/atm"
 export const HISTORY = "/history"
 
 export const PaySystem = ['МИР', 'Visa', 'MasterCard', 'China Union Pay']
-export const valutaCharCode=
-[
+
+export const valutaCharCode=[
         {CharCode: 'AED', Name: 'Дирхам ОАЭ'},
         {CharCode: 'AMD', Name: 'Армянских драмов'},
         {CharCode: 'AUD', Name: 'Австралийский доллар'},
@@ -57,4 +57,5 @@ export const valutaCharCode=
         {CharCode: 'VND', Name: 'Вьетнамских донгов'},
         {CharCode: 'XDR', Name: 'СДР'},
         {CharCode: 'ZAR', Name: 'Южноафриканских рэндов'}
-    ]
+
+]

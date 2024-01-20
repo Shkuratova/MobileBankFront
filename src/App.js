@@ -1,18 +1,16 @@
 import './component/styles/App.css';
-import Navbar from "./component/Navbar/Navbar";
 import AppRouter from "./component/AppRouter";
-import CardList from "./component/pages/Home/CardList";
 import {observer} from "mobx-react-lite";
+import CardList from "./component/pages/Home/CardList";
+import {Outlet} from "react-router-dom";
+import React from "react";
+import Navbar from "./component/Navbar/Navbar";
+
 
 function App() {
 
   return (
-
-          <div className="App">
-              <Navbar/>
-              <CardList/>
-              <AppRouter/>
-          </div>
+        <AppRouter/>
   );
 }
 

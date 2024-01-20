@@ -1,12 +1,18 @@
 import React from 'react';
 import '../MoneyToSomewhere.css'
-const Execute = (props) => {
+import './ExecTransfer.css'
+import Description from "../../../../UI/Description";
+const Execute = ({title, type, sum, from, to})=> {
     return (
-        <div className="access">
-            <h1 >{props.title}</h1>
-            <h2 style={{color:"gray", marginTop:"2%"}}>{props.txt1}</h2>
-            <h2 style={{marginTop:"2%"}}>{props.txt2}</h2>
-            <h2 style={{marginTop:"2%", color:"gray"}}>{props.description}</h2>
+        <div className="cardholder info_box">
+            <h1 >{title}</h1>
+            <p className="about--transfer">{type}</p>
+            <br/>
+            <br/>
+            <h2 className="about--transfer">Подробности операции:</h2>
+            <Description title={"Откуда:"} text={from}/>
+            <Description title={"Куда:"} text={to}/>
+            <Description title={"Сумма перевода:"} text={sum}/>
         </div>
     );
 };

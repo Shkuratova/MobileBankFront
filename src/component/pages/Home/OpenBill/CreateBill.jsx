@@ -21,12 +21,12 @@ const CreateBill = () => {
         }
     }
     return (
-        <div className='page_chr'>
+        <>
             {state === 'Open'&&
-                <div style={{width:"35%"}} className='add_bill'>
+                <div  className='add_bill info_box'>
                      <h1>Заполнение заявки</h1>
                     <div  className='contract'>
-                        <p style={{display:"inline-block"}}>Валюта</p>
+                        <p>Валюта</p>
                         <select className='valute_select'
                             value={valuta}
                             onChange={e=>setValuta(e.target.value)}>
@@ -37,8 +37,7 @@ const CreateBill = () => {
                         </select>
                     </div>
                     <button onClick={OpenBill}
-                        style={{marginLeft:"57%", width:"40%"}}
-                        className='reg__button'>
+                        className='myBtn' style={{marginLeft:"auto",marginRight:"10px", width:"50%", height:"45px"}}>
                         Открыть счет</button>
 
                  </div>
@@ -51,7 +50,7 @@ const CreateBill = () => {
                 </div>
             }
 
-        </div>
+        </>
     );
 };
 

@@ -5,7 +5,11 @@ export default class AuthService{
         return axios.post('/auth/registration/', {account, login, password, re_password})
     }
     static async login(login,  password){
-        return axios.post('/auth/', {login, password})
+        return axios.post('/auth/', {login, password}).catch(function (error){
+            if(error.response) {
+                return Promise.reject(error)
+            }
+    });
     }
  
     static async has_acc(account){

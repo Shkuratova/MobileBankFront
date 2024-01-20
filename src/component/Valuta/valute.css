@@ -1,15 +1,15 @@
 .valute__item{
-    min-width: 95%;
     border-radius: 16px;
     font-size: 18px;
     display: flex;
     flex-direction: row;
-    margin-top: 4%;
-    padding: 2%;
-    width: 95%;
+    margin-top: 2%;
+    padding: 3% 2% 3% 3%;
+    width: 100%;
+    justify-content: space-between;
     height: 20%;
-    align-items: center;
-    justify-content: left;
+    align-items: start;
+
 }
 .valute__item:hover{
     background: whitesmoke;
@@ -26,22 +26,23 @@
     color:mediumaquamarine;
 }
 .val_list{
-    min-width: 1400px;
     border-radius: 22px;
-    margin: 5% auto;
+    width: 90%;
+    margin-left: 3%;
+    min-width: 800px;
     background: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:start;
 }
 .vall_bill{
-    margin-top: 7%;
+    margin-top: 5%;
 }
 .buy_val{
     background: #FFFFFF;
     margin-top: 4%;
     padding: 3% 3% 3%;
-    margin-left:34%;
+    margin-left:10%;
     height: 70%;
     width: 50%;
     border-radius: 22px;
@@ -51,18 +52,23 @@
     flex-direction: column;
 }
 .buy__sell{
+    margin-top: 5px;
     display: flex;
     flex-direction: row;
-    margin-left: 35%;
 }
 .buy_v{
-    margin-right: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    justify-content: space-around;
+
 }
 .button_v{
-    margin-left: 7%;
-    width: 120px;
-    height: 40px;
-    font-size: 16px;
+    font-size: 18px;
+    border:none;
+    padding: 3%;
+    margin-right: 10px;
+    font-weight: 500;
     border-radius: 16px;
     background: aquamarine;
 }

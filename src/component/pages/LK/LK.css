@@ -1,15 +1,16 @@
 .lk_i{
     margin-top: 3%;
-    margin-left: 3%;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     background: #F6F4F4;
 }
 .lk_about{
+    margin-left: 3%;
+   width: 90%;
+}
+.text_about{
     font-size: 22px;
-    margin-left: 4%;
-    margin-top: 4%;
 }
 .person{
     display: flex;
@@ -17,6 +18,7 @@
     align-items: center;
     width:100%;
     padding: 2%;
+    margin-top: 3%;
     border-radius: 22px;
     margin-bottom: 5%;
 }
@@ -27,30 +29,27 @@
     font-weight: bold;
 }
 .personal{
-    margin-top: 4%;
-    padding: 2%;
-    border-radius: 22px;
-    width: 60%;
-    height: 70%;
-    display: inline-block;
-    margin-left: 34%;
-    background: #FFFFFF;
+    padding: 2% 3% 3% 3%;
+    width: 45%;
+    height: 55%;
+    display:inline-block;
+    margin-left: 15%;
     align-items: center;
 }
 .lk_act{
     margin-top: 6%;
     margin-left: 2%;
     margin-bottom: 4%;
+
 }
+
+
 .changefield{
-    margin-top: 4%;
     padding: 2%;
-    border-radius: 22px;
-    width: 50%;
+    width: 40%;
     height: 70%;
     display: inline-block;
-    margin-left: 34%;
-    background: #FFFFFF;
+    margin-left: 15%;
     align-items: center;
 }
 .cin{

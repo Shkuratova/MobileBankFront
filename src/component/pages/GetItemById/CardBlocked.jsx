@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import Window from "../../reUseComponents/Window";
+import Window from "../../UI/Window";
 import Block from "../CardAbility/Block";
 
 const CardBlocked = ({card}) => {
     const[visibleBlock, setVisibleBlock] = useState(false)
 
     return (
-        <div className="infor">
+        <div className="infor info_box">
             <Window setVisible={setVisibleBlock} visible={visibleBlock}>
                 <Block cardNum={card.card_name} visible={visibleBlock} setVisible={setVisibleBlock} status={1}
                        title={'Разблокировать карут'} action={'разблокирована'} description={'Вы хотите разблокировать карту'} btn={'Разблокировать'}/>

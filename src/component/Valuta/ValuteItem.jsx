@@ -15,7 +15,7 @@ const ValuteItem = ({CharCode, Name, Nominal, SalePrice, PurchasePrice}) => {
         <div className='valute__item'>
 
             <div className='info'>
-                <h3 style={{width:"500px"}}>{CharCode} {Name}</h3>
+                <h3 style={{width:"400px"}}>{CharCode} {Name}</h3>
                 <p style={{marginTop:"10px"}}>Количество единиц: {Nominal}</p>
             </div>
 
@@ -24,12 +24,12 @@ const ValuteItem = ({CharCode, Name, Nominal, SalePrice, PurchasePrice}) => {
                      <h4>Продажа</h4>
                      <p style={{marginTop:"5px", marginLeft:"8px"}}>{SalePrice}</p>
                  </div>
-                  <div className=''>
+                  <div className='buy_v'>
                      <h4>Покупка</h4>
                      <p style={{marginTop:"5px", marginLeft:"8px"}}>{PurchasePrice}</p>
                     </div>
+                <button  onClick={e=>buyVal()} className='button_v'>Обменять</button>
             </div>
-            <button  onClick={e=>buyVal()} className='button_v'>Обменять</button>
         </div>
     );
 };

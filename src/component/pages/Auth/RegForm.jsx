@@ -3,8 +3,11 @@ import axios from "axios";
 import {AuthContext} from "../../../context";
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
+import AuthService from "../../../service/AuthService";
+import PersonStore from "../../../store/PersonStore";
 
 const RegForm = () => {
+    const{isAuth, SiqnIn, setAuth,   ConfirmLogin} = PersonStore
     const router = useNavigate()
     const [state, setState] = useState('SignUp')
 
@@ -14,41 +17,32 @@ const RegForm = () => {
     const [tfa_token, setTfa] = useState('')
     const[code, setCode] = useState('')
     const [account, setAccount] = useState('')
-
+    const[error,setError] = useState(null)
     const inital=(e)=>{
 
         e.preventDefault()
         setState('Reg')
     }
-    const finalReg=(e)=>{
+    const finalReg= async (e)=>{
+        console.log("rrr")
         e.preventDefault()
-        // axios
-        //     .post("/auth/registration/", {login:log, password:pas, re_password:re_pas, account:account})
-        //     .then((response)=>{
-        //         console.log(response.data);
-        //         setTfa(response.data.tfa_token)
-        //         setState('RegConfirm')
-        //     })
-        //     .catch(function (error){
-        //         if(error.response){
-        //             console.log(error.response.data)
-        //         }
-        //     });
+        try {
+            const response =await AuthService.registration(account, log, pas, re_pas)
+            setTfa(response.data.tfa_token)
+            setError(null)
+            setState('RegConfirm')
+        }catch (e) {
+            setError(e.response.data)
+        }
     }
-    const RegConfirm = (e)=> {
+    const RegConfirm = async (e)=> {
         e.preventDefault()
-        // axios
-        //     .put("/auth/registration/", {tfa_token:tfa_token, confirm_code:code})
-        //     .then((response)=>{
-        //         localStorage.setItem('token', response.data.access_token)
-        //         localStorage.setItem('refresh', response.data.refresh_token)
-        //         setIsAuth(true)
-        //     })
-        //     .catch(function (error){
-        //         if(error.response){
-        //             console.log(error.response.data)
-        //         }
-        //     });
+        try {
+            const response = await AuthService.confirmRegistration(tfa_token, code)
+            setAuth(true)
+        }catch (e) {
+            setError(e.response.data)
+        }
     }
     return (
         <div className='page_chr'>
@@ -87,10 +81,7 @@ const RegForm = () => {
                         value={re_pas}
                         onChange={(e)=>setRePas(e.target.value)}
                     />
-                    <span className='toolTip'>
-                        Пароль должен содержать как минимум одну заглавную  и прописную буквы, цифры и хотя
-                        бы один символ:!@#$%^&*_=+-
-                    </span>
+                    {error && <span className='error'>{error}</span>}
                     <button onClick={(e) => finalReg(e)}
                             className="reg__button">Зарегистрироваться</button>
                 </div>
@@ -103,6 +94,7 @@ const RegForm = () => {
                            value={code}
                            onChange={e=>setCode(e.target.value)}
                     />
+                    {error && <span className="error">{error}</span>}
                     <button onClick={e=>RegConfirm(e)}
                             className='reg__button'>Продолжить</button>
                 </div>
