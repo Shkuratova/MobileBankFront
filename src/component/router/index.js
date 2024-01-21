@@ -57,7 +57,7 @@ export const privateRoutes=[
 ]
 
 export const publicRoutes=[
-    {path:'/*', component:<Auth/>},
+    // {path:"/*", component:<Auth/>},
     {path: '/registration', component: <RegForm/>},
     {path:ATMS, component: <YandexMap/>},
     {path:CURRENCY, component: <ValutaCourse/>}

@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
 import AuthService from "../../../service/AuthService";
 import PersonStore from "../../../store/PersonStore";
+import Input from "../../UI/defaultUI/Inputs/Input";
 
 const RegForm = () => {
     const{isAuth, SiqnIn, setAuth,   ConfirmLogin} = PersonStore
@@ -45,19 +46,16 @@ const RegForm = () => {
         }
     }
     return (
-        <div className='page_chr'>
+        <>
             {state ==='SignUp' &&
                 <div className='reg__modal'>
                     <button onClick={()=>router('/')}
                             className='reg__link'>На главную</button>
                     <h1 className='head__reg'>Регистрация</h1>
                     <p>Введите номер счета</p>
-                    <input className='reg__input'
-                           value={account}
-                           onChange={(e)=>setAccount(e.target.value)}
-                    />
+                    <Input value={account} setValue={setAccount} text={"Номер счета"}/>
                     <button onClick={e=>inital(e)}
-                            className="reg__button">Продолжить</button>
+                            className="myBtn">Продолжить</button>
                 </div>
             }
             {
@@ -65,22 +63,13 @@ const RegForm = () => {
                 <div className="reg__modal">
                     <button onClick={()=>router('/')}
                             className='reg__link'>На главную</button>
-                    <h3>Логин</h3>
-                    <input className="reg__input"
-                           value={log}
-                           onChange={(e)=>setLog(e.target.value)}
-                    />
-                    <h3>Пароль</h3>
-                    <input
-                        className="reg__input"
-                        value={pas}
-                        onChange={(e)=>setPas(e.target.value)}
-                    />
-                    <input
-                        className='reg__input'
-                        value={re_pas}
-                        onChange={(e)=>setRePas(e.target.value)}
-                    />
+                    <h1 className="head__reg">Регистрация</h1>
+                    <Input value={log}
+                           setValue={setLog}
+                           text={"Логин"}/>
+
+                    <Input value={pas} setValue={setPas} text={"Пароль"}/>
+
                     {error && <span className='error'>{error}</span>}
                     <button onClick={(e) => finalReg(e)}
                             className="reg__button">Зарегистрироваться</button>
@@ -99,7 +88,7 @@ const RegForm = () => {
                             className='reg__button'>Продолжить</button>
                 </div>
             }
-        </div>
+        </>
     );
 };
 

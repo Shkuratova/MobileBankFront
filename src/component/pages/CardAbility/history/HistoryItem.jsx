@@ -13,7 +13,7 @@ const HistoryItem = ({transaction}) => {
             </Window>
             <div onClick={()=>setVisible(true)}
                 className='history_item'>
-                <h3  className='general_info'>{transaction.description.about}</h3>
+                <p  className='general_info'>{transaction.description.about}</p>
                 <div className='total'>
                     <h3>{transaction.description.amount_money} {getSymbolFromCurrency(transaction.description.currency)}</h3>
                     <p style={{marginTop:"10%"}}>{transaction.end_transaction.replace('T', ' ').slice(0, -15)}</p>

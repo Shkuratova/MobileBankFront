@@ -1,5 +1,5 @@
 import React from 'react';
-import './defaultUI.css'
+import '../defaultUI.css'
 const Input = ({setValue, value, error, text}) => {
     return (
         <input

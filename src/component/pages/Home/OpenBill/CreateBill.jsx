@@ -24,7 +24,7 @@ const CreateBill = () => {
         <>
             {state === 'Open'&&
                 <div  className='add_bill info_box'>
-                     <h1>Заполнение заявки</h1>
+                     <h2>Заполнение заявки</h2>
                     <div  className='contract'>
                         <p>Валюта</p>
                         <select className='valute_select'

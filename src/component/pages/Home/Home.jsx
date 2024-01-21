@@ -6,8 +6,10 @@ import '../../styles/App.css'
 import './Home.css'
 import {Outlet} from "react-router-dom";
 import Navbar from "../../Navbar/Navbar";
+import PersonStore from "../../../store/PersonStore";
+import {observer} from "mobx-react-lite";
+import Auth from "../Auth/Auth";
 const Home = () => {
-
     return (
         <div className="App">
                 <Navbar/>
@@ -15,11 +17,8 @@ const Home = () => {
                 <CardList/>
                 <Outlet/>
             </div>
-
-
-
         </div>
     );
 };
 
-export default Home;
+export default observer(Home);

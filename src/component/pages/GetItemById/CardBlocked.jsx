@@ -9,7 +9,7 @@ const CardBlocked = ({card}) => {
         <div className="infor info_box">
             <Window setVisible={setVisibleBlock} visible={visibleBlock}>
                 <Block cardNum={card.card_name} visible={visibleBlock} setVisible={setVisibleBlock} status={1}
-                       title={'Разблокировать карут'} action={'разблокирована'} description={'Вы хотите разблокировать карту'} btn={'Разблокировать'}/>
+                       title={'Разблокировать карту'} action={'разблокирована'} description={'Вы хотите разблокировать карту'} btn={'Разблокировать'}/>
             </Window>
             <div className="descr">
                 <h1  className="descr_txt">{card.payment_system} WorldSkills Card</h1>

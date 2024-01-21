@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 import AccessChange from "./AccessChange";
 import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import PersonService from "../../../../service/PersonService";
-import Input from "../../../UI/defaultUI/Input";
+import Input from "../../../UI/defaultUI/Inputs/Input";
 
 const ChangePassword = () => {
     const[state, setState] = useState('changePass')

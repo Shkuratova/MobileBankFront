@@ -32,7 +32,7 @@ const CreateCard = () => {
         <>
             {state==='Create' &&
             <div className='contract info_box'>
-                <h1>Заполнение заявки</h1>
+                <h2>Заполнение заявки</h2>
                 <div>
                     <div className='pay_field'>
                         <p className="add-title">Выберите счет, к которому хотите привязать карту</p>

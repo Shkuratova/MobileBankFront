@@ -1,5 +1,5 @@
 .valute_select{
-    width: 80%;
+    width: 120%;
     height: 30px;
     margin-left: 3%;
     font-size: 16px;
@@ -19,13 +19,14 @@
 }
 .contract{
     width: 40%;
-    margin-top: 5%;
     height: 30%;
+    margin-left: 15%;
     font-size: 20px;
 }
 .add_bill{
     font-size: 20px;
-    width: 30%;
+    width: 40%;
+
     align-items: start;
     height: 20%;
     margin-left: 10%;

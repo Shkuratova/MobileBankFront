@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../../../styles/Common.css'
 import './MoneyToSomewhere.css'
+import getSymbolFromCurrency from "currency-symbol-map";
 
 const CardSelect = ({cards, card, onChange}) => {
     return (
@@ -9,9 +10,9 @@ const CardSelect = ({cards, card, onChange}) => {
         onChange={event => onChange(event.target.value)}>
             {cards.map((c)=>
                 <option key={c.card_name}
-                        value={c.token_card}
+                        value={c}
                 >
-                    ****{c.card_name.slice(-4)} [{c.type_account==='debit'?'Дебетовая карта':'Кредитная карта'}] {c.balance}  {c.currency}
+                    ****{c.card_name.slice(-4)} [{c.type_account==='debit'?'Дебетовая карта':'Кредитная карта'}] {c.balance}{getSymbolFromCurrency(c.currency)}
                 </option>
             )}
         </select>

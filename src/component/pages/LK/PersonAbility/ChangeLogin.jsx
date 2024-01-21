@@ -4,7 +4,7 @@ import '../LK.css'
 import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import AccessChange from "./AccessChange";
 import PersonService from "../../../../service/PersonService";
-import Input from "../../../UI/defaultUI/Input";
+import Input from "../../../UI/defaultUI/Inputs/Input";
 
 const ChangeLogin = () => {
     const [state, setState] = useState('Login')

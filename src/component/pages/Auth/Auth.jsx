@@ -48,7 +48,7 @@ const Auth = () => {
     }
 
     return (
-        <div className="page_chr" >
+        <>
             {state ==='SignIn' &&
                 <div className="reg__modal">
                     <h1 className='head__reg'>Добро пожаловать!</h1>
@@ -80,7 +80,7 @@ const Auth = () => {
                         className='myBtn'>Продолжить</button>
                 </div>
             }
-        </div>
+        </>
     );
 };
 
