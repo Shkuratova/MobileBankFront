@@ -5,7 +5,7 @@ import CurrencyInput from "react-currency-input-field";
 import {useNavigate, useParams} from "react-router-dom";
 import '../../styles/Common.css'
 import '../valute.css'
-import ValutaStore from "../../../store/ValutaStore";
+import ValutaStore from "../../../store/CurrencyStore";
 
 const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill, error,setValBill, sum, setSum, transact}) => {
 
@@ -13,9 +13,9 @@ const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill,
     const p = useParams()
     const s = useNavigate()
     console.log(p.charcode)
-    useEffect(() => {
-        getCourse()
-    }, []);
+    // useEffect(() => {
+    //     getCourse()
+    // }, []);
     useEffect(() => {
         if(!isLoad)
             setVal(course[p.charcode])

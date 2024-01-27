@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {privateRoutes, publicRoutes} from "./router";
 import {observer} from "mobx-react-lite";
-import PersonStore from "../store/PersonStore";
-import ValutaStore from "../store/ValutaStore";
+import PersonStore from "../store/UserStore";
+import ValutaStore from "../store/CurrencyStore";
 import Home from "./pages/Home/Home";
 import LK from "./pages/LK/LK";
 import {HOME} from "../utils/consts";
@@ -13,10 +13,10 @@ import PublicPage from "./pages/Auth/PublicPage";
 
 const AppRouter = () => {
     const {isAuth, checkAuth} = PersonStore;
-    const {getCourse}= ValutaStore
     useEffect(() => {
         if(localStorage.getItem('token')){
             checkAuth()
+            console.log(1)
         }
     }, []);
 

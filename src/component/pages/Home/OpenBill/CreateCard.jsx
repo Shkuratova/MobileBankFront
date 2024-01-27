@@ -40,7 +40,7 @@ const CreateCard = () => {
                     </div>
                     <div className='pay_field'>
                         <p className="add-title">Выберите платежную систему</p>
-                        <select className='pay_sys' value={paySys} onChange={(e) => setPaySys(e.target.value)}>
+                        <select className='mySelect' value={paySys} onChange={(e) => setPaySys(e.target.value)}>
                             {PaySystem.map((p) =>
                                 <option key={p} value={p}>{p}</option>
                             )}
@@ -53,7 +53,7 @@ const CreateCard = () => {
             </div>
             }
             {state ==='Info' &&
-                <div className='add_bill'>
+                <div className='add_bill info_box'>
                     <h1>Карта создана</h1>
                     <div className='pay_field'>
                         <p>{ans.card_name}</p>

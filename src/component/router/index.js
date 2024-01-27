@@ -1,5 +1,3 @@
-import Home from "../pages/Home/Home";
-import ATM from "../pages/Other/ATM";
 import LK from "../pages/LK/LK";
 import CardById from "../pages/GetItemById/CardById";
 import CardHistory from "../pages/CardAbility/history/CardHistory";
@@ -15,8 +13,7 @@ import TransferBetween from "../pages/CardAbility/Payment/TransferBetween";
 import ChangePassword from "../pages/LK/PersonAbility/ChangePassword";
 import SessionHistory from "../pages/LK/PersonAbility/SessionHistory";
 import ChangeLogin from "../pages/LK/PersonAbility/ChangeLogin";
-import Auth from "../pages/Auth/Auth";
-import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, HOME, PAY, USER} from "../../utils/consts";
+import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, PAY} from "../../utils/consts";
 import PayService from "../pages/CardAbility/Payment/PayService";
 import ValutaCourse from "../Valuta/ValutaCourse";
 import BuyValute from "../Valuta/CurerncyExchange/ExchangeValute";
@@ -24,12 +21,12 @@ import RegForm from "../pages/Auth/RegForm";
 import CreateBill from "../pages/Home/OpenBill/CreateBill";
 import CreateCard from "../pages/Home/OpenBill/CreateCard";
 import YandexMap from "../Maps/YandexMap";
-import NewAccount from "../pages/Home/OpenBill/NewAccount";
+import MainPage from "../pages/MainPage/MainPage";
 
 
 export const privateRoutes=[
  //   {path:HOME, component:<Home/>},
-    {path:"/*", component:<NewAccount/>},
+    {path:"/*", component:<MainPage/>},
     {path:'/user/:login', component: <LK/>},
     {path:CURRENCY, component: <ValutaCourse/>},
     {path:ATMS, component: <YandexMap/>},

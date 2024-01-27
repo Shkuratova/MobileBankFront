@@ -5,7 +5,7 @@ import getSymbolFromCurrency from "currency-symbol-map";
 
 const CardSelect = ({cards, card, onChange}) => {
     return (
-        <select className='pay_select'
+        <select className='mySelect'
         value={card}
         onChange={event => onChange(event.target.value)}>
             {cards.map((c)=>

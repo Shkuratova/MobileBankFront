@@ -24,4 +24,13 @@ export default class TransferService {
             }
         })
     }
+    static async getHistory(account, token){
+        return $api.get(API + 'get_operations/', {
+            params:{
+                account_number:account,
+                token_card:token,
+                status_operation:'success'
+            }
+        })
+    }
 }

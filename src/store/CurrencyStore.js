@@ -1,7 +1,7 @@
 import ToAllService from "../service/ToAllService";
 import {action, makeAutoObservable, observable, runInAction} from "mobx";
 
-class ValutaStore{
+class CurrencyStore{
     course =[]
     val = {}
     isLoad = false
@@ -39,4 +39,4 @@ class ValutaStore{
         }
     }
 }
-export default new ValutaStore()
+export default new CurrencyStore()

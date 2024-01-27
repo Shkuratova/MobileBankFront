@@ -18,15 +18,15 @@ import Execute from "./Modal/Execute";
 import getSymbolFromCurrency from "currency-symbol-map";
 
 const PayService = observer(() => {
-    const {bills} = AccountStore;
-    const {cards} =CardStore;
+    const {bills, getPayAccount} = AccountStore;
+    const {cards, getPayCard} =CardStore;
     useEffect(()=>{
         if(cards.length !== 0)
-            setCard(cards[0])
+            setCard(getPayCard()[0])
     }, [cards])
     useEffect(()=>{
         if(bills.length !== 0)
-            setBill(bills[0].account_number)
+            setBill(getPayAccount()[0])
     }, [bills])
     const [bill, setBill] = useState(bills[0].account_number)
     const [state, setState] = useState('service')
@@ -109,9 +109,9 @@ const PayService = observer(() => {
                     <SelectAction flag={flag} setFlag={setFlag} case1={'Списать с карты'} case2={'Списать со счета'}/>
                     <form onSubmit={sendDuty} className='service'>
                         {flag?
-                                <CardSelect cards={cards} card={card} onChange={value=>setCard(value)}/>
+                                <CardSelect cards={getPayCard()} card={card} onChange={value=>setCard(value)}/>
                             :
-                            <BillSelect bills={bills} bill={bill} onChange={value => setBill(value)}/>
+                            <BillSelect bills={getPayAccount()} bill={bill} onChange={value => setBill(value)}/>
                         }
                         <h4 className='pay_header'>Назначение платежа</h4>
                         <Input

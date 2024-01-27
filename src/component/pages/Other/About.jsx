@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/Common.css'
 const About = () => {
     return (
-        <div className="page_chr">
+        <div>
             Vanya && Partners
         </div>
     );

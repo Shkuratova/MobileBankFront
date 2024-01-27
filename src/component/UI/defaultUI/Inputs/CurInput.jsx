@@ -8,6 +8,8 @@ const CurInput = ({sum, setSum, error, text}) => {
                        placeholder={(text!==null)?text:"Сумма платежа"}
                        decimalsLimit={2}
                        defaultValue={sum}
+                        allowNegativeValue={false}
+                         maxLength={7}
                        onValueChange={(e)=>setSum(e)}
         />
     );

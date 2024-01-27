@@ -3,7 +3,7 @@ import PersonService from "../service/PersonService";
 import AuthService from "../service/AuthService";
 import axios from "axios";
 
-class PersonStore{
+class UserStore{
     person = {firstName:'', lastName:'', thirdName:'',sex:'', email:'', telephone:'', login:'' }
     Load = false
     isAuth = false
@@ -15,6 +15,7 @@ class PersonStore{
         makeObservable(this, {
             Load:observable,
             isAuth:observable,
+            tfa:observable,
             AuthError:observable,
             person:observable,
             setAuth:action,
@@ -41,23 +42,25 @@ class PersonStore{
         localStorage.removeItem('token')
         localStorage.removeItem('ref_token')
     }
-    // SiqnIn = async (login, pas)=>{
-    //     try{
-    //         const response = await AuthService.login(login, pas)
-    //         this.tfa = response.data.tfa_token
-    //         this.setAuthError(null)
-    //         console.log(response.data)
-    //     }catch (e) {
-    //         this.setAuthError(e.response)
-    //         console.log(this.AuthError)
-    //     }
-    // }
+    SiqnIn = async (login, pas)=>{
+        try{
+            const response = await AuthService.login(login, pas)
+            this.tfa = response.data.tfa_token
+            this.setAuthError(null)
+            console.log(response.data)
+        }catch (e) {
+            this.setAuthError(e.response)
+            console.log(this.AuthError)
+        }
+    }
     ConfirmLogin = async(code)=>{
         try{
             const response = await AuthService.confirmation(this.tfa, code)
             this.setAuthError(null)
+            localStorage.setItem('token', response.data.access_token)
+            localStorage.setItem('ref_token', response.data.refresh_token)
             this.setAuth(true)
-           // console.log(response.data)
+            console.log(response.data)
         }catch (e) {
             this.setAuthError(e)
         }
@@ -123,4 +126,4 @@ class PersonStore{
             }
     }
 }
-export default new PersonStore();
+export default new UserStore();

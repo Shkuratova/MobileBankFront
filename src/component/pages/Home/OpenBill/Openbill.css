@@ -25,11 +25,12 @@
 }
 .add_bill{
     font-size: 20px;
-    width: 40%;
-
-    align-items: start;
-    height: 20%;
     margin-left: 10%;
+    /*width: 40%;*/
+    height: fit-content;
+    width:fit-content;
+    align-items: start;
+    /*height: 20%;*/
 }
 .add-title{
     margin-top: 2%;
@@ -38,9 +39,8 @@
 }
 .new_acc{
     display: inline-block ;
-    width: 25%;
-    height: 25%;
-    margin-left: 8%;
+    height: fit-content;
+    width: 100%;
     padding: 2%;
     align-items: center;
     justify-content: center;

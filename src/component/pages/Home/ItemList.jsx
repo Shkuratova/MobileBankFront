@@ -4,15 +4,17 @@ import './Arrow.css'
 import CardItem from "./CardItem";
 import BillItem from "./BillItem";
 import CreditCard from "./CreditCard";
+import {observer} from "mobx-react-lite";
 
 const ItemList = ({cards, title}) => {
     const[visible, setVisible] = useState(true)
 
     return (
         <div className="list_type">
-            <div className="title_list">
-                <p className="name_list">{title}</p>
-                <div className={visible?"arrow isvis": "arrow"} onClick={()=>setVisible(!visible)}>
+            <div  onClick={()=>setVisible(!visible)}
+                  className="title_list">
+                <p className="name_list" >{title}</p>
+                <div className={visible?"arrow isvis": "arrow"}>
                 </div>
             </div>
 
@@ -36,4 +38,4 @@ const ItemList = ({cards, title}) => {
     );
 };
 
-export default ItemList;
+export default observer(ItemList);

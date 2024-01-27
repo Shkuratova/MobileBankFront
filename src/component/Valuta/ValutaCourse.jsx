@@ -4,7 +4,7 @@ import '../styles/Common.css'
 import './valute.css'
 import ValuteItem from "./ValuteItem";
 import {observer} from "mobx-react-lite";
-import ValutaStore from "../../store/ValutaStore";
+import ValutaStore from "../../store/CurrencyStore";
 
 const ValutaCourse = () => {
     const {course, isLoad, getCourse} = ValutaStore
@@ -16,7 +16,11 @@ const ValutaCourse = () => {
     return (
         <>
             {isLoad?
-                <h1>Загрузка...</h1>
+                <div className="info_box val_list" style={{flexDirection:"row"}}>
+                    <div className="load-line chet"></div>
+                    <div className="load-line nechet"></div>
+                    <div className="load-line third"></div>
+                </div>
                :
                 <div className='val_list'>
                     {Object.values(course).map((c) =>

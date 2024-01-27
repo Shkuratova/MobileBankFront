@@ -4,6 +4,7 @@ import '../../../styles/Common.css'
 import './Openbill.css'
 import {valutaCharCode} from "../../../../utils/consts";
 import CardService from "../../../../service/CardService";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 const CreateBill = () => {
     const [valuta, setValuta] = useState("RUB")
@@ -25,19 +26,18 @@ const CreateBill = () => {
             {state === 'Open'&&
                 <div  className='add_bill info_box'>
                      <h2>Заполнение заявки</h2>
-                    <div  className='contract'>
+                    <br/>
                         <p>Валюта</p>
-                        <select className='valute_select'
+                        <select className='mySelect'
                             value={valuta}
                             onChange={e=>setValuta(e.target.value)}>
-                            <option key={"RUB"} value={"RUB"}>Рубль</option>
+                            <option key={"RUB"} value={"RUB"}>Рубль </option>
                                     {valutaCharCode.map((t)=>
-                             <option key={t.CharCode} value={t.CharCode}> {t.Name} </option>
+                             <option key={t.CharCode} value={t.CharCode}> {t.Name}</option>
                                                                 )}
                         </select>
-                    </div>
                     <button onClick={OpenBill}
-                        className='myBtn' style={{marginLeft:"auto",marginRight:"10px", width:"50%", height:"45px"}}>
+                        className='myBtn' >
                         Открыть счет</button>
 
                  </div>

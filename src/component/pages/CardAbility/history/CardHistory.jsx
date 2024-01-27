@@ -8,37 +8,40 @@ import axios from "axios";
 import CardItem from "../../Home/CardItem";
 import CardStore from "../../../../store/CardStore";
 import {observer} from "mobx-react-lite";
+import TransferService from "../../../../service/TransferService";
 export const CardHistory =observer( () => {
     const {cards} = CardStore
     const p = useParams()
     const[histList, setHistList]= useState([])
     const[isLoading, setIsLoading] = useState(true)
     useEffect(() => {
-        setIsLoading(true)
-        axios
-            .get("/api/v1/get_operations/", {headers:
-                    {
-                        Authorization: localStorage.getItem('token')
-                    },
-                    params:{
-                        account_number:p.account_number,
-                        token_card:p.token_card,
-                        status_operation:'success'
-                    }
-            })
-            .then((response)=>{
-                console.log(response.data)
+        const getHist =async ()=>{
+            setIsLoading(true)
+            try {
+                const response = await TransferService.getHistory(p.account_number, p.token_card)
                 setHistList(Object.values(response.data))
                 setIsLoading(false)
-                console.log(histList[0].From)
-            })
-            .catch(function (error){
-                if(error.response){
-                    console.log(error.response.data)
-                }
-            });
+                console.log(response.data)
+            }catch (e){
+                setIsLoading(false)
+                console.log(e.response.data)
+            }
+        }
+        getHist()
 
-    }, []);
+            // .then((response)=>{
+            //     console.log(response.data)
+            //     setHistList(Object.values(response.data))
+            //     setIsLoading(false)
+            //     console.log(histList[0].From)
+            // })
+            // .catch(function (error){
+            //     if(error.response){
+            //         console.log(error.response.data)
+            //     }
+            // });
+
+    }, [p]);
     return (
         <>
             {isLoading?<div></div>:

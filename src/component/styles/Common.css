@@ -10,20 +10,37 @@
 
 }
 .load-line.chet{
-    animation:chet 3s infinite;
+    animation:chet 1.5s infinite;
 }
 .load-line.nechet{
-    animation: nechet 2.5s infinite;
+    animation: nechet 1.5s infinite;
+}
+.load-line.third{
+    animation: nechet 1.5s infinite;
 }
 @keyframes chet {
-     0%    { opacity: 0.2; }
-     50%   { opacity: 1; }
-     100%  { opacity: 0.2; }
+     0%    { opacity: 0.8; }
+     20%   { opacity: 0.6; }
+     40%   { opacity: 0.4; }
+     60%   { opacity: 0.6; }
+     80%  { opacity: 0.8; }
+     100%  { opacity: 1; }
  }
 @keyframes nechet {
-    0%    { opacity: 1; }
-    50%   { opacity: 0.2; }
-    100%  { opacity: 1; }
+    0%    { opacity: 0.6; }
+    20%   { opacity: 0.4; }
+    40%   { opacity: 0.6; }
+    60%   { opacity: 0.8; }
+    80%  { opacity: 1; }
+    100%  { opacity: 0.8; }
+}
+@keyframes third {
+    0%    { opacity: 0.4; }
+    20%   { opacity: 0.6; }
+    40%   { opacity: 0.8; }
+    60%   { opacity: 1; }
+    80%  { opacity: 0.8; }
+    100%  { opacity: 0.6; }
 }
 
 
@@ -79,4 +96,21 @@
     flex-direction: column;
     box-shadow: 0 5px 10px 1px rgba(0, 0, 0, 0.25);
     border-radius: 22px;
+}
+.row-direct{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
+.btn__link{
+    background: none;
+    text-align: left;
+    border: none;
+    margin-top: 4%;
+    font-size: 16px;
+    color:grey;
+}
+.btn__link:hover{
+    color: mediumaquamarine;
+    cursor: pointer;
 }

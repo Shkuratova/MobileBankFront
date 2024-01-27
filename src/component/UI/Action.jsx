@@ -9,7 +9,7 @@ const Action = (props) => {
             <img className="act_img"
                  width={props.width}
                  height={props.height}
-                 src={props.img}/>
+                 src={props.img} alt={"."}/>
             <p className='act_txt'>{props.name}</p>
         </div>
     );

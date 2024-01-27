@@ -3,6 +3,7 @@
     min-height: 100vh;
     background: rgb(131,228,192);
     flex-direction: row;
+    position: relative;
     width: 100%;
     padding-top: 5%;
     padding-left: 3%;

@@ -5,6 +5,7 @@ import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import AccessChange from "./AccessChange";
 import PersonService from "../../../../service/PersonService";
 import Input from "../../../UI/defaultUI/Inputs/Input";
+import {EMPTY_FIELD} from "../../../../consts/StringConsts";
 
 const ChangeLogin = () => {
     const [state, setState] = useState('Login')
@@ -13,7 +14,7 @@ const ChangeLogin = () => {
     const changeLog = async (e)=>{
         e.preventDefault()
         if(!login){
-            setError('Поле не может быть пустым')
+            setError(EMPTY_FIELD)
             return
         }
         try {

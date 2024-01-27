@@ -1,14 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "../../styles/Common.css"
 import CardList from "./CardList";
-import Action from "../../UI/Action";
 import '../../styles/App.css'
 import './Home.css'
 import {Outlet} from "react-router-dom";
 import Navbar from "../../Navbar/Navbar";
-import PersonStore from "../../../store/PersonStore";
 import {observer} from "mobx-react-lite";
-import Auth from "../Auth/Auth";
+
 const Home = () => {
     return (
         <div className="App">

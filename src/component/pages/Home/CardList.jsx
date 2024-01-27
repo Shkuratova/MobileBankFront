@@ -1,14 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './CardList.css'
 
 import {useLocation} from "react-router-dom";
 import AccountStore from "../../../store/AccountStore";
 import {observer} from "mobx-react-lite";
 import CardStore from "../../../store/CardStore";
-import PersonStore from "../../../store/PersonStore";
-import CreditCard from "./CreditCard";
-import CardItem from "./CardItem";
-import BillItem from "./BillItem";
+import PersonStore from "../../../store/UserStore";
 import ItemList from "./ItemList";
 
 export const CardList = observer( () => {
@@ -27,12 +24,12 @@ export const CardList = observer( () => {
         return null
     return (
         <div className="new_cardList">
-            {(isLoading || isLoad) ?
-                <>
-                <div className="load-line"></div>
-                <div className="load-line"></div>
-                <div className="load-line"></div>
-                </>
+            {(isLoad || isLoading) ?
+                <div className="title_list" >
+                <div className="load-line chet"></div>
+                <div className="load-line nechet"></div>
+                <div className="load-line third"></div>
+                </div>
                 :
                 <>
                     <ItemList cards={debit} title={"Счета"}/>

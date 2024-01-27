@@ -3,14 +3,14 @@ import {observer} from "mobx-react-lite";
 import BillSelect from "../BillSelect";
 import CurrencyInput from "react-currency-input-field";
 import '../../styles/Common.css'
-import ValutaStore from "../../../store/ValutaStore";
+import ValutaStore from "../../../store/CurrencyStore";
 import {useParams} from "react-router-dom";
 const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, bill, setBill, sum, setSum, transact }) => {
     const{val, course, isLoad,getCourse, setVal} = ValutaStore
     const p = useParams()
-    useEffect(() => {
-        getCourse()
-    }, []);
+    // useEffect(() => {
+    //     getCourse()
+    // }, []);
     useEffect(() => {
         if(!isLoad)
             setVal(course[p.charcode])
@@ -21,7 +21,7 @@ const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, b
     }, [sum]);
     return (
         <>
-            {valBills.length ?<>
+            {(valBills.length && valBills.filter((v)=>v.balance !=0).length)?<>
                     <div className='vall_bill'>
                         <p>Выберите счет для продажи</p>
                         {valBills.length &&

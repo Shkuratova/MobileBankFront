@@ -9,9 +9,14 @@ import EmailConfirm from "../../reUsePages/EmailConfirm";
 import BuyValuta from "./BuyValuta";
 import SellValuta from "./SellValuta";
 import SelectAction from "../../UI/SelectAction";
+import {valutaCharCode} from "../../../utils/consts";
+import CurrencyStore from "../../../store/CurrencyStore";
 
 const ExchangeValute = () => {
+
+    const {getCourse, course} = CurrencyStore
     const{bills} = AccountStore
+
     const [bill, setBill] = useState('')
     const [valBill, setValBill] = useState('')
     const valuta = useParams()
@@ -23,11 +28,20 @@ const ExchangeValute = () => {
     const [code,setCode] = useState('')
     const [state, setState] = useState('Valuta')
     const [tfa ,setTfa] = useState()
+    const[valute, setValute] = useState()
     const [error, setError] = useState(null)
     useEffect(() => {
-            setValBills(bills.filter((f)=>f.currency === valuta.charcode))
-            setSellBills(bills.filter((f)=>f.currency !== valuta.charcode && f.currency ==='RUB'))
-    }, [bills]);
+        if(!course)
+        getCourse()
+    }, []);
+    useEffect(()=>{
+        setValute(valuta.charcode)
+    }, [])
+    useEffect(() => {
+            setValBills(bills.filter((f)=>f.currency === valute))
+            setSellBills(bills.filter((f)=>f.currency !== valute && f.currency ==='RUB'))
+    }, [bills, valute]);
+    console.log(bills)
     useEffect(() => {
         if(valBills.length)
              setValBill(valBills[0].account_number)
@@ -66,9 +80,19 @@ const ExchangeValute = () => {
     return (
         <>
             {state === 'Valuta' &&
-            <div className='buy_val'>
+            <div className='buy_val info_box'>
                 <h1>Обмен валюты</h1>
+
+
              <SelectAction flag={flag} setFlag={setFlag} case1={'Покупка'} case2={'Продажа'}/>
+                <p>Валюта</p>
+                <select className='mySelect'
+                        value={valute}
+                        onChange={e=>setValute(e.target.value)}>
+                    {valutaCharCode.map((t)=>
+                        <option key={t.CharCode} value={t.CharCode}> {t.Name}</option>
+                    )}
+                </select>
                 {flag?
                 <BuyValuta valBills={valBills} sellBills={sellBills} bill={bill}
                            valBill={valBill} setBill={setBill} setTotal={setTotal} total={total}

@@ -4,7 +4,6 @@ import Window from "../../../UI/Window";
 import FullInfo from "./FullInfo";
 import getSymbolFromCurrency from "currency-symbol-map";
 const HistoryItem = ({transaction}) => {
-    console.log(transaction)
     const[visible, setVisible] = useState(false)
     return (
         <>

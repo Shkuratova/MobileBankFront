@@ -47,20 +47,9 @@ class AccountStore {
             this.isLoad = false
         }
     }
-
-    changeBill =(e)=> {
-        this.bill = e;
+    getPayAccount =  ()=>{
+        return this.bills.filter((b)=>b.balance > 0)
     }
 
-    changeBillExcept = (e) => {
-        this.bill = e;
-        this.billExcept = this.bills.filter((c) => c.account_number !== e);
-        if (e === this.billTo) {
-            this.billTo = this.billExcept[0].account_number;
-        }
-    }
-    changeBillTo=(e)=>{
-        this.billTo = e;
-    }
 }
 export default new AccountStore();

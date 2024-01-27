@@ -1,10 +1,8 @@
-import React, {useContext, useState} from 'react';
-import axios from "axios";
-import {AuthContext} from "../../../context";
+import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
 import AuthService from "../../../service/AuthService";
-import PersonStore from "../../../store/PersonStore";
+import PersonStore from "../../../store/UserStore";
 import Input from "../../UI/defaultUI/Inputs/Input";
 
 const RegForm = () => {

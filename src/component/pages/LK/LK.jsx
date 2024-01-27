@@ -3,7 +3,7 @@ import '../../styles/Common.css'
 import './LK.css'
 import Action from "../../UI/Action";
 import {observer} from "mobx-react-lite";
-import PersonStore from "../../../store/PersonStore";
+import PersonStore from "../../../store/UserStore";
 import Description from "../../UI/Description";
 import Window from "../../UI/Window";
 import ChangeLogin from "./PersonAbility/ChangeLogin";

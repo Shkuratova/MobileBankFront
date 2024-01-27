@@ -22,7 +22,7 @@ const CardActive = ({card}) => {
                 <RenameCard cardNum={card.card_name}  cardId={card.token_card} visible={visibleRe} setVisible={setVisibleRe} setCardName={setCardName}/>
             </Window>
             <div className="descr">
-                <h1  className="descr_txt">{card.payment_system} WorldSkills Card</h1>
+                <h1  className="descr_txt">{card.payment_system} WorldSkills Карта</h1>
                 <p className="descr_txt spec">{card.card_name}</p>
                 <p className="descr_txt spec"> {card.type_account ==='debit'? ' Дебетовая карта':'Кредитная карта'}</p>
                 <h2 className="bl">{card.balance} {getSymbolFromCurrency(card.currency)}</h2>

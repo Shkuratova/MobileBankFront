@@ -1,7 +1,7 @@
 import React from 'react';
 import './valute.css'
 import {useNavigate} from "react-router-dom";
-import ValutaStore from "../../store/ValutaStore";
+import ValutaStore from "../../store/CurrencyStore";
 
 const ValuteItem = ({CharCode, Name, Nominal, SalePrice, PurchasePrice}) => {
     const{setVal} = ValutaStore

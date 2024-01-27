@@ -1,12 +1,13 @@
 import React from 'react';
 import '../pages/CardAbility/Payment/PaymentElem.css'
+import '../UI/defaultUI/defaultUI.css'
 import getSymbolFromCurrency from "currency-symbol-map";
 
 const BillSelect = ({ bills, bill, onChange}) => {
     let dict  = new Map();
     dict.set('debit', 'Текущий счет').set('credit','Кредитный счет')
     return (
-        <select className='pay_select'
+        <select className='mySelect'
                 value={bill}
                 onChange={event => onChange(event.target.value)}>
             {bills.map((c)=>

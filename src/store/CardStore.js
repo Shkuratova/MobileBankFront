@@ -1,15 +1,17 @@
-import {makeAutoObservable, runInAction} from "mobx";
+import {makeAutoObservable, observable, runInAction} from "mobx";
 import CardService from "../service/CardService";
 
 class CardStore {
     cards = [];
     card;
-    cardExcept = [];
-    cardTo;
     isLoading = false;
     cardError = null;
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this,{
+            cards:observable
+        }
+
+        )
     }
     getCards = async () =>{
         try {
@@ -25,7 +27,9 @@ class CardStore {
             this.isLoading = false
         }
     }
-
+    getPayCard = ()=>{
+        return this.cards.filter((c)=>c.balance >0)
+    }
 
 }
 export default new CardStore();
