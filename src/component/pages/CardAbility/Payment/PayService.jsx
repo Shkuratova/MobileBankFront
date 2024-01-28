@@ -14,7 +14,7 @@ import CurInput from "../../../UI/defaultUI/Inputs/CurInput";
 import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import {EMPTY_FIELD, SUM_ERROR} from "../../../../consts/StringConsts";
 import {billFormat} from "../../../../utils/Format";
-import Execute from "./Modal/Execute";
+import Execute from "./TransferSteps/Execute";
 import getSymbolFromCurrency from "currency-symbol-map";
 
 const PayService = observer(() => {

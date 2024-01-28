@@ -10,7 +10,7 @@ import VerifyInput from "../../UI/VerifyInput";
 import EmailConfirm from "../../reUsePages/EmailConfirm";
 
 const Auth = () => {
-    const{tfa, SiqnIn,   ConfirmLogin} = UserStore
+    const{tfa, SiqnIn, AuthError,  ConfirmLogin} = UserStore
     const router = useNavigate()
     const[state, setState] = useState('SignIn')
 
@@ -18,7 +18,6 @@ const Auth = () => {
     const [log, setLog] = useState('')
     const[code, setCode] = useState('')
     // const[tfa, setTfa] = useState('')
-    const[AuthError, setAuthError] = useState('')
 
     const[error, setError] = useState(null)
     useEffect(()=>{
@@ -60,7 +59,6 @@ const Auth = () => {
         // }
 
     }
-
     return (
         <>
             {state ==='SignIn' &&

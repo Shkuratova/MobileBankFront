@@ -10,7 +10,8 @@ const ValutaCourse = () => {
     const {course, isLoad, getCourse} = ValutaStore
 
     useEffect(() => {
-        getCourse()
+        if(course.length === 0)
+            getCourse()
     }, []);
 
     return (

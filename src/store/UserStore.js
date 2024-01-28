@@ -46,7 +46,7 @@ class UserStore{
             this.setTfa(response.data.tfa_token)
             this.setAuthError(null)
         }catch (e) {
-            this.setAuthError(e.response)
+            this.setAuthError(e.response.data)
             console.log(this.AuthError)
         }
     }
@@ -57,7 +57,7 @@ class UserStore{
             localStorage.setItem('token', response.data.access_token)
             localStorage.setItem('ref_token', response.data.refresh_token)
             this.setAuth(true)
-            console.log(response.data)
+            console.log(response.data[0])
         }catch (e) {
             this.setAuthError(e)
         }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../Home.css'
 import '../../../styles/Common.css'
 import './Openbill.css'
@@ -13,10 +13,17 @@ const CreateBill = () => {
 
     const [valuta, setValuta] = useState("RUB")
     const[state, setState] = useState('Open')
+
+    useEffect(() => {
+        if(localStorage.getItem('currency')){
+            setValuta(localStorage.getItem('currency'))
+        }
+    }, []);
     const OpenBill = async ()=>{
         try {
             await newBill(valuta)
             setState('Info')
+            localStorage.removeItem('currency')
         }
         catch (e) {
             console.log(e)

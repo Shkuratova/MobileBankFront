@@ -34,7 +34,7 @@ const YandexMap = () => {
                                 <Loading/>
                                 : <>
                                     {coord.map((c) => (
-                                        <PointItem key={c.description.about}
+                                        <PointItem key={c.latitude}
                                                    coord={point}
                                                    setPoint={setPoint}
                                                    point={c}/>
@@ -42,7 +42,6 @@ const YandexMap = () => {
                                     }
                                 </>
                             }
-
                         </div>
                     }
                     <Map

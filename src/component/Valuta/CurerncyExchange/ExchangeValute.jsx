@@ -32,6 +32,7 @@ const ExchangeValute = () => {
     const [error, setError] = useState(null)
     const [currency, setCurrency] = useState(null)
     useEffect(() => {
+        if(course.length === 0)
             getCourse()
     }, []);
     useEffect(() => {

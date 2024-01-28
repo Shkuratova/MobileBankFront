@@ -26,7 +26,6 @@ import Auth from "../pages/Auth/Auth";
 
 
 export const privateRoutes=[
- //   {path:HOME, component:<Home/>},
     {path:"/*", component:<MainPage/>},
     {path:'/user/:login', component: <LK/>},
     {path:CURRENCY, component: <ValutaCourse/>},

@@ -5,10 +5,16 @@ import Action from "../../UI/Action";
 import {observer} from "mobx-react-lite";
 import Description from "../../UI/Description";
 import UserStore from "../../../store/UserStore";
+import Loading from "../../reUsePages/Loading";
 export const Lk =observer (() => {
-   const {person } = UserStore
+   const {person, Load } = UserStore
     return (
         <>
+            {Load ?
+                <div className="personal info_box">
+                        <Loading/>
+                </div>
+                    :
             <div className="personal info_box">
                 <br/>
                 <h1>Личный кабинет</h1>
@@ -52,6 +58,7 @@ export const Lk =observer (() => {
                     {/*    name={'О приложении'}/>*/}
                 </div>
             </div>
+            }
         </>
     );
 });

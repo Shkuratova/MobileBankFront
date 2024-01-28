@@ -9,11 +9,13 @@ import TransferService from "../../../../service/TransferService"
 import {billFormat} from "../../../../utils/Format";
 import VerifyInput from "../../../UI/VerifyInput";
 import EmailConfirm from "../../../reUsePages/EmailConfirm";
-import Execute from "./Modal/Execute";
+import Execute from "./TransferSteps/Execute";
 import getSymbolFromCurrency from "currency-symbol-map";
 import {TO_USER, TRANSFER_EXECUTE, USER_DOESNT_EXIST} from "../../../../consts/StringConsts";
 import {getCur} from "./utils";
 import Loading from "../../../reUsePages/Loading";
+import SelectAction from "../../../UI/SelectAction";
+import CheckTransfer from "./TransferSteps/CheckTransfer";
 
 export const TransferUser = observer(() => {
     const {bills} = AccountStore
@@ -82,7 +84,7 @@ export const TransferUser = observer(() => {
             const response = await TransferService.Transfer(sum.replace(',', '.'), bill,
                 billUser.replace(/\s/g, ''), 'Перевод клиенту банка')
             setTfa(response.data.tfa_token)
-            setState('Confirm')
+            setState('Check')
             setError(null)
             console.log(response.data)
         } catch (e) {
@@ -151,6 +153,13 @@ export const TransferUser = observer(() => {
                     </form>
                 </div>
             }
+            {state ==='Check'&&
+                <CheckTransfer
+                    from={bill}
+                    to={billUser}
+                    sum={sum  + ' '+ getSymbolFromCurrency(getCur(payBills, bill)[0].currency)}
+                    setState={setState}/>}
+
             {state === 'Confirm' &&
                 <EmailConfirm code={code} setCode={setCode} confirm={Confirmation}/>
             }

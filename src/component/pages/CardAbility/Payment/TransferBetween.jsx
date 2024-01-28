@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import './MoneyToSomewhere.css'
 import './../../../styles/Common.css'
-import CurrencyInput from "react-currency-input-field";
 import {observer} from "mobx-react-lite";
 import AccountStore from "../../../../store/AccountStore";
 import TransferService from "../../../../service/TransferService";
 import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import {BETWEEN, EMPTY_FIELD, SUM_ERROR, TRANSFER_EXECUTE} from "../../../../consts/StringConsts";
-import Execute from "./Modal/Execute";
+import Execute from "./TransferSteps/Execute";
 import getSymbolFromCurrency from "currency-symbol-map";
 import ChooseBill from "./TransferSteps/ChooseBill";
 import Loading from "../../../reUsePages/Loading";
+import CurInput from "../../../UI/defaultUI/Inputs/CurInput";
+import CheckTransfer from "./TransferSteps/CheckTransfer";
 
 export const TransferBetween = observer(() => {
     const{bills} = AccountStore
@@ -108,14 +109,11 @@ export const TransferBetween = observer(() => {
                             setBillExcept={setRecieveBills}
                         />
                         <div className="submition">
-                            <CurrencyInput
-                                className={error?"myInput error--input": "myInput"}
-                                placeholder='Сумма..'
-                                decimalsLimit={2}
-                                defaultValue={sum}
-                                allowNegativeValue={false}
-                                onValueChange={(e) => setSum(e)}
-                            />
+                            <CurInput
+                                sum={sum}
+                                setSum={setSum}
+                                error={error}
+                                text={"Сумма"}/>
                             {error && <span className='error'>{error}</span>}
                             <button className='myBtn'>Продолжить</button>
                         </div>

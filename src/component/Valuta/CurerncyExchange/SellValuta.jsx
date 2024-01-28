@@ -11,7 +11,8 @@ const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, b
     const p = useParams()
     const [currency, setCurrency] = useState()
     useEffect(() => {
-        getCourse()
+        if(course.length === 0)
+            getCourse()
     }, []);
     useEffect(() => {
         if(!isLoad){

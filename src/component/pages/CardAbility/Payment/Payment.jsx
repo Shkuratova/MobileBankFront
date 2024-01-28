@@ -28,7 +28,7 @@ const Payment = () => {
                     <h1 style={{marginLeft:"2%"}}>Платежи</h1>
                     <Action
                         path={'/payment/service'}
-                        img={'/images/plus.png'}
+                        img={'/images/commune.png'}
                         width={'60'}
                         height={'60'}
                         name={'Оплатить услугу'}/>

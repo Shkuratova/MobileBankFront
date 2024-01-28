@@ -1,48 +1,3 @@
-.load-line{
-    color: transparent;
-    background: rgba(0,0,0, 0.15);
-    display: inline-block;
-    margin-right: 10px;
-    background-size: 50%;
-    border-radius: 50%;
-    height: 15px;
-    width:15px;
-
-}
-.load-line.chet{
-    animation:chet 1.5s infinite;
-}
-.load-line.nechet{
-    animation: nechet 1.5s infinite;
-}
-.load-line.third{
-    animation: nechet 1.5s infinite;
-}
-@keyframes chet {
-     0%    { opacity: 0.8; }
-     20%   { opacity: 0.6; }
-     40%   { opacity: 0.4; }
-     60%   { opacity: 0.6; }
-     80%  { opacity: 0.8; }
-     100%  { opacity: 1; }
- }
-@keyframes nechet {
-    0%    { opacity: 0.6; }
-    20%   { opacity: 0.4; }
-    40%   { opacity: 0.6; }
-    60%   { opacity: 0.8; }
-    80%  { opacity: 1; }
-    100%  { opacity: 0.8; }
-}
-@keyframes third {
-    0%    { opacity: 0.4; }
-    20%   { opacity: 0.6; }
-    40%   { opacity: 0.8; }
-    60%   { opacity: 1; }
-    80%  { opacity: 0.8; }
-    100%  { opacity: 0.6; }
-}
-
 
 .myBtn{
     width: 100%;
@@ -109,7 +64,6 @@
     background: none;
     margin-top: 3%;
     border: none;
-    margin-left: 30px;
     font-size: 16px;
     color:grey;
 }

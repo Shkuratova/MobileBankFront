@@ -9,6 +9,7 @@ import CardItem from "../../Home/CardItem";
 import CardStore from "../../../../store/CardStore";
 import {observer} from "mobx-react-lite";
 import TransferService from "../../../../service/TransferService";
+import Loading from "../../../reUsePages/Loading";
 export const CardHistory =observer( () => {
     const {cards} = CardStore
     const p = useParams()
@@ -29,22 +30,13 @@ export const CardHistory =observer( () => {
         }
         getHist()
 
-            // .then((response)=>{
-            //     console.log(response.data)
-            //     setHistList(Object.values(response.data))
-            //     setIsLoading(false)
-            //     console.log(histList[0].From)
-            // })
-            // .catch(function (error){
-            //     if(error.response){
-            //         console.log(error.response.data)
-            //     }
-            // });
-
     }, [p]);
     return (
         <>
-            {isLoading?<div></div>:
+            {isLoading?
+                <div className='history__list info_box'>
+                <Loading/>
+                </div>:
             <div className='history__list info_box'>
                 {p.token_card?
                 <h1>История операций

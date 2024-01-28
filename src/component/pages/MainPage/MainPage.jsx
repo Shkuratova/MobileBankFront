@@ -2,30 +2,37 @@ import React from 'react';
 import NewAccount from "../Home/OpenBill/NewAccount";
 import './main.css'
 import {NavLink, useNavigate} from "react-router-dom";
-import CurrencyBlock from "./CurrencyBlock";
+import CurrencyBlock from "./CurrencyBox/CurrencyBlock";
+import {useCookies} from "react-cookie";
+import QuickPay from "./QuickPay/QuickPay";
+
 const MainPage = () => {
     const nav = useNavigate()
+    const [cookies, setCookie] = useCookies(['hist'])
+    setCookie('hist', [{id:1, name:'ff'}, {id:2, name: "rr"}])
+    console.log(cookies.hist[1])
     return (
         <>
         <div className="action--block">
             <NewAccount/>
-            < div style={{display:"flex", flexDirection:"row",padding:"2%",marginTop:"4%", justifyContent:"space-between"}}>
+            <div style={{display:"flex", flexDirection:"row",padding:"2%",marginTop:"4%", justifyContent:"space-between"}}>
                 <div onClick={()=>nav('/payment')}
                     className="main--action info_box">
-                    <img width={"50px"} height={"50px"} src="/images/card.png"/>
+                    <img  width={"50px"} height={"50px"} src="/images/transact.png"/>
                     <div className="mainTitle">
-                        <h3>Платежи</h3>
-                        <p>Оплатить</p>
+                        <h3>Переводы</h3>
+                        <p style={{marginTop:"2%"}}>Перевести</p>
                     </div>
                 </div>
                 <div onClick={()=>nav('/payment/service')} className="main--action info_box">
-                    <img width={"50px"} height={"50px"} src="/images/card.png"/>
+                    <img width={"50px"} height={"50px"} src="/images/commune.png"/>
                     <div className="mainTitle">
                         <h3>Платежи</h3>
-                        <p>Оплатить</p>
+                        <p style={{marginTop:"2%"}}>Оплатить</p>
                     </div>
                 </div>
             </div>
+            <QuickPay/>
         </div>
             <CurrencyBlock/>
 

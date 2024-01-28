@@ -9,6 +9,8 @@
     }
     parts.length >1? setBill(parts.join(' ')):setBill(p)
 }
+
+
  export const cardFormat=(e, setBill)=>{
      const p = e.replace(/[^\d]/g, '')
      const v = p.replace(/[^\d]/g, '')
@@ -22,7 +24,7 @@
 
  export const setBalance=(bill)=>{
      if(bill.type_account ==='credit'){
-         return Number(Number(bill.description.max_debt_amount) + Number(bill.balance))
+         return Number(Number(bill.description.max_debt_amount) + Number(bill.balance)).toFixed(2)
      }
      else return bill.balance
  }

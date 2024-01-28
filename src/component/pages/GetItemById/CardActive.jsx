@@ -35,6 +35,7 @@ const CardActive = ({card}) => {
             </div>
             <div className="descr">
                 <p className="descr_txt spec">Действия</p>
+                <div className="row-direct">
                 <Action
                     path = {CARD+HISTORY+'/'+card.account_number+'/'+card.token_card}
                     img={'/images/history.png'}
@@ -47,6 +48,7 @@ const CardActive = ({card}) => {
                     height={'50'}
                     width={'50'}
                     name = {'Оплатить'}/>
+                </div>
             {/*<div className="abil">*/}
             {/*    <div onClick={()=>setVisibleRe(true)}*/}
             {/*         className="action">*/}
@@ -57,7 +59,7 @@ const CardActive = ({card}) => {
             {/*        <p className='act_txt'>Переименовать</p>*/}
             {/*    </div>*/}
             {/*</div>*/}
-                <div onClick={()=>setVisibleBlock(true)}
+                <div style={{width:"50%"}} onClick={()=>setVisibleBlock(true)}
                      className="action">
                     <img className="act_img"
                          width='50'

@@ -15,6 +15,7 @@ const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill,
     const s = useNavigate()
     const [currency, setCurrency] = useState(null)
     useEffect(() => {
+        if(course.length === 0)
             getCourse()
     }, []);
     useEffect(() => {
@@ -31,7 +32,10 @@ const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill,
         setTotal(Number((currency.PurchasePrice/currency.Nominal)*sum.replace(',','.')).toFixed(2))
     }, [sum, currency]);
 
-
+    const onClickHandler = ()=>{
+        localStorage.setItem('currency', val)
+        s('/new_bill')
+    }
     return (
        <>
             <div className='vall_bill'>
@@ -59,7 +63,7 @@ const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill,
                     <div className='vall_bill'>
                         <p>У вас нет подходящего счета для покупки</p>
                         <button className='open_bill'
-                                onClick={() => s('/new_bill')}>Открыть счет
+                                onClick={onClickHandler}>Открыть счет
                         </button>
                     </div>}
 
