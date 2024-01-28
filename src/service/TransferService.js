@@ -1,5 +1,6 @@
 import $api from "../http";
 import {API} from "../http/path";
+import axios from "axios";
 
 export default class TransferService {
     static async Transfer(amount, from, to, description, cardFrom, cardTo){
@@ -19,7 +20,7 @@ export default class TransferService {
         })
     }
     static async isClient(account){
-        return $api.get(API + 'has_account/', {params:{
+        return axios.get(API + 'has_account/', {params:{
                 account_number:account
             }
         })

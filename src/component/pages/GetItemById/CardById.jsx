@@ -6,6 +6,7 @@ import '../../UI/Action.css'
 import CardService from "../../../service/CardService";
 import CardActive from "./CardActive";
 import CardBlocked from "./CardBlocked";
+import Loading from "../../reUsePages/Loading";
 
 const CardById = () => {
     const inf= useParams()
@@ -28,7 +29,10 @@ const CardById = () => {
     }, [inf.id]);
     return (
            <>
-               {isLoading? <div></div>
+               {isLoading?
+                   <div className=" row-direct infor info_box">
+                   <Loading/>
+                   </div>
                    :
                    <>
                    {card.is_activated ?

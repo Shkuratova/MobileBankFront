@@ -6,6 +6,8 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import CardService from "../../../service/CardService";
 import getSymbolFromCurrency from "currency-symbol-map";
+import {setBalance} from "../../../utils/Format";
+import Loading from "../../reUsePages/Loading";
 const BillById = () => {
     const inf = useParams()
     const [bill, setBill] = useState(
@@ -26,12 +28,15 @@ const BillById = () => {
     }, [inf.id]);
     return (
         <>
-            {isLoading? <div></div>:
+            {isLoading?
+                <div className=" row-direct infor info_box">
+                    <Loading/>
+                </div>:
             <div className="infor info_box">
                 <div className="descr">
                     <h1  className="descr_txt">WorldSkills Счет</h1>
                     <p className="descr_txt spec">{bill.account_number}</p>
-                    <h2 className="bl">{bill.balance} {getSymbolFromCurrency(bill.currency)}</h2>
+                    <h2 className="bl">{setBalance(bill)} {getSymbolFromCurrency(bill.currency)}</h2>
                 </div>
                 <div className="descr">
                     <p className="descr_txt spec">Действия</p>

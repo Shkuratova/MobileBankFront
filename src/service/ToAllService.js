@@ -8,4 +8,5 @@ export default class ToAllService{
     static async gerCoords(){
         return await axios.get(API+'get_atm/')
     }
+
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import NewAccount from "../Home/OpenBill/NewAccount";
 import './main.css'
 import {NavLink, useNavigate} from "react-router-dom";
+import CurrencyBlock from "./CurrencyBlock";
 const MainPage = () => {
     const nav = useNavigate()
     return (
@@ -24,15 +25,10 @@ const MainPage = () => {
                         <p>Оплатить</p>
                     </div>
                 </div>
-
             </div>
-
         </div>
-            <div className=" valute--main info_box">
-                <h1>
-                    fff
-                </h1>
-            </div>
+            <CurrencyBlock/>
+
         </>
     );
 };

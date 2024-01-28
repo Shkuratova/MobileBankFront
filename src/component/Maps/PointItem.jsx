@@ -38,16 +38,16 @@ const PointItem = ({point, setPoint, coord}) => {
              className="point--item"
              style={flag?{background:"whitesmoke"}:{}}
         >
-            <div className="row-direct">
+            <div className="row-direct" style={{width:"100%"}}>
                 <Point Fill={flag}/>
                 <h2 className="address">{point.description["address"]}</h2>
             </div>
-            <div className="row-direct description">
+            <div className="description">
                 <div style={{marginLeft:"30px"}}>
                     <div className="row-direct atm-list">
-                        <h4>Банкомат:</h4>
+                        <h4>{point.description.about}:</h4>
                         <p className="atm_line"
-                            style={isWork==='Открыто'?{color:"aquamarine"}:{color:"blueviolet"}}>{isWork}</p>
+                            style={isWork==='Открыто'?{color:"mediumaquamarine"}:{color:"blueviolet"}}>{isWork}</p>
                     </div>
                     <div className="row-direct atm-list">
                         <h4>{WEEK_DAY[date][1]}:</h4>
@@ -55,10 +55,10 @@ const PointItem = ({point, setPoint, coord}) => {
                             {point.description.schedule[date]}</p>
                     </div>
                 </div>
-                <button
-                    onClick={showSchedule}
-                    className="btn__link">График работы</button>
             </div>
+            <button
+                onClick={showSchedule}
+                className="btn__link" >График работы</button>
         <div className="schedule" style={!visible?{display:"none"}:{}}>
             <p className="atm-list"><b>{WEEK_DAY.Mon[0]}</b>: {point.description.schedule.Mon}</p>
             <p className="atm-list"><b>{WEEK_DAY.Tue[0]}</b>: {point.description.schedule.Tue}</p>

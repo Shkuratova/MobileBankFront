@@ -19,3 +19,10 @@
      }
      parts.length >1? setBill(parts.join(' ')):setBill(p)
  }
+
+ export const setBalance=(bill)=>{
+     if(bill.type_account ==='credit'){
+         return Number(Number(bill.description.max_debt_amount) + Number(bill.balance))
+     }
+     else return bill.balance
+ }

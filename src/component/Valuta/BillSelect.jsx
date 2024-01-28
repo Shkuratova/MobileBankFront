@@ -2,10 +2,16 @@ import React from 'react';
 import '../pages/CardAbility/Payment/PaymentElem.css'
 import '../UI/defaultUI/defaultUI.css'
 import getSymbolFromCurrency from "currency-symbol-map";
+import {ACCOUNT_TYPE} from "../../utils/consts";
+import {setBalance} from "../../utils/Format";
 
 const BillSelect = ({ bills, bill, onChange}) => {
-    let dict  = new Map();
-    dict.set('debit', 'Текущий счет').set('credit','Кредитный счет')
+   // const setBalance = (b)=>{
+   //     if(b.type_account ==='credit'){
+   //         return b.description.max_debt_amount - b.balance
+   //     }
+   //     else return b.balance
+   // }
     return (
         <select className='mySelect'
                 value={bill}
@@ -14,7 +20,8 @@ const BillSelect = ({ bills, bill, onChange}) => {
                 <option key={c.account_number}
                         value={c.account_number}
                 >
-                    {'****'+c.account_number.slice(-4) + '   [' + dict.get(c.type_account) +']   ' + c.balance+getSymbolFromCurrency(c.currency)}
+                    {'****'+c.account_number.slice(-4) + '   [' + ACCOUNT_TYPE[c.type_account] +']   ' +
+                        setBalance(c)+' '+getSymbolFromCurrency(c.currency)}
                 </option>
             )}
         </select>

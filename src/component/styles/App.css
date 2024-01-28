@@ -5,11 +5,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+
 .App {
-  min-width: 900px;
-  width:100%;
+  width: 100%;
   min-height: 100vh;
-  background: rgb(131,228,192);
   background: linear-gradient(0deg, rgba(131,228,192,1) 50%, rgba(158,206,251,1) 80%);
 }
 

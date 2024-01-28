@@ -14,8 +14,8 @@
 .act_img{
     float: left;
     padding: 7px;
-    border-radius: 50%;
-    background: #F6F4F4;
+    border-radius: 20%;
+    /*background: #F6F4F4;*/
 }
 .act_txt{
     margin-bottom: 3%;

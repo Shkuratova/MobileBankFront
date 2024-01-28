@@ -40,7 +40,7 @@
       "node_modules/(?!axios)"
     ]
   },
-  "proxy": "http://127.0.0.1:8000/",
+  "proxy": "http://89.111.170.194:8000/",
   "eslintConfig": {
     "extends": [
       "react-app",

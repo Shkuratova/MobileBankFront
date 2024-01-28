@@ -6,6 +6,7 @@ class AccountStore {
     bill
     debit =[];
     credit = [];
+    ans = {}
 
     billExcept =[]
     billTo = ''
@@ -21,6 +22,7 @@ class AccountStore {
             credit:observable,
             changeBill:action,
             changeBillTo:action,
+            ans:observable,
             getAccounts:action,
             changeBillExcept:action
         })
@@ -32,15 +34,12 @@ class AccountStore {
             const response = await CardService.accountsList();
             runInAction(()=>{
                 this.bills =JSON.parse(JSON.stringify(response.data));
-                console.log(JSON.parse(JSON.stringify(response.data)))
-                console.log(this.bills)
                 this.debit = response.data.filter((c)=>c.type_account==='debit')
                 this.credit = response.data.filter((c)=>c.type_account==='credit')
                 this.bill = this.bills[0].account_number
                 this.billExcept = this.bills.filter((c)=>c.account_number !==this.bill);
                 this.billTo = this.billExcept[0].account_number
                 this.isLoad = false
-                console.log(this.bills[0])
             })
         } catch (e) {
             this.error = e.message
@@ -48,8 +47,21 @@ class AccountStore {
         }
     }
     getPayAccount =  ()=>{
-        return this.bills.filter((b)=>b.balance > 0)
+       return  this.bills.filter((c) => c.balance != 0 ||
+            c.description.max_debt_amount > Math.abs(c.balance))
     }
+
+    newBill = async (currency)=>{
+        try {
+            const response = await CardService.openBill(currency)
+            this.ans = response.data
+            this.bills.push(response.data)
+            this.debit.push(response.data)
+            this.error = null
+        }catch (e) {
+            this.error = e.response.data
+        }
+}
 
 }
 export default new AccountStore();

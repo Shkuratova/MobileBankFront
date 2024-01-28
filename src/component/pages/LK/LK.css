@@ -29,11 +29,11 @@
     font-weight: bold;
 }
 .personal{
-    padding: 2% 3% 3% 3%;
+    padding: 2% 3%;
     width: 45%;
     height: 55%;
     display:inline-block;
-    margin-left: 15%;
+    margin-left: 12%;
     align-items: center;
 }
 .lk_act{

@@ -17,7 +17,7 @@ const CardBlocked = ({card}) => {
                 <p className="descr_txt spec">{card.card_name}</p>
                 <h1 style={{marginTop:"5%"}} className='descr_txt'>Карта заблокирована</h1>
             </div>
-            <div className="abil">
+            <div className="descr">
                 <p className="descr_txt spec">Действия</p>
 
                 <div onClick={()=>setVisibleBlock(true)}

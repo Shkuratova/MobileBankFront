@@ -6,12 +6,18 @@ import RenameCard from "../CardAbility/RenameCard";
 import Action from "../../UI/Action";
 import {CARD, HISTORY} from "../../../utils/consts";
 import getSymbolFromCurrency from "currency-symbol-map";
+import {setBalance} from "../../../utils/Format";
+import AccountStore from "../../../store/AccountStore";
 
 const CardActive = ({card}) => {
-
+    const {bills} = AccountStore
     const[visibleBlock, setVisibleBlock] = useState(false)
     const[visibleRe, setVisibleRe] = useState(false)
     const[cardName, setCardName]=useState('')
+    const getBalance = ()=>{
+        let a =  bills.filter((c)=>c.account_number === card.account_number)
+        return setBalance(a[0])
+    }
     return (
         <div className="infor info_box">
             <Window setVisible={setVisibleBlock} visible={visibleBlock}>
@@ -25,7 +31,7 @@ const CardActive = ({card}) => {
                 <h1  className="descr_txt">{card.payment_system} WorldSkills Карта</h1>
                 <p className="descr_txt spec">{card.card_name}</p>
                 <p className="descr_txt spec"> {card.type_account ==='debit'? ' Дебетовая карта':'Кредитная карта'}</p>
-                <h2 className="bl">{card.balance} {getSymbolFromCurrency(card.currency)}</h2>
+                <h2 className="bl">{getBalance()} {getSymbolFromCurrency(card.currency)}</h2>
             </div>
             <div className="descr">
                 <p className="descr_txt spec">Действия</p>

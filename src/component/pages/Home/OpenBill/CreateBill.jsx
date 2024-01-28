@@ -5,26 +5,27 @@ import './Openbill.css'
 import {valutaCharCode} from "../../../../utils/consts";
 import CardService from "../../../../service/CardService";
 import getSymbolFromCurrency from "currency-symbol-map";
+import AccountStore from "../../../../store/AccountStore";
+import {observer} from "mobx-react-lite";
 
 const CreateBill = () => {
+    const {newBill, ans} = AccountStore
+
     const [valuta, setValuta] = useState("RUB")
-    const [ans, setAns] = useState()
     const[state, setState] = useState('Open')
     const OpenBill = async ()=>{
         try {
-            const response =await CardService.openBill(valuta);
-            console.log(response)
-            setAns(response.data)
+            await newBill(valuta)
             setState('Info')
         }
         catch (e) {
-            console.log(e.response.data)
+            console.log(e)
         }
     }
     return (
         <>
             {state === 'Open'&&
-                <div  className='add_bill info_box'>
+                <div  className='contract info_box'>
                      <h2>Заполнение заявки</h2>
                     <br/>
                         <p>Валюта</p>
@@ -43,9 +44,11 @@ const CreateBill = () => {
                  </div>
             }
             {state === 'Info' &&
-                <div style={{width:"50%"}} className='add_bill'>
+                <div style={{width:"50%"}} className='info_box add_bill'>
                     <h1>Счет успешно открыт</h1>
+                    <br/>
                     <p>{ans.account_number}</p>
+                    <br/>
                     <p>{ans.balance} {ans.currency}</p>
                 </div>
             }
@@ -54,4 +57,4 @@ const CreateBill = () => {
     );
 };
 
-export default CreateBill;
+export default observer(CreateBill);

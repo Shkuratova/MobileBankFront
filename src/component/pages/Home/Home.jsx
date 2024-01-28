@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <div className="App">
                 <Navbar/>
-            <div className="page_char">
+            <div className="page_char" >
                 <CardList/>
                 <Outlet/>
             </div>

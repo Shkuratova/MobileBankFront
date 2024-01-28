@@ -6,26 +6,33 @@ import BillSelect from "../../../Valuta/BillSelect";
 import {observer} from "mobx-react-lite";
 import {PaySystem} from "../../../../utils/consts";
 import CardService from "../../../../service/CardService";
+import CardStore from "../../../../store/CardStore";
 
 const CreateCard = () => {
     const {bills} = AccountStore
+    const {ans, newCard} = CardStore
     const [bill, setBill] = useState(bills[0].account_number)
     const [paySys,setPaySys] = useState(PaySystem[0])
     const [state, setState] = useState('Create')
-    const[ans, setAns] = useState('')
     useEffect(() => {
         setBill(bills[0].account_number)
     }, [bills]);
     console.log(paySys)
     const createCard = async ()=>{
         try {
-            const response = await CardService.openCard(bill, paySys)
-            console.log(response.data)
-            setAns(response.data)
+            await newCard(bill, paySys)
             setState('Info')
-        }catch (e) {
-            console.log(e.response.data)
+        }catch (e){
+            console.log(e)
         }
+        // try {
+        //     const response = await CardService.openCard(bill, paySys)
+        //     console.log(response.data)
+        //     setAns(response.data)
+        //     setState('Info')
+        // }catch (e) {
+        //     console.log(e.response.data)
+        // }
     }
 
     return (
@@ -53,11 +60,13 @@ const CreateCard = () => {
             </div>
             }
             {state ==='Info' &&
-                <div className='add_bill info_box'>
-                    <h1>Карта создана</h1>
+                <div className='contract info_box'>
+                    <h1>Карта оформлена</h1>
                     <div className='pay_field'>
+                        <p>{paySys}</p>
+                        <br/>
                         <p>{ans.card_name}</p>
-                        <p>Баланс: {ans.balance} {ans.currency}</p>
+                        {/*<p>Баланс: {ans.balance} {ans.currency}</p>*/}
                     </div>
                 </div>
             }

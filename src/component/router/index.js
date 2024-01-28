@@ -17,11 +17,12 @@ import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, PAY} from "../../utils/cons
 import PayService from "../pages/CardAbility/Payment/PayService";
 import ValutaCourse from "../Valuta/ValutaCourse";
 import BuyValute from "../Valuta/CurerncyExchange/ExchangeValute";
-import RegForm from "../pages/Auth/RegForm";
+import RegForm from "../pages/Auth/Registration/RegForm";
 import CreateBill from "../pages/Home/OpenBill/CreateBill";
 import CreateCard from "../pages/Home/OpenBill/CreateCard";
 import YandexMap from "../Maps/YandexMap";
 import MainPage from "../pages/MainPage/MainPage";
+import Auth from "../pages/Auth/Auth";
 
 
 export const privateRoutes=[
@@ -54,7 +55,7 @@ export const privateRoutes=[
 ]
 
 export const publicRoutes=[
-    // {path:"/*", component:<Auth/>},
+    {path:"/*", component:<Auth/>},
     {path: '/registration', component: <RegForm/>},
     {path:ATMS, component: <YandexMap/>},
     {path:CURRENCY, component: <ValutaCourse/>}

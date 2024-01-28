@@ -10,6 +10,7 @@ import {BETWEEN, EMPTY_FIELD, SUM_ERROR, TRANSFER_EXECUTE} from "../../../../con
 import Execute from "./Modal/Execute";
 import getSymbolFromCurrency from "currency-symbol-map";
 import ChooseBill from "./TransferSteps/ChooseBill";
+import Loading from "../../../reUsePages/Loading";
 
 export const TransferBetween = observer(() => {
     const{bills} = AccountStore
@@ -27,7 +28,8 @@ export const TransferBetween = observer(() => {
 
     useEffect(() => {
         if(bills.length !==0)
-            setPayBills(bills.filter((c) => c.balance != 0))
+            setPayBills(bills.filter((c) => c.balance != 0 ||
+                c.description.max_debt_amount > Math.abs(c.balance)))
 
     }, [bills]);
 
@@ -58,6 +60,7 @@ export const TransferBetween = observer(() => {
             return
         }
         try {
+            setState('Load')
             const response = await TransferService.Transfer(sum.replace(',', '.'), payBill, recieveBill,
                 BETWEEN)
             setTfa(response.data.tfa_token)
@@ -65,6 +68,7 @@ export const TransferBetween = observer(() => {
             setError(null)
             console.log(response.data)
         } catch (e) {
+            setState('input')
             setError(e.response.data)
         }
     }
@@ -72,16 +76,23 @@ export const TransferBetween = observer(() => {
     const TransferConfirm = async (e)=>{
         e.preventDefault()
         try {
+            setState('Load')
             await TransferService.confirmTransfer(tfa, code)
             setError(null)
             setState('access')
         } catch (e) {
+            setState('Confirm')
             setError(e.response.data)
         }
     }
 
     return (
         <>
+            {state ==='Load' &&
+                <div className="row-direct cardholder info_box">
+                    <Loading/>
+                </div>
+            }
                 {state === 'input' &&
                 <div className='cardholder info_box'>
                     <form onSubmit={onSubmitHandler}>

@@ -3,13 +3,14 @@ import {action, makeAutoObservable, observable, runInAction} from "mobx";
 
 class CurrencyStore{
     course =[]
-    val = {}
+    val = null
     isLoad = false
     setCourse = (a)=>{
         this.course = a;
     }
-    setVal = (v)=>{
-        this.val = v;
+    setVal = (charCode)=>{
+        console.log("CNHJRF", charCode)
+        this.val = charCode;
     }
     setIsLoad = (b)=>{
         this.isLoad = b;

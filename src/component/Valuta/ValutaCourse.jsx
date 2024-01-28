@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import React, {useEffect} from 'react';
 import '../styles/Common.css'
 import './valute.css'
 import ValuteItem from "./ValuteItem";
 import {observer} from "mobx-react-lite";
 import ValutaStore from "../../store/CurrencyStore";
+import Loading from "../reUsePages/Loading";
 
 const ValutaCourse = () => {
     const {course, isLoad, getCourse} = ValutaStore
@@ -17,14 +17,12 @@ const ValutaCourse = () => {
         <>
             {isLoad?
                 <div className="info_box val_list" style={{flexDirection:"row"}}>
-                    <div className="load-line chet"></div>
-                    <div className="load-line nechet"></div>
-                    <div className="load-line third"></div>
+                   <Loading/>
                 </div>
                :
                 <div className='val_list'>
                     {Object.values(course).map((c) =>
-                        <ValuteItem key={c.CharCode} CharCode={c.CharCode} Nominal={c.Nominal}
+                        <ValuteItem key={c.CharCode} cur = {c} CharCode={c.CharCode} Nominal={c.Nominal}
                          PurchasePrice={c.PurchasePrice} Name={c.Name} SalePrice={c.SalePrice}/>
                     )}
                 </div>

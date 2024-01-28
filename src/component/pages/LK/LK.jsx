@@ -1,19 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../../styles/Common.css'
 import './LK.css'
 import Action from "../../UI/Action";
 import {observer} from "mobx-react-lite";
-import PersonStore from "../../../store/UserStore";
 import Description from "../../UI/Description";
-import Window from "../../UI/Window";
-import ChangeLogin from "./PersonAbility/ChangeLogin";
-
+import UserStore from "../../../store/UserStore";
 export const Lk =observer (() => {
-   const {person } = PersonStore
-   console.log(person)
+   const {person } = UserStore
     return (
         <>
             <div className="personal info_box">
+                <br/>
                 <h1>Личный кабинет</h1>
                 <div className='person'>
                     {person.sex==='female'?

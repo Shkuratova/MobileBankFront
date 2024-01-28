@@ -1,24 +1,32 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import BillSelect from "../BillSelect";
 import CurrencyInput from "react-currency-input-field";
 import '../../styles/Common.css'
 import ValutaStore from "../../../store/CurrencyStore";
 import {useParams} from "react-router-dom";
+import CurInput from "../../UI/defaultUI/Inputs/CurInput";
 const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, bill, setBill, sum, setSum, transact }) => {
     const{val, course, isLoad,getCourse, setVal} = ValutaStore
     const p = useParams()
-    // useEffect(() => {
-    //     getCourse()
-    // }, []);
+    const [currency, setCurrency] = useState()
     useEffect(() => {
-        if(!isLoad)
-            setVal(course[p.charcode])
-    }, [isLoad]);
+        getCourse()
+    }, []);
+    useEffect(() => {
+        if(!isLoad){
+            if(val)
+                setCurrency(course[val])
+            else
+                setCurrency(course[p.charcode])
+        }
+
+    }, [isLoad, val]);
     console.log(val.SalePrice)
     useEffect(() => {
-        setTotal(Number(val.SalePrice*sum).toFixed(2))
-    }, [sum]);
+        if(currency && sum)
+            setTotal(Number((currency.SalePrice/currency.Nominal)*sum.replace(',','.')).toFixed(2))
+    }, [sum, currency]);
     return (
         <>
             {(valBills.length && valBills.filter((v)=>v.balance !=0).length)?<>
@@ -33,15 +41,7 @@ const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, b
                             <>
                                 <BillSelect bills={sellBills} bill={bill} onChange={value => setBill(value)}/>
                                 <div className='vall_bill'>
-                                    <CurrencyInput
-                                        className='myInput'
-                                        placeholder='Количество'
-                                        allowDecimals={false}
-                                        defaultValue={sum}
-                                        maxLength={7}
-                                        allowNegativeValue={false}
-                                        onValueChange={(e) => setSum(e)}
-                                    />
+                                   <CurInput sum={sum} setSum={setSum} text={'Количество'}/>
                                     {total>0? <h4>Сумма зачисления:{total} </h4>:<></>}
                                     <button onClick={transact}
                                             className='myBtn'>Обменять</button>

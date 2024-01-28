@@ -8,7 +8,6 @@ class UserStore{
     Load = false
     isAuth = false
     tfa = ''
-    isLoad = false
     AuthError = null;
     constructor() {
 
@@ -20,13 +19,12 @@ class UserStore{
             person:observable,
             setAuth:action,
             setAuthError:action,
-            isLoad:observable,
-            setIsLoad:action
-
+            setLoad:action
         })
     }
-    setIsLoad(b){
-        this.isLoad = b;
+
+    setTfa(t){
+        this.tfa = t
     }
     setAuth(b){
         this.isAuth = b;
@@ -38,16 +36,15 @@ class UserStore{
         this.AuthError = s;
     }
     logout = ()=>{
-        this.isAuth = false
+        this.setAuth(false)
         localStorage.removeItem('token')
         localStorage.removeItem('ref_token')
     }
     SiqnIn = async (login, pas)=>{
         try{
             const response = await AuthService.login(login, pas)
-            this.tfa = response.data.tfa_token
+            this.setTfa(response.data.tfa_token)
             this.setAuthError(null)
-            console.log(response.data)
         }catch (e) {
             this.setAuthError(e.response)
             console.log(this.AuthError)
@@ -68,7 +65,7 @@ class UserStore{
     SiqnUp = async (login, pas, rePas)=>{
         try {
             const response = await AuthService.registration(login, pas, rePas);
-            this.tfa = response.data
+            this.setTfa(response.data.tfa_token)
             this.setAuthError(null)
             console.log(response.data)
         }catch (e) {
@@ -118,7 +115,7 @@ class UserStore{
                     this.person.login = response.data.login;
                     this.person.email = response.data.email;
                     this.person.telephone = response.data.phone_number;
-                    this.Load = false
+                    this.setLoad(false)
                 })
             }catch (e){
                 console.log(e.response.data)

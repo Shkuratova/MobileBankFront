@@ -4,12 +4,13 @@ import './Auth.css'
 import {useNavigate} from "react-router-dom";
 import {ATMS} from "../../../utils/consts";
 import {observer} from "mobx-react-lite";
-import PersonStore from "../../../store/UserStore";
+import UserStore from "../../../store/UserStore";
 import '../../UI/confirmCodeInput.css'
 import VerifyInput from "../../UI/VerifyInput";
+import EmailConfirm from "../../reUsePages/EmailConfirm";
 
 const Auth = () => {
-    const{isAuth,tfa, SiqnIn, setAuth,   ConfirmLogin} = PersonStore
+    const{tfa, SiqnIn,   ConfirmLogin} = UserStore
     const router = useNavigate()
     const[state, setState] = useState('SignIn')
 
@@ -19,6 +20,7 @@ const Auth = () => {
     // const[tfa, setTfa] = useState('')
     const[AuthError, setAuthError] = useState('')
 
+    const[error, setError] = useState(null)
     useEffect(()=>{
         if(tfa)
             setState('Confirm')
@@ -85,13 +87,7 @@ const Auth = () => {
                 </div>
             }
             {state === 'Confirm' &&
-                <div className='reg__modal'>
-                    <p className="confirmTitle">На вашу почту было выслано письмо с кодом подтверждения</p>
-                   <VerifyInput code={code} setCode={setCode}/>
-                    <button onClick={confirm}
-                        className='myBtn'>Продолжить</button>
-                </div>
-            }
+                <EmailConfirm code={code} setCode={setCode} confirm={confirm} error={error}/>}
         </>
     );
 };

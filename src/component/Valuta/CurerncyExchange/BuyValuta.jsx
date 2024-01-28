@@ -6,24 +6,30 @@ import {useNavigate, useParams} from "react-router-dom";
 import '../../styles/Common.css'
 import '../valute.css'
 import ValutaStore from "../../../store/CurrencyStore";
+import CurInput from "../../UI/defaultUI/Inputs/CurInput";
 
 const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill, error,setValBill, sum, setSum, transact}) => {
 
-    const{val, course, isLoad,getCourse, setVal} = ValutaStore
+    const{val, course, isLoad,getCourse} = ValutaStore
     const p = useParams()
     const s = useNavigate()
-    console.log(p.charcode)
-    // useEffect(() => {
-    //     getCourse()
-    // }, []);
+    const [currency, setCurrency] = useState(null)
     useEffect(() => {
-        if(!isLoad)
-            setVal(course[p.charcode])
-    }, [isLoad]);
-    console.log(val)
+            getCourse()
+    }, []);
     useEffect(() => {
-        setTotal(Number(val.PurchasePrice*sum).toFixed(2))
-    }, [sum]);
+        if(!isLoad){
+            if(val)
+                setCurrency(course[val])
+            else
+                setCurrency(course[p.charcode])
+        }
+
+    }, [isLoad, val]);
+    useEffect(() => {
+       if(currency && sum)
+        setTotal(Number((currency.PurchasePrice/currency.Nominal)*sum.replace(',','.')).toFixed(2))
+    }, [sum, currency]);
 
 
     return (
@@ -41,15 +47,8 @@ const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill,
                             <BillSelect bills={valBills} bill={valBill} onChange={value => setValBill(value)}/>}
                     </div>
                     <div className='vall_bill'>
-                        <CurrencyInput
-                            className='myInput'
-                            placeholder='Количество'
-                            allowDecimals={false}
-                            maxLength={7}
-                            defaultValue={sum}
-                            allowNegativeValue={false}
-                            onValueChange={(e) => setSum(e)}
-                        />
+                        <CurInput sum={sum} setSum={setSum} text={'Количество'}/>
+
                         {total>0?
                         <h4>Итого к оплате:{total} </h4>:<></>}
                         <button onClick={(e) => transact(e)}

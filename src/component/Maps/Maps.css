@@ -13,9 +13,13 @@
     /*padding-right: 2%;*/
     border-radius: 12px;
 }
-
+.address_list{
+    width: 40%;
+}
 .address{
     font-size: 18px;
+    max-width: 250px;
+    display: inline-block;
 }
 .atm-list{
     margin-top: 1%;
@@ -25,9 +29,9 @@
 }
 .map{
     margin-top: 1%;
-    width:70%;
+    width:1000px;
     height:720px;
-    margin-right: 2%;
+    margin-left: 2%;
     border-radius: 22px;
 }
 .map-title{
@@ -45,7 +49,7 @@ margin-left: 4%;
     margin-top: 2%;
     border-radius: 12px;
     padding: 2%;
-    margin-bottom: 4%;
+    margin-bottom: 5%;
     width: 100%;
 }
 .point--item:hover{

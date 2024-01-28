@@ -14,9 +14,9 @@ import CurrencyStore from "../../../store/CurrencyStore";
 
 const ExchangeValute = () => {
 
-    const {getCourse, course} = CurrencyStore
+    const {getCourse, val ,isLoad, course, setVal} = CurrencyStore
     const{bills} = AccountStore
-
+    const p = useParams()
     const [bill, setBill] = useState('')
     const [valBill, setValBill] = useState('')
     const valuta = useParams()
@@ -30,10 +30,24 @@ const ExchangeValute = () => {
     const [tfa ,setTfa] = useState()
     const[valute, setValute] = useState()
     const [error, setError] = useState(null)
+    const [currency, setCurrency] = useState(null)
     useEffect(() => {
-        if(!course)
-        getCourse()
+            getCourse()
     }, []);
+    useEffect(() => {
+        if(!isLoad){
+            if(val)
+                setCurrency(course[val])
+            else
+                setCurrency(course[p.charcode])
+        }
+
+    }, [isLoad, val]);
+    useEffect(() => {
+        if(valute){
+            setVal(valute)
+        }
+    }, [valute]);
     useEffect(()=>{
         setValute(valuta.charcode)
     }, [])
@@ -41,7 +55,6 @@ const ExchangeValute = () => {
             setValBills(bills.filter((f)=>f.currency === valute))
             setSellBills(bills.filter((f)=>f.currency !== valute && f.currency ==='RUB'))
     }, [bills, valute]);
-    console.log(bills)
     useEffect(() => {
         if(valBills.length)
              setValBill(valBills[0].account_number)
@@ -76,42 +89,47 @@ const ExchangeValute = () => {
             setError(e.response.data)
         }
     }
-
+console.log(111,currency)
     return (
-        <>
-            {state === 'Valuta' &&
-            <div className='buy_val info_box'>
-                <h1>Обмен валюты</h1>
+                <>
+                    {state === 'Valuta' &&
+                        <div className='buy_val info_box'>
+                            <h1>Обмен валюты</h1>
 
 
-             <SelectAction flag={flag} setFlag={setFlag} case1={'Покупка'} case2={'Продажа'}/>
-                <p>Валюта</p>
-                <select className='mySelect'
-                        value={valute}
-                        onChange={e=>setValute(e.target.value)}>
-                    {valutaCharCode.map((t)=>
-                        <option key={t.CharCode} value={t.CharCode}> {t.Name}</option>
-                    )}
-                </select>
-                {flag?
-                <BuyValuta valBills={valBills} sellBills={sellBills} bill={bill}
-                           valBill={valBill} setBill={setBill} setTotal={setTotal} total={total}
-                           setValBill={setValBill} sum={sum} setSum={setSum} transact={transact}/>
-                :
-                   <SellValuta sellBills={sellBills} bill={bill} setTotal={setTotal} total={total}
-                               valBill={valBill} setBill={setBill} setValBill={setValBill} sum={sum}
-                               setSum={setSum} transact={transact} valBills={valBills}/>
-                }
-            </div>
-            }
-            {state ==='Confirm' &&
-                <EmailConfirm code={code} setCode={setCode} confirm={Confirm} />}
-            {state === 'success' &&
-                <div className='buy_val'>
-                    <h1>Успешно</h1>
-                </div>
-            }
-        </>
+                            <SelectAction flag={flag} setFlag={setFlag} case1={'Покупка'} case2={'Продажа'}/>
+                            <p style={{marginTop: "4%"}}>Валюта</p>
+                            <select className='mySelect'
+                                    value={valute}
+                                    onChange={e => setValute(e.target.value)}>
+                                {valutaCharCode.map((t) =>
+                                    <option key={t.CharCode} value={t.CharCode}> {t.Name}</option>
+                                )}
+                            </select>
+                            {currency &&
+                            <p>1 {val} = {flag ? currency.PurchasePrice :currency.SalePrice} RUB</p>
+                            }
+                            <br/>
+                            {flag ?
+                                <BuyValuta valBills={valBills} sellBills={sellBills} bill={bill}
+                                           valBill={valBill} setBill={setBill} setTotal={setTotal} total={total}
+                                           setValBill={setValBill} sum={sum} setSum={setSum} transact={transact}/>
+                                :
+                                <SellValuta sellBills={sellBills} bill={bill} setTotal={setTotal} total={total}
+                                            valBill={valBill} setBill={setBill} setValBill={setValBill} sum={sum}
+                                            setSum={setSum} transact={transact} valBills={valBills}/>
+                            }
+                        </div>
+                    }
+                    {state === 'Confirm' &&
+                        <EmailConfirm code={code} setCode={setCode} confirm={Confirm}/>}
+                    {state === 'success' &&
+                        <div className='buy_val'>
+                            <h1>Успешно</h1>
+                        </div>
+                    }
+                </>
+
     );
 };
 

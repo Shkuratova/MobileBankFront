@@ -38,7 +38,7 @@
     margin-bottom: 4%;
 }
 .new_acc{
-    display: inline-block ;
+    display: flex ;
     height: fit-content;
     width: 100%;
     padding: 2%;

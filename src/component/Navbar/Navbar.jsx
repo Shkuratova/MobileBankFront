@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import "./Navbar.css"
 import {NavLink} from "react-router-dom";
 import {observer} from "mobx-react-lite";
-import PersonStore from "../../store/UserStore";
+import UserStore from "../../store/UserStore";
 
 const Navbar = () => {
-    const {isAuth,  person, logout,Load, getPersonInfo} =PersonStore
+    const {isAuth,  person, logout,Load, getPersonInfo} =UserStore
 
     useEffect(() => {
         if(isAuth)

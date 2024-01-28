@@ -1,6 +1,12 @@
 .email__block{
-   margin-left: 14%;
+  margin-right: auto;
+    margin-left: auto;
     width: 40%;
     height: 40%;
     align-items: center;
+  @media (max-width: 400px) {
+    width: 90%;
+    z-index: 100;
+
+  }
 }

@@ -5,11 +5,12 @@ import {useLocation} from "react-router-dom";
 import AccountStore from "../../../store/AccountStore";
 import {observer} from "mobx-react-lite";
 import CardStore from "../../../store/CardStore";
-import PersonStore from "../../../store/UserStore";
+import UserStore from "../../../store/UserStore";
 import ItemList from "./ItemList";
+import Loading from "../../reUsePages/Loading";
 
 export const CardList = observer( () => {
-    const {isAuth} = PersonStore;
+    const {isAuth} = UserStore;
     const {getAccounts, credit,debit, isLoad, bills} = AccountStore;
     const {getCards, isLoading, cards} = CardStore;
     const  p = useLocation()
@@ -26,13 +27,11 @@ export const CardList = observer( () => {
         <div className="new_cardList">
             {(isLoad || isLoading) ?
                 <div className="title_list" >
-                <div className="load-line chet"></div>
-                <div className="load-line nechet"></div>
-                <div className="load-line third"></div>
+                <Loading/>
                 </div>
                 :
                 <>
-                    <ItemList cards={debit} title={"Счета"}/>
+                    <ItemList cards={bills} title={"Счета"}/>
                     <ItemList cards={cards} title={"Карты"}/>
                     <ItemList cards={credit} title={"Кредиты"}/>
                 </>

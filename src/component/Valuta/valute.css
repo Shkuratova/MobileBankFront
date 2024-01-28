@@ -31,17 +31,19 @@
     margin-left: 3%;
     min-width: 800px;
     background: white;
+    padding: 1%;
     display: flex;
     flex-direction: column;
     align-items:start;
 }
 .vall_bill{
-    margin-top: 5%;
+    margin-top: 3%;
 }
 .buy_val{
     background: #FFFFFF;
     padding: 3% 3% 3%;
     margin-left:10%;
+    font-size: 18px;
     height: 70%;
     width: 50%;
     border-radius: 22px;

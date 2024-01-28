@@ -57,5 +57,8 @@ export const valutaCharCode=[
         {CharCode: 'VND', Name: 'Вьетнамских донгов'},
         {CharCode: 'XDR', Name: 'СДР'},
         {CharCode: 'ZAR', Name: 'Южноафриканских рэндов'}
-
 ]
+export const ACCOUNT_TYPE = {
+        "debit": "Текущий счет",
+        "credit": "Кредитный счет"
+}
