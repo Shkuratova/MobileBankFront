@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import '../../../styles/Common.css'
-import CardList from "../../Home/CardList";
 import './history.css'
 import HistoryItem from "./HistoryItem";
-import axios from "axios";
-import CardItem from "../../Home/CardItem";
 import CardStore from "../../../../store/CardStore";
 import {observer} from "mobx-react-lite";
 import TransferService from "../../../../service/TransferService";
 import Loading from "../../../reUsePages/Loading";
+
 export const CardHistory =observer( () => {
     const {cards} = CardStore
     const p = useParams()

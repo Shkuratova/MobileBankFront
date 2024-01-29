@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {GeolocationControl, Map, Placemark, withYMaps, YMaps} from "@pbe/react-yandex-maps";
+import {GeolocationControl, Map, Placemark, YMaps} from "@pbe/react-yandex-maps";
 import './Maps.css'
 import ToAllService from "../../service/ToAllService";
 import PointItem from "./PointItem";
 import Loading from "../reUsePages/Loading";
+
 const YandexMap = () => {
     const[coord, setCoords] = useState([])
     const [point, setPoint] = useState( [43.025143920543236, 131.89073607706007])

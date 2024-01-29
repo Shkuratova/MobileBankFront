@@ -6,7 +6,6 @@ import {ATMS} from "../../../utils/consts";
 import {observer} from "mobx-react-lite";
 import UserStore from "../../../store/UserStore";
 import '../../UI/confirmCodeInput.css'
-import VerifyInput from "../../UI/VerifyInput";
 import EmailConfirm from "../../reUsePages/EmailConfirm";
 import Loading from "../../reUsePages/Loading";
 
