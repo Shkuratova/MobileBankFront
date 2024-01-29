@@ -6,9 +6,9 @@ import {CookiesProvider} from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <CookiesProvider defaultSetOptions={{path:'/'}}>
-    <BrowserRouter>
+    <CookiesProvider defaultSetOptions={{path: '/'}}>
+        <BrowserRouter>
             <App/>
-    </BrowserRouter>
+        </BrowserRouter>
     </CookiesProvider>
 );

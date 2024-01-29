@@ -59,7 +59,7 @@ class UserStore{
             this.setAuth(true)
             console.log(response.data[0])
         }catch (e) {
-            this.setAuthError(e)
+            this.setAuthError(e.response.data)
         }
     }
     SiqnUp = async (login, pas, rePas)=>{

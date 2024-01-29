@@ -23,6 +23,7 @@ const CurrencyBlock = () => {
                     </div>:
                     <>
                         <table className="curTable">
+                            <tbody>
                             <tr>
                                 <td className="TableTitle" width={"60%"}>Валюта</td>
                                 <td className="TableTitle">Купить</td>
@@ -49,6 +50,7 @@ const CurrencyBlock = () => {
                                 <td>{course["CNY"].PurchasePrice}</td>
                                 <td className="priceTab">{course["CNY"].SalePrice}</td>
                             </tr>
+                            </tbody>
                         </table>
                         <div style={{display:"flex", flexDirection:"column", alignItems:"start"}}>
                             <button

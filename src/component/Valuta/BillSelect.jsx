@@ -6,12 +6,6 @@ import {ACCOUNT_TYPE} from "../../utils/consts";
 import {setBalance} from "../../utils/Format";
 
 const BillSelect = ({ bills, bill, onChange}) => {
-   // const setBalance = (b)=>{
-   //     if(b.type_account ==='credit'){
-   //         return b.description.max_debt_amount - b.balance
-   //     }
-   //     else return b.balance
-   // }
     return (
         <select className='mySelect'
                 value={bill}

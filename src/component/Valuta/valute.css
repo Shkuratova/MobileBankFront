@@ -29,7 +29,7 @@
     border-radius: 22px;
     width: 90%;
     margin-left: 3%;
-    min-width: 800px;
+    /*min-width: 800px;*/
     background: white;
     padding: 1%;
     display: flex;

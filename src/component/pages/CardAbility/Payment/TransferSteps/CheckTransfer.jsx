@@ -1,6 +1,6 @@
 import React from 'react';
 import {billFormat} from "../utils";
-const CheckTransfer = ({from, to, sum, setState}) => {
+const CheckTransfer = ({from, to, sum, setState, add, setAdd, confirm}) => {
 
 
     return (
@@ -8,7 +8,7 @@ const CheckTransfer = ({from, to, sum, setState}) => {
             <div onClick={()=>setState('chooseCard')}
                 className="back--btn"></div>
             <div className="transferData">
-                <h2>Подтверждение операции</h2>
+                <h1>Подтверждение операции</h1>
                 <br/>
                 <p className="chek_p">Откуда</p>
                 <input style={{color: "#212121"}} className="myInput"
@@ -27,7 +27,16 @@ const CheckTransfer = ({from, to, sum, setState}) => {
                     className="myInput"
                     value={sum}
                     disabled={true}/>
-                <button onClick={() => setState('Confirm')}
+                <label className="checkBox">
+                    Добавить на панель быстрых платежей
+                    <input
+                        type="checkbox"
+                        checked={add}
+                        onChange={() => setAdd(!add)}
+                    />
+                    <span className="checkmark"></span>
+                </label>
+                <button onClick={confirm}
                         className="myBtn">Подтвердить
                 </button>
             </div>

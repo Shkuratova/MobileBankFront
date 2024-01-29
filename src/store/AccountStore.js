@@ -50,18 +50,24 @@ class AccountStore {
        return  this.bills.filter((c) => c.balance != 0 ||
             c.description.max_debt_amount > Math.abs(c.balance))
     }
+    getPayAccountByCurrency=(charCode)=>{
+        return  this.bills.filter((c) => (c.balance != 0 ||
+            c.description.max_debt_amount > Math.abs(c.balance)) && c.currency === charCode)
+    }
 
-    newBill = async (currency)=>{
+    newBill = async (currency) => {
         try {
             const response = await CardService.openBill(currency)
             this.ans = response.data
             this.bills.push(response.data)
             this.debit.push(response.data)
             this.error = null
-        }catch (e) {
+        } catch (e) {
             this.error = e.response.data
         }
-}
+    }
+
+
 
 }
 export default new AccountStore();

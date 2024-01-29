@@ -21,7 +21,7 @@ const ChooseBill = ({allBills, bills, bill,setBill, billExcept, billTo, setBillE
                     onChange={value => changeBillExcept(value)}/>
             }
 
-            <div className="cardTo">
+            <div className="cardFrom">
                 <p>Куда</p>
                 {billExcept.length &&
                     <BillSelect

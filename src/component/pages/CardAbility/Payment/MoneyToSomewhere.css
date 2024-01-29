@@ -2,31 +2,20 @@
     justify-content: start;
     width: 45%;
     height: fit-content;
+    padding-left: 2%;
     margin-left: 12%;
 }
 .cardFrom{
     font-size: 20px;
     margin-top: 2%;
 }
-.cardTo{
-    font-size: 20px;
-    margin-top: 2%;
-}
+
 .submition{
     display: flex;
     flex-direction: column;
 }
 
-.cin{
-    width: 100%;
-    padding-left: 2%;
-    font-size: 20px;
-    height: 45px;
-    margin-bottom: 3%;
-    margin-top: 5%;
-    border-radius: 12px;
-    text-align: left;
-}
+
 .access{
     display: inline-block;
     background: #FFFFFF;

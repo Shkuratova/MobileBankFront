@@ -1,12 +1,12 @@
 import React from 'react';
 import '../../styles/Common.css'
 import './LK.css'
-import Action from "../../UI/Action";
 import {observer} from "mobx-react-lite";
 import Description from "../../UI/Description";
 import UserStore from "../../../store/UserStore";
 import Loading from "../../reUsePages/Loading";
-export const Lk =observer (() => {
+
+export const LK =observer (({setState}) => {
    const {person, Load } = UserStore
     return (
         <>
@@ -32,30 +32,35 @@ export const Lk =observer (() => {
 
 
                 <div className='lk_act'>
-                    <Action
-                        path = {'/editpassword' }
-                        img={'/images/key.png'}
-                        width = "50"
-                        height = "50"
-                        name = {'Изменить пароль'}/>
-                    <Action
-                        path = {'/editlogin' }
-                        img={'/images/change.png'}
-                        width = "50"
-                        height = "50"
-                        name={'Изменить логин'}/>
+                    <div onClick={()=> setState('pas')}
+                         className="action">
+                        <img className="act_img"
+                             width={"50"}
+                             height={"50"}
+                             src={"/images/key.png"}/>
+                        <p className='act_txt'>Изменить пароль</p>
+                    </div>
+
+                    <div onClick={()=> setState('login')}
+                         className="action">
+                        <img className="act_img"
+                             width={"50"}
+                             height={"50"}
+                             src={"/images/rename.png"}/>
+                        <p className='act_txt'>Изменить логин</p>
+                    </div>
                     {/*<Action*/}
-                    {/*    path={'/lastlogin' }*/}
-                    {/*    img={'/images/history.png'}*/}
+                    {/*    path = {'/editpassword' }*/}
+                    {/*    img={'/images/key.png'}*/}
                     {/*    width = "50"*/}
                     {/*    height = "50"*/}
-                    {/*    name={'История посещений'}/>*/}
+                    {/*    name = {'Изменить пароль'}/>*/}
                     {/*<Action*/}
-                    {/*    path = {'/about'}*/}
+                    {/*    path = {'/editlogin' }*/}
+                    {/*    img={'/images/change.png'}*/}
                     {/*    width = "50"*/}
                     {/*    height = "50"*/}
-                    {/*    img={'/images/info.png'}*/}
-                    {/*    name={'О приложении'}/>*/}
+                    {/*    name={'Изменить логин'}/>*/}
                 </div>
             </div>
             }
@@ -63,4 +68,4 @@ export const Lk =observer (() => {
     );
 });
 
-export default Lk;
+export default LK;

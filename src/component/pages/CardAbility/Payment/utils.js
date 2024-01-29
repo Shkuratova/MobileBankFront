@@ -10,3 +10,4 @@ export const billFormat=(e)=>{
         return(parts.join(' '))
     return p
 }
+

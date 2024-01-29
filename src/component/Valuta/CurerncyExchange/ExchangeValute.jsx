@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../../styles/Common.css'
 import AccountStore from "../../../store/AccountStore";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import '../valute.css'
 import {observer} from "mobx-react-lite";
 import TransferService from "../../../service/TransferService";
@@ -11,12 +11,15 @@ import SellValuta from "./SellValuta";
 import SelectAction from "../../UI/SelectAction";
 import {valutaCharCode} from "../../../utils/consts";
 import CurrencyStore from "../../../store/CurrencyStore";
+import Description from "../../UI/Description";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 const ExchangeValute = () => {
 
     const {getCourse, val ,isLoad, course, setVal} = CurrencyStore
     const{bills} = AccountStore
     const p = useParams()
+    const nav = useNavigate()
     const [bill, setBill] = useState('')
     const [valBill, setValBill] = useState('')
     const valuta = useParams()
@@ -123,10 +126,21 @@ console.log(111,currency)
                         </div>
                     }
                     {state === 'Confirm' &&
-                        <EmailConfirm code={code} setCode={setCode} confirm={Confirm}/>}
+                        <EmailConfirm
+                            setState={setState}
+                            state={'Valuta'}
+                            code={code}
+                            setCode={setCode}
+                            confirm={Confirm}/> }
                     {state === 'success' &&
                         <div className='buy_val'>
                             <h1>Успешно</h1>
+                            <br/>
+                            <h3>{flag?'Покупка валюты':'Продажа валюты'}</h3>
+                            <br/>
+                            <Description title={'Счет списания'} text={flag?setBill:valBill}/>
+                            <Description title={'Сколько'} text={flag?total:sum + getSymbolFromCurrency(valute)}/>
+                            <button onClick={()=>nav('/')} className="myBtn">На главную</button>
                         </div>
                     }
                 </>

@@ -1,33 +1,28 @@
-import LK from "../pages/LK/LK";
 import CardById from "../pages/GetItemById/CardById";
 import CardHistory from "../pages/CardAbility/history/CardHistory";
-import Block from "../pages/CardAbility/Block";
-import RenameCard from "../pages/CardAbility/RenameCard";
-import About from "../pages/Other/About";
 import BillById from "../pages/GetItemById/BillById";
 import CreditById from "../pages/GetItemById/CreditById";
 import CreditInfo from "../pages/CardAbility/CreditInfo";
 import TransferUser from "../pages/CardAbility/Payment/TransferUser";
 import Payment from "../pages/CardAbility/Payment/Payment";
 import TransferBetween from "../pages/CardAbility/Payment/TransferBetween";
-import ChangePassword from "../pages/LK/PersonAbility/ChangePassword";
 import SessionHistory from "../pages/LK/PersonAbility/SessionHistory";
-import ChangeLogin from "../pages/LK/PersonAbility/ChangeLogin";
 import {ATMS, BILL, CARD, CREDIT, CURRENCY, HISTORY, PAY} from "../../utils/consts";
 import PayService from "../pages/CardAbility/Payment/PayService";
 import ValutaCourse from "../Valuta/ValutaCourse";
 import BuyValute from "../Valuta/CurerncyExchange/ExchangeValute";
 import RegForm from "../pages/Auth/Registration/RegForm";
-import CreateBill from "../pages/Home/OpenBill/CreateBill";
-import CreateCard from "../pages/Home/OpenBill/CreateCard";
+import CreateBill from "../pages/MainPage/OpenBill/CreateBill";
+import CreateCard from "../pages/MainPage/OpenBill/CreateCard";
 import YandexMap from "../Maps/YandexMap";
 import MainPage from "../pages/MainPage/MainPage";
 import Auth from "../pages/Auth/Auth";
+import PersonalArea from "../pages/LK/PersonalArea";
 
 
 export const privateRoutes=[
     {path:"/*", component:<MainPage/>},
-    {path:'/user/:login', component: <LK/>},
+    {path:'/user/:login', component: <PersonalArea/>},
     {path:CURRENCY, component: <ValutaCourse/>},
     {path:ATMS, component: <YandexMap/>},
     {path: CARD+'/:id', component: <CardById/>},
@@ -41,12 +36,7 @@ export const privateRoutes=[
     {path:PAY+'/service', component: <PayService/>},
     {path:PAY+'/transfer/user', component: <TransferUser/>},
     {path:PAY, component: <Payment/>},
-    {path:CARD+'/block/:id', component: <Block/>},
-    {path:CARD+'/rename/:id', component: <RenameCard/>},
-    {path:'/editpassword', component: <ChangePassword/>},
-    {path:'/editlogin', component:<ChangeLogin/>},
     {path:'/lastlogin', component: <SessionHistory/>},
-    {path:'/about', component: <About/>},
     {path:'/buyvalute/:charcode', component: <BuyValute/>},
     {path:'/new_bill', component: <CreateBill/>},
     {path:'/new_card', component: <CreateCard/>},

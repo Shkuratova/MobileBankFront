@@ -6,6 +6,8 @@ import UserStore from "../store/UserStore";
 import Home from "./pages/Home/Home";
 import Auth from "./pages/Auth/Auth";
 import PublicPage from "./pages/Auth/PublicPage";
+import MainPage from "./pages/MainPage/MainPage";
+import {useCookies} from "react-cookie";
 
 const AppRouter = () => {
     const {isAuth, checkAuth} = UserStore;
@@ -14,11 +16,18 @@ const AppRouter = () => {
             checkAuth()
         }
     }, []);
+    const [cookie, setCookie] = useCookies(['hist'])
+    useEffect(() => {
+        if(!cookie.hist){
+            setCookie('hist', [])
+        }
+    }, []);
 
     return (
         isAuth?
        <Routes>
            <Route path={'/'} element={<Home/>}>
+               <Route index element={<MainPage/>}/>
            {privateRoutes.map(route=>
            <Route
                path={route.path}

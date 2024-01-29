@@ -14,9 +14,9 @@ const CardSelect = ({cards, card, onChange}) => {
     }
     return (
         <select className='mySelect'
-        value={card}
-        onChange={event => onChange(event.target.value)}>
-            {cards.map((c)=>
+                value={card}
+                onChange={event => onChange(event.target.value)}>
+                  {cards.map((c)=>
                 <option key={c.card_name}
                         value={c}
                 >

@@ -11,7 +11,7 @@ import getSymbolFromCurrency from "currency-symbol-map";
 import ChooseBill from "./TransferSteps/ChooseBill";
 import Loading from "../../../reUsePages/Loading";
 import CurInput from "../../../UI/defaultUI/Inputs/CurInput";
-import CheckTransfer from "./TransferSteps/CheckTransfer";
+import {useNavigate} from "react-router-dom";
 
 export const TransferBetween = observer(() => {
     const{bills} = AccountStore
@@ -26,6 +26,7 @@ export const TransferBetween = observer(() => {
     const [tfa, setTfa] = useState('')
     const [code, setCode]= useState('')
 
+    const nav = useNavigate()
 
     useEffect(() => {
         if(bills.length !==0)
@@ -96,33 +97,43 @@ export const TransferBetween = observer(() => {
             }
                 {state === 'input' &&
                 <div className='cardholder info_box'>
-                    <form onSubmit={onSubmitHandler}>
-                        <h1>Между своими счетами</h1>
-                        <ChooseBill
-                            allBills={bills}
-                            bill={payBill}
-                            bills={payBills}
-                            setBill={setPayBill}
-                            setBillTo={setRecieveBill}
-                            billTo={recieveBill}
-                            billExcept={recieveBills}
-                            setBillExcept={setRecieveBills}
-                        />
-                        <div className="submition">
-                            <CurInput
-                                sum={sum}
-                                setSum={setSum}
-                                error={error}
-                                text={"Сумма"}/>
-                            {error && <span className='error'>{error}</span>}
-                            <button className='myBtn'>Продолжить</button>
-                        </div>
-                    </form>
+                    <div
+                        onClick={()=>nav('/home')}
+                        className="back--btn">
+                    </div>
+                    <div className="transferData">
+                        <form onSubmit={onSubmitHandler}>
+                            <h1 className="title">Между своими счетами</h1>
+                            <ChooseBill
+                                allBills={bills}
+                                bill={payBill}
+                                bills={payBills}
+                                setBill={setPayBill}
+                                setBillTo={setRecieveBill}
+                                billTo={recieveBill}
+                                billExcept={recieveBills}
+                                setBillExcept={setRecieveBills}
+                            />
+                            <div className="cardFrom">
+                                <p>Сколько</p>
+                                <CurInput
+                                    sum={sum}
+                                    setSum={setSum}
+                                    error={error}
+                                    text={"Сумма"}/>
+                                {error && <span className='error'>{error}</span>}
+                                <button className='myBtn'>Продолжить</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             }
             {state === 'Confirm' &&
                     <EmailConfirm
                         code={code}
+                        request={onSubmitHandler}
+                        state={'input'}
+                        setState={setState}
                         setCode={setCode}
                         confirm={TransferConfirm}/>
             }

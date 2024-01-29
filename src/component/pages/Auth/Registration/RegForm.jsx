@@ -3,8 +3,6 @@ import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
 import AuthService from "../../../../service/AuthService";
 import UserStore from "../../../../store/UserStore";
-import Input from "../../../UI/defaultUI/Inputs/Input";
-import VerifyInput from "../../../UI/VerifyInput";
 import TransferService from "../../../../service/TransferService";
 import {ACCOUNT_PATTERN, EMPTY_FIELD, USER_DOESNT_EXIST} from "../../../../consts/StringConsts";
 import {billFormat} from "../../../../utils/Format";
@@ -12,6 +10,7 @@ import '../Auth.css'
 import '../../../styles/Common.css'
 import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import EnterLogin from "./EnterLogin";
+
 const RegForm = () => {
     const{isAuth, SiqnIn, setAuth,   ConfirmLogin} = UserStore
     const router = useNavigate()

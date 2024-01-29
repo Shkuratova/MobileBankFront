@@ -14,14 +14,23 @@
 }
 .pay_field{
    padding-top: 4%;
-    padding-bottom: 2%;
+
     padding-left: 2%;
+    width: 100%;
+    font-size: 18px;
 }
 .contract{
     width: 40%;
     height: 30%;
+    padding-left: 2%;
     margin-left: 15%;
     font-size: 20px;
+}
+.billData{
+    margin-left: 10px;
+    width: 95%;
+    margin-top: 2%;
+    margin-bottom: 4%;
 }
 .add_bill{
     font-size: 20px;
@@ -41,7 +50,7 @@
     display: flex ;
     height: fit-content;
     width: 100%;
-    padding: 2%;
+    padding: 2% 2% 3%;
     align-items: center;
     justify-content: center;
 }

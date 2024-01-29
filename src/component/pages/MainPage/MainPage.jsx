@@ -1,5 +1,5 @@
-import React from 'react';
-import NewAccount from "../Home/OpenBill/NewAccount";
+import React, {useEffect} from 'react';
+import NewAccount from "./OpenBill/NewAccount";
 import './main.css'
 import {NavLink, useNavigate} from "react-router-dom";
 import CurrencyBlock from "./CurrencyBox/CurrencyBlock";
@@ -8,9 +8,8 @@ import QuickPay from "./QuickPay/QuickPay";
 
 const MainPage = () => {
     const nav = useNavigate()
-    const [cookies, setCookie] = useCookies(['hist'])
-    setCookie('hist', [{id:1, name:'ff'}, {id:2, name: "rr"}])
-    console.log(cookies.hist[1])
+    const [cookie, setCookie] = useCookies(['hist'])
+    console.log(cookie.hist)
     return (
         <>
         <div className="action--block">

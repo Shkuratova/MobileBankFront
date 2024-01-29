@@ -1,6 +1,7 @@
 import React from 'react';
 import CurrencyInput from "react-currency-input-field";
 import '../defaultUI.css'
+import getSymbolFromCurrency from "currency-symbol-map";
 const CurInput = ({sum, setSum, error, text}) => {
     return (
         <CurrencyInput
@@ -11,7 +12,7 @@ const CurInput = ({sum, setSum, error, text}) => {
             defaultValue={sum}
             decimalSeparator={'.'}
             allowNegativeValue={false}
-            // maxLength={7}
+             maxLength={9}
             onValueChange={(e) => setSum(e)}
         />
     );

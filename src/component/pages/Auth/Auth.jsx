@@ -8,6 +8,7 @@ import UserStore from "../../../store/UserStore";
 import '../../UI/confirmCodeInput.css'
 import VerifyInput from "../../UI/VerifyInput";
 import EmailConfirm from "../../reUsePages/EmailConfirm";
+import Loading from "../../reUsePages/Loading";
 
 const Auth = () => {
     const{tfa, SiqnIn, AuthError,  ConfirmLogin} = UserStore
@@ -28,39 +29,36 @@ const Auth = () => {
     const siqnIn=async (e)=>{
         e.preventDefault()
         try{
-            SiqnIn(log, pas)
+            setState('Load')
+           await SiqnIn(log, pas)
 
         }catch (e)
         {
+            setState('SignIn')
             console.log(e)
         }
-        // try {
-        //     const response = await AuthService.login(log, pas)
-        //     console.log(response.data)
-        //     setTfa(response.data.tfa_token)
-        //     setState('Confirm')
-        // }catch (e){
-        //     setAuthError(e.response.data)
-        //     console.log(e.response.data)
-        // }
+
 
     }
     const confirm= async (e)=>{
         e.preventDefault()
-        ConfirmLogin(code)
-        // console.log(code)
-        // try {
-        //     const response = await AuthService.confirmation(tfa, code)
-        //     localStorage.setItem('token', response.data.access_token)
-        //     localStorage.setItem('ref_token', response.data.refresh_token)
-        //     setAuth(true)
-        // }catch (e){
-        //     console.log(e)
-        // }
+        try {
+            setState('Load')
+            await ConfirmLogin(code)
+            setState('Confirm')
+        }catch (e){
+            console.log(e)
+            setState('SignIn')
+        }
+
+
 
     }
     return (
         <>
+            {state ==='Load' &&
+                <div className='reg__modal'><Loading/></div>
+            }
             {state ==='SignIn' &&
                 <div className="reg__modal">
                     <h1 className='head__reg'>Добро пожаловать!</h1>
@@ -85,7 +83,14 @@ const Auth = () => {
                 </div>
             }
             {state === 'Confirm' &&
-                <EmailConfirm code={code} setCode={setCode} confirm={confirm} error={error}/>}
+                <EmailConfirm code={code}
+                              setCode={setCode}
+                              state={'SignIn'}
+                              setState={setState}
+                              confirm={confirm}
+                              request={siqnIn}
+                              error={AuthError}/>
+            }
         </>
     );
 };

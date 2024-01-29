@@ -21,7 +21,7 @@ const ValutaCourse = () => {
                    <Loading/>
                 </div>
                :
-                <div className='val_list'>
+                <div className='val_list info_box'>
                     {Object.values(course).map((c) =>
                         <ValuteItem key={c.CharCode} cur = {c} CharCode={c.CharCode} Nominal={c.Nominal}
                          PurchasePrice={c.PurchasePrice} Name={c.Name} SalePrice={c.SalePrice}/>

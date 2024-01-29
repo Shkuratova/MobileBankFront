@@ -16,7 +16,7 @@ const ValuteItem = ({ cur}) => {
         <div className='valute__item'>
 
             <div className='info'>
-                <h3 style={{width:"400px"}}>{cur.CharCode} {cur.Name}</h3>
+                <h3 >{cur.CharCode} {cur.Name}</h3>
                 <p style={{marginTop:"10px"}}>Количество единиц: {cur.Nominal}</p>
             </div>
 

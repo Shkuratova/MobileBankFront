@@ -13,7 +13,8 @@ class CardStore {
             ans:observable,
             card:observable,
             cardError:observable,
-            getCards:action
+            getCards:action,
+            setAns:action
         }
 
         )
@@ -25,7 +26,6 @@ class CardStore {
             runInAction(()=>{
                 console.log(response.data)
                 this.cards = response.data;
-                this.card = this.cards[0].token_card
                 this.isLoading = false
             })
         } catch (e) {
@@ -33,18 +33,20 @@ class CardStore {
             this.isLoading = false
         }
     }
+    setAns = (a)=>{
+        this.ans = a;
+    }
     newCard = async (account, paySystem)=>{
         try {
             const response = await CardService.openCard(account, paySystem)
-            this.ans = response.data
+            this.setAns(response.data)
             this.cards.push(response.data)
         }catch (e) {
-            this.cardError = e.message
+            console.log(e)
+            this.cardError = e.response.data
         }
     }
-    getPayCard = ()=>{
-        return this.cards.filter((c)=>c.balance >0 || c.type_account ==='credit')
-    }
+
 
 }
 export default new CardStore();
