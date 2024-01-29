@@ -2,11 +2,16 @@ import axios from "axios";
 
 
 const $api = axios.create({
-    withCredentials:true
+    withCredentials:true,
+    headers:{
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+    }
 })
 
 $api.interceptors.request.use((config)=>{
     config.headers.Authorization =localStorage.getItem('token')
+
     return config;
 })
 

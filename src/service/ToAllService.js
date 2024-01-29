@@ -1,12 +1,13 @@
 import axios from "axios";
 import {API} from "../http/path";
+import $all from "../http/all";
 
 export default class ToAllService{
     static async getValuta(){
-        return await axios.get(API + 'get_currencies/')
+        return await $all.get(API + 'get_currencies/')
     }
     static async gerCoords(){
-        return await axios.get(API+'get_atm/')
+        return await $all.get(API+'get_atm/')
     }
 
 }
