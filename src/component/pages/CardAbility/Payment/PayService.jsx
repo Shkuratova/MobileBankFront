@@ -95,7 +95,6 @@ const PayService = observer(() => {
         return bills.filter((b)=>b.account_number === from)
     }
 
-    console.log(tfa)
     const sendDuty = async (e)=> {
         e.preventDefault()
         setCheck(true)
@@ -121,7 +120,7 @@ const PayService = observer(() => {
                     setSumError(e.response.data)
                     setWhereError(null)
                 }
-                console.log(e)
+
             }
         }
     }
@@ -135,11 +134,9 @@ const PayService = observer(() => {
             setState('Load')
             const response = await TransferService.confirmTransfer(tfa, code)
             setState('access')
-            console.log(response.data)
         }catch (e) {
             setState('confirmation')
             setError(e.response.data)
-            console.log(e)
         }
     }
     const onClickHandler = ()=>{

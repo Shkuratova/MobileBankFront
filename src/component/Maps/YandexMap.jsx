@@ -16,10 +16,9 @@ const YandexMap = () => {
             try{
                 const response = await ToAllService.gerCoords()
                 setCoords(response.data)
-                console.log(response.data)
                 setIsLoad(false)
             }catch (e){
-                console.log(e)
+                alert('Ошибка')
             }
         }
         gerCoord()

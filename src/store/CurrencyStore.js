@@ -21,7 +21,6 @@ class CurrencyStore{
         this.total = sum;
     }
     setVal = (charCode)=>{
-        console.log("CNHJRF", charCode)
         this.val = charCode;
     }
     setIsLoad = (b)=>{
@@ -53,7 +52,6 @@ class CurrencyStore{
             })
 
         }catch (e){
-            console.log(e.response.data)
             this.setIsLoad(false)
         }
     }

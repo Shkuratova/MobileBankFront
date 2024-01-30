@@ -10,7 +10,7 @@ const ChooseBill = ({allBills, bills, bill,setBill, billExcept, billTo, setBillE
             billTo = billExcept[0].account_number;
         }
     }
-    console.log(billExcept)
+
     return (
         <div className="cardFrom">
             <p>Откуда</p>

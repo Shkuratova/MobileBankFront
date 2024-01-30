@@ -28,7 +28,6 @@ const ChangeLogin = ({setSt}) => {
             setState('Confirm')
             setTfa(response.data.tfa_token)
             setLoginError(null)
-            console.log(response.data)
             setLoad(false)
         }catch (e) {
             setLoad(false)
@@ -44,7 +43,6 @@ const ChangeLogin = ({setSt}) => {
         try{
             setLoad(true)
             const response = await PersonService.confirmChange(tfa, code)
-            console.log(response.data)
             setError(null)
             setState('execute')
             setLoad(false)

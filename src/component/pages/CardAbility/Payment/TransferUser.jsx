@@ -83,7 +83,6 @@ export const TransferUser = observer(() => {
             setTfa(response.data.tfa_token)
             setState('Confirm')
             setError(null)
-            console.log(response.data)
 
         } catch (e) {
             setState("chooseCard")

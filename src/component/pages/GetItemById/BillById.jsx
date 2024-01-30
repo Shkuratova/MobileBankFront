@@ -21,7 +21,7 @@ const BillById = () => {
                 setBill(response.data[0])
                 setIsLoading(false)
             }catch (e) {
-                console.log(e.response.data)
+                alert('Ошибка')
             }
         }
        getBill()

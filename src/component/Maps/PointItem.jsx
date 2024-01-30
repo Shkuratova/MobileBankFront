@@ -10,7 +10,7 @@ const PointItem = ({point, setPoint, coord}) => {
     const [flag, setFlag] = useState(false)
     useEffect(() => {
             if(coord[0] == point.latitude && coord[1] == point.longitude){
-                console.log(1111)
+
                 setFlag(true)
             }else {
                 setFlag(false)

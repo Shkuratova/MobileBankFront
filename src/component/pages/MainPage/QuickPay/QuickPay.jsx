@@ -5,7 +5,6 @@ import QuickPayItem from "./QuickPayItem";
 
 const QuickPay = () => {
     const [cookie] = useCookies(['hist'])
-    console.log(cookie.hist)
     return (
         <div className="quick--list info_box">
             <h2>Быстрая оплата</h2>

@@ -9,7 +9,6 @@ import QuickPay from "./QuickPay/QuickPay";
 const MainPage = () => {
     const nav = useNavigate()
     const [cookie, setCookie] = useCookies(['hist'])
-    console.log(cookie.hist)
     return (
         <>
         <div className="action--block">

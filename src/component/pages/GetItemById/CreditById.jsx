@@ -19,7 +19,7 @@ const CreditById = () => {
                 setCredit(response.data[0])
                 setIsLoading(false)
             }catch (e) {
-                console.log(e.response.data)
+              alert('Ошибка')
             }
         }
         getBill()

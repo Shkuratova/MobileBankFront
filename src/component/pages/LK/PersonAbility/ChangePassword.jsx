@@ -36,7 +36,7 @@ const ChangePassword = ({setSt}) => {
             setTfa(response.data.tfa_token)
             setError(null)
             setIsLoad(false)
-            console.log(response.data)
+
         }catch (e) {
             setIsLoad(false)
           setError(e.response.data)
@@ -51,13 +51,11 @@ const ChangePassword = ({setSt}) => {
         try{
             setIsLoad(true)
             const response = await PersonService.confirmChange(tfa, code)
-            console.log(response.data)
             setError(null)
             setState('execute')
             setIsLoad(false)
         }catch (e){
             setIsLoad(false)
-            console.log(e)
         }
     }
     return (

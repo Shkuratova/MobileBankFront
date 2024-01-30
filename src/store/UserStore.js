@@ -47,7 +47,6 @@ class UserStore{
             this.setAuthError(null)
         }catch (e) {
             this.setAuthError(e.response.data)
-            console.log(this.AuthError)
         }
     }
     ConfirmLogin = async(code)=>{
@@ -57,7 +56,6 @@ class UserStore{
             localStorage.setItem('token', response.data.access_token)
             localStorage.setItem('ref_token', response.data.refresh_token)
             this.setAuth(true)
-            console.log(response.data[0])
         }catch (e) {
             this.setAuthError(e.response.data)
         }
@@ -67,7 +65,6 @@ class UserStore{
             const response = await AuthService.registration(login, pas, rePas);
             this.setTfa(response.data.tfa_token)
             this.setAuthError(null)
-            console.log(response.data)
         }catch (e) {
             this.setAuthError(e.response.data)
         }
@@ -77,12 +74,10 @@ class UserStore{
             const response = await AuthService.confirmRegistration(this.tfa, code)
             localStorage.setItem('token', response.data.access_token)
             localStorage.setItem('ref_token', response.data.refresh_token)
-            console.log(response.data)
             this.setAuth(true)
             this.setAuthError(null)
         }catch (e) {
             this.setAuthError(e.response.data)
-            console.log(e.response.data)
         }
     }
     checkAuth = async ()=>{
@@ -91,12 +86,11 @@ class UserStore{
             const response =  await axios.post('/auth/update_api_tokens/',
                 {refresh_token:localStorage.getItem('ref_token')},
                 {withCredentials: true})
-            console.log(response)
             localStorage.setItem('token', response.data.access_token)
             localStorage.setItem('ref_token', response.data.refresh_token)
             this.setAuth(true)
         }catch (e) {
-            console.log(e.response.data)
+
         }
         finally {
             this.setLoad(false);
@@ -118,7 +112,7 @@ class UserStore{
                     this.setLoad(false)
                 })
             }catch (e){
-                console.log(e.response.data)
+
                 this.setLoad(false);
             }
     }

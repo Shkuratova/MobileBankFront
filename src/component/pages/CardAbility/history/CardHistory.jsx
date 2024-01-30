@@ -20,10 +20,8 @@ export const CardHistory =observer( () => {
                 const response = await TransferService.getHistory(p.account_number, p.token_card)
                 setHistList(Object.values(response.data))
                 setIsLoading(false)
-                console.log(response.data)
             }catch (e){
                 setIsLoading(false)
-                console.log(e.response.data)
             }
         }
         getHist()

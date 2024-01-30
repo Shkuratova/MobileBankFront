@@ -21,7 +21,7 @@ const CardById = () => {
                 setCard(response.data[0])
                 setIsLoading(false)
             }catch (e) {
-                console.log(e.response.data)
+                alert('Ошибка')
             }
         }
         getCard()

@@ -34,21 +34,10 @@ const RegForm = () => {
                 setError(USER_DOESNT_EXIST)
             }
         }catch (e){
-           console.log(e)
+          alert('Ошибка')
         }
     }
-    // const finalReg= async (e)=>{
-    //     e.preventDefault()
-    //    setState('RegConfirm')
-    //     // try {
-    //     //     const response =await AuthService.registration(account, log, pas, re_pas)
-    //     //     setTfa(response.data.tfa_token)
-    //     //     setError(null)
-    //     //     setState('RegConfirm')
-    //     // }catch (e) {
-    //     //     setError(e.response.data)
-    //     // }
-    // }
+
     const RegConfirm = async (e)=> {
         e.preventDefault()
         try {
@@ -83,33 +72,11 @@ const RegForm = () => {
                 state==='Reg' &&
                 <EnterLogin setState={setState} setTfa={setTfa} account={account}/>}
 
-            {/*//     <div className="reg__modal">*/}
-            {/*//         <button onClick={()=>router('/')}*/}
-            {/*                className='reg__link'>На главную</button>*/}
-            {/*        <h1 className="head__reg">Регистрация</h1>*/}
-            {/*        <Input value={log}*/}
-            {/*               setValue={setLog}*/}
-            {/*               text={"Логин"}/>*/}
 
-            {/*        <Input value={pas} setValue={setPas} text={"Пароль"}/>*/}
-
-            {/*        <Input value={re_pas} setValue={setRePas} text={'Подтвердите пароль'}/>*/}
-            {/*        {error && <span className='error'>{error}</span>}*/}
-            {/*        <button onClick={(e) => finalReg(e)}*/}
-            {/*                className="myBtn">Зарегистрироваться</button>*/}
-            {/*    </div>*/}
-            {/*}*/}
             {
                 state === 'RegConfirm' &&
                 <EmailConfirm code={code} setCode={setCode} confirm={RegConfirm} error={error}/>}
-                {/*<div className='reg__modal'>*/}
-                {/*    <h2>На вашу почту было выслано письмо с кодом подтверждения</h2>*/}
-                {/*    <VerifyInput code={code} setCode={setCode}/>*/}
-                {/*    {error && <span className="error">{error}</span>}*/}
-                {/*    <button onClick={e=>RegConfirm(e)}*/}
-                {/*            className='myBtn'>Продолжить</button>*/}
-                {/*</div>*/}
-            {/*}*/}
+
         </>
     );
 };

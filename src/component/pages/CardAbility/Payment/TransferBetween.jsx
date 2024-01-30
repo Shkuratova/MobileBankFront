@@ -61,6 +61,7 @@ export const TransferBetween = observer(() => {
             setError(SUM_ERROR)
             return
         }
+
         try {
             setState('Load')
             const response = await TransferService.Transfer(sum.replace(',', '.'), payBill, recieveBill,
@@ -68,7 +69,6 @@ export const TransferBetween = observer(() => {
             setTfa(response.data.tfa_token)
             setState('Confirm')
             setError(null)
-            console.log(response.data)
         } catch (e) {
             setState('input')
             setError(e.response.data)

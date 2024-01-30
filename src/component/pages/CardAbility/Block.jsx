@@ -9,12 +9,9 @@ const Block = ({cardNum, visible, setVisible, title, btn, description, action, s
     const block = async (e) => {
         e.preventDefault()
         try {
-            console.log(p.id)
             const response = await CardService.ChangeCardState(p.id, status)
-            console.log(response)
             setState('Access')
         } catch (e) {
-            console.log(e.response.data)
         }
     }
     return (

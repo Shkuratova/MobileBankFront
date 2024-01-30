@@ -24,7 +24,6 @@ class CardStore {
             this.isLoading = true
             const response = await CardService.cardList();
             runInAction(()=>{
-                console.log(response.data)
                 this.cards = response.data;
                 this.isLoading = false
             })
@@ -42,7 +41,6 @@ class CardStore {
             this.setAns(response.data)
             this.cards.push(response.data)
         }catch (e) {
-            console.log(e)
             this.cardError = e.response.data
         }
     }

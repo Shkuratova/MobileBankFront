@@ -20,7 +20,7 @@ const CreateCard = () => {
     useEffect(() => {
         setBill(bills[0].account_number)
     }, [bills]);
-    console.log(paySys)
+
     const createCard = async ()=>{
         try {
             setState('Load')

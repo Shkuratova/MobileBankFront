@@ -39,7 +39,7 @@ const Auth = () => {
 
             } catch (e) {
                 setState('SignIn')
-                console.log(e)
+
             }
         }
     }
@@ -58,7 +58,6 @@ const Auth = () => {
                 await ConfirmLogin(code)
                 setState('Confirm')
             } catch (e) {
-                console.log(e)
                 setState('SignIn')
             }
         }

@@ -71,10 +71,9 @@ const ExchangeValute = () => {
         const amount = flag?buy:total
         const to = flag?valBill:bill
         const descr = flag?'Покупка валюты':'Продажа валюты'
-        console.log(from, to)
         try {
             const response = await TransferService.Transfer(amount, from, to, descr)
-            console.log(response.data)
+
             setError(null)
             setTfa(response.data.tfa_token)
             setState('Confirm')

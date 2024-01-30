@@ -19,6 +19,7 @@ const CurrencyBlock = () => {
             <div>
                 {isLoad ||course.length === 0 ?
                     <div className="row-direct">
+                        <br/>
                         <Loading/>
                     </div>:
                     <>
@@ -60,9 +61,7 @@ const CurrencyBlock = () => {
                                 onClick={()=>nav('/buyvalute/USD')}
                                 className="btn__link">Обменять</button>
                         </div>
-
                     </>
-
                 }
             </div>
         </div>

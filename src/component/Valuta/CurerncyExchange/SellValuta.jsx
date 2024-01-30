@@ -40,7 +40,6 @@ const SellValuta = ({valBills, setValBill, valBill, sellBills,setError, setTfa, 
         const descr ='Продажа валюты'
         try {
             const response = await TransferService.Transfer(sum, valBill, bill, descr)
-            console.log(response.data)
             setError(null)
             setTfa(response.data.tfa_token)
             setState('Confirm')
