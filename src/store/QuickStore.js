@@ -5,12 +5,15 @@ class QuickStore{
     sum = '';
     description='';
     flag = false;
-    currency =''
+    currency ='';
+    from=''
 
     setWhere=(where)=>{
         this.where = where;
     }
-
+    setFrom = (bill)=>{
+        this.from = bill;
+    }
     setCurrency = (charCode)=>{
         this.currency = charCode
     }
@@ -36,6 +39,8 @@ class QuickStore{
             flag:observable,
             currency:observable,
             setSum:action,
+            from:observable,
+            setFrom:action,
             setWhere:action,
             setDescription:action,
             setFlag:action,

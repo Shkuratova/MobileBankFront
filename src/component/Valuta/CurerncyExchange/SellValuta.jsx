@@ -1,19 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import BillSelect from "../BillSelect";
-import CurrencyInput from "react-currency-input-field";
 import '../../styles/Common.css'
 import ValutaStore from "../../../store/CurrencyStore";
 import {useParams} from "react-router-dom";
 import CurInput from "../../UI/defaultUI/Inputs/CurInput";
-const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, bill, setBill, sum, setSum, transact }) => {
-    const{val, course, isLoad,getCourse, setVal} = ValutaStore
+import TransferService from "../../../service/TransferService";
+
+const SellValuta = ({valBills, setValBill, valBill, sellBills,setError, setTfa, setState, bill, setBill }) => {
+    const{val, course, isLoad, setBuy, setFrom, setTotalSum,getCourse} = ValutaStore
     const p = useParams()
     const [currency, setCurrency] = useState()
+
+    const [sum, setSum] = useState(0)
+    const [total, setTotal] = useState(0)
     useEffect(() => {
         if(course.length === 0)
             getCourse()
     }, []);
+
     useEffect(() => {
         if(!isLoad){
             if(val)
@@ -23,11 +28,26 @@ const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, b
         }
 
     }, [isLoad, val]);
-    console.log(val.SalePrice)
     useEffect(() => {
         if(currency && sum)
             setTotal(Number((currency.SalePrice/currency.Nominal)*sum.replace(',','.')).toFixed(2))
-    }, [sum, currency]);
+    }, [sum, currency, setTotal]);
+    const Transact = async (e)=>{
+        e.preventDefault()
+        setTotalSum(sum)
+        setFrom(valBill)
+        setBuy(total)
+        const descr ='Продажа валюты'
+        try {
+            const response = await TransferService.Transfer(sum, valBill, bill, descr)
+            console.log(response.data)
+            setError(null)
+            setTfa(response.data.tfa_token)
+            setState('Confirm')
+        }catch (e) {
+            setError(e.response.data)
+        }
+    }
     return (
         <>
             {(valBills.length && valBills.filter((v)=>v.balance !=0).length)?<>
@@ -44,7 +64,7 @@ const SellValuta = ({valBills, setValBill, valBill,total, setTotal, sellBills, b
                                 <div className='vall_bill'>
                                    <CurInput sum={sum} setSum={setSum} text={'Количество'}/>
                                     {total>0? <h4>Сумма зачисления:{total} </h4>:<></>}
-                                    <button onClick={transact}
+                                    <button onClick={Transact}
                                             className='myBtn'>Обменять</button>
                                 </div>
                             </>}

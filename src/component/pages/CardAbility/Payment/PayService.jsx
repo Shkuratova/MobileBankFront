@@ -23,7 +23,7 @@ import QuickStore from "../../../../store/QuickStore";
 
 const PayService = observer(() => {
     const {bills, getPayAccount, getPayAccountByCurrency} = AccountStore;
-    const {sum, where, description,currency , flag,setFlag, clearStore} = QuickStore
+    const {sum, where, description,currency , flag,from, setFrom,setFlag, clearStore} = QuickStore
     const [payBills, setPayBills] = useState([])
     useEffect(() => {
         if(bills.length !==0) {
@@ -49,12 +49,12 @@ const PayService = observer(() => {
         }
 
     }, [flag]);
-    useEffect(()=>{
-        if(desc && to){
-            setFlag((desc === description && to === where))
-        }
-
-    },[desc, to])
+    // useEffect(()=>{
+    //     if(desc && to){
+    //         setFlag((desc === description && to === where))
+    //     }
+    //
+    // },[desc, to])
     const [bill, setBill] = useState(bills[0].account_number)
     const [state, setState] = useState('service')
     const [cookie, setCookie] = useCookies(['hist'])
@@ -91,9 +91,11 @@ const PayService = observer(() => {
         return !sum_error && !sum_er && !where_error && !sum_er && !where_len
     }
     const setAccount =(b)=>{billFormat(b, setTo)}
-    const getCurrency = ()=>{ return bills.filter((b)=>b.account_number === bill)}
+    const getCurrency = ()=>{
+        return bills.filter((b)=>b.account_number === from)
+    }
 
-
+    console.log(tfa)
     const sendDuty = async (e)=> {
         e.preventDefault()
         setCheck(true)
@@ -102,11 +104,10 @@ const PayService = observer(() => {
                 setState('Load')
                 const response = await TransferService.Transfer(pay.replace(',', '.'),
                     bill, to.replace(/\s/g, ''), desc)
-                console.log(response.data)
                 setTfa(response.data.tfa_token)
                 setState('confirmation')
+                setFrom(bill)
                 setError(null)
-                clearStore()
                 if(add){
                     let a = cookie.hist
                     a.push({to:to, sum:pay,description:desc, currency:getCurrency()[0].currency})
@@ -114,9 +115,12 @@ const PayService = observer(() => {
                 }
             } catch (e) {
                 setState('service')
-                let er = e.response.data
-                setWhereError(er.account_recv? er.account_recv:null)
-                setSumError(er)
+                if(e.response.data.account_recv){
+                    setWhereError(e.response.data.account_recv)
+                }else {
+                    setSumError(e.response.data)
+                    setWhereError(null)
+                }
                 console.log(e)
             }
         }
@@ -152,7 +156,10 @@ const PayService = observer(() => {
                     <h1>Оплатить</h1>
                     <form onSubmit={sendDuty} className='service'>
                         <h4 className='pay_header'>Выберите счет</h4>
+                        {payBills.length!==0?
                         <BillSelect bills={payBills} bill={bill} onChange={value => setBill(value)}/>
+                            :
+                            <input className="myInput" disabled={true} value='Недостаточно средств'/>}
                         <h4 className='pay_header'>Назначение платежа</h4>
                         <Input
                             value={desc}
@@ -174,6 +181,7 @@ const PayService = observer(() => {
                             sum={sum}
                             text={'0'}
                             setSum={setPay}
+                            suf={flag?getSymbolFromCurrency(currency):''}
                             error={sumError}/>
                         {sumError && <p className="error">{sumError}</p>}
                         {error && <p className="error">{error}</p>}
@@ -200,7 +208,7 @@ const PayService = observer(() => {
                 <Execute
                     title={"Успешно"}
                     type={desc}
-                    from={bill}
+                    from={from}
                     to={to.replace(/\s/g, '')}
                     sum={pay + getSymbolFromCurrency(getCurrency()[0].currency)}/>
             }

@@ -22,7 +22,7 @@ const RegForm = () => {
     const[error,setError] = useState(null)
     const inital= async (e)=>{
         e.preventDefault()
-        let acc_er = !account?EMPTY_FIELD:(account.replace(/\s/g, '').length<20?ACCOUNT_PATTERN:null)
+        let acc_er = !account?EMPTY_FIELD:(account.replace(/\s/g, ' ').length<20?ACCOUNT_PATTERN:null)
         setError(acc_er)
         if(acc_er)return
         try {

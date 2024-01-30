@@ -1,6 +1,6 @@
 import React from 'react';
 import {billFormat} from "../utils";
-const CheckTransfer = ({from, to, sum, setState, add, setAdd, confirm}) => {
+const CheckTransfer = ({from, to, sum, setState, confirm}) => {
 
 
     return (
@@ -27,15 +27,7 @@ const CheckTransfer = ({from, to, sum, setState, add, setAdd, confirm}) => {
                     className="myInput"
                     value={sum}
                     disabled={true}/>
-                <label className="checkBox">
-                    Добавить на панель быстрых платежей
-                    <input
-                        type="checkbox"
-                        checked={add}
-                        onChange={() => setAdd(!add)}
-                    />
-                    <span className="checkmark"></span>
-                </label>
+
                 <button onClick={confirm}
                         className="myBtn">Подтвердить
                 </button>

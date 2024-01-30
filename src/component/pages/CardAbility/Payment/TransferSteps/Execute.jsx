@@ -6,9 +6,14 @@ import QuickStore from "../../../../../store/QuickStore";
 import {useNavigate} from "react-router-dom";
 const Execute = ({title, type, sum, from, to})=> {
     const nav = useNavigate()
+    const {clearStore} = QuickStore
+    const onClickHandler = ()=>{
+        clearStore()
+        nav('/')
+    }
     return (
         <div className="cardholder info_box">
-            <div onClick={()=>nav('/')} className="back--btn"></div>
+            <div onClick={onClickHandler} className="back--btn"></div>
             <div className="transferData">
             <h1 >{title}</h1>
             <p className="about--transfer">{type}</p>

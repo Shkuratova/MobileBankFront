@@ -5,8 +5,20 @@ class CurrencyStore{
     course =[]
     val = null
     isLoad = false
+    from = ''
+    total = ''
+    buy = 0
     setCourse = (a)=>{
         this.course = a;
+    }
+    setFrom = (b)=>{
+        this.from=b;
+    }
+    setBuy = (sum)=>{
+        this.buy=sum;
+    }
+    setTotalSum = (sum)=>{
+        this.total = sum;
     }
     setVal = (charCode)=>{
         console.log("CNHJRF", charCode)
@@ -20,9 +32,15 @@ class CurrencyStore{
             course:observable,
             val:observable,
             isLoad:observable,
+            from:observable,
+            total:observable,
+            buy:observable,
             setCourse:action,
             setIsLoad:action,
-            setVal:action
+            setVal:action,
+            setBuy:action,
+            setFrom:action,
+            setTotalSum:action
         })
     }
     getCourse = async ()=>{

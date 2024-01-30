@@ -16,7 +16,7 @@ import getSymbolFromCurrency from "currency-symbol-map";
 
 const ExchangeValute = () => {
 
-    const {getCourse, val ,isLoad, course, setVal} = CurrencyStore
+    const {getCourse, val ,isLoad, from,buy, total, course, setVal} = CurrencyStore
     const{bills} = AccountStore
     const p = useParams()
     const nav = useNavigate()
@@ -26,8 +26,6 @@ const ExchangeValute = () => {
     const[valBills, setValBills] = useState([{account_number:''}])
     const[sellBills, setSellBills] = useState([{account_number:''}])
     const[flag, setFlag] = useState(true)
-    const[total, setTotal] = useState(0)
-    const[sum, setSum] = useState(0)
     const [code,setCode] = useState('')
     const [state, setState] = useState('Valuta')
     const [tfa ,setTfa] = useState()
@@ -38,6 +36,8 @@ const ExchangeValute = () => {
         if(course.length === 0)
             getCourse()
     }, []);
+
+
     useEffect(() => {
         if(!isLoad){
             if(val)
@@ -68,9 +68,8 @@ const ExchangeValute = () => {
 
     const transact = async (e)=>{
         e.preventDefault()
-        const from = flag?bill:valBill
+        const amount = flag?buy:total
         const to = flag?valBill:bill
-        const amount = flag?total:sum
         const descr = flag?'Покупка валюты':'Продажа валюты'
         console.log(from, to)
         try {
@@ -93,11 +92,12 @@ const ExchangeValute = () => {
             setError(e.response.data)
         }
     }
-console.log(111,currency)
     return (
                 <>
                     {state === 'Valuta' &&
-                        <div className='buy_val info_box'>
+                        <div  className='buy_val info_box'>
+                            <div  onClick={()=>nav('/')} className="back--btn"></div>
+                            <div className="valData">
                             <h1>Обмен валюты</h1>
 
 
@@ -111,18 +111,32 @@ console.log(111,currency)
                                 )}
                             </select>
                             {currency &&
-                            <p>1 {val} = {flag ? currency.PurchasePrice :currency.SalePrice} RUB</p>
+                            <p>{currency.Nominal} {val} = {flag ? currency.PurchasePrice :
+                                currency.SalePrice} RUB</p>
                             }
                             <br/>
                             {flag ?
-                                <BuyValuta valBills={valBills} sellBills={sellBills} bill={bill}
-                                           valBill={valBill} setBill={setBill} setTotal={setTotal} total={total}
-                                           setValBill={setValBill} sum={sum} setSum={setSum} transact={transact}/>
+                                <BuyValuta valBills={valBills}
+                                           sellBills={sellBills}
+                                           bill={bill}
+                                           setTfa={setTfa}
+                                           valBill={valBill}
+                                           setBill={setBill}
+                                           setState={setState}
+                                           setValBill={setValBill}
+                                           setError={setError}/>
                                 :
-                                <SellValuta sellBills={sellBills} bill={bill} setTotal={setTotal} total={total}
-                                            valBill={valBill} setBill={setBill} setValBill={setValBill} sum={sum}
-                                            setSum={setSum} transact={transact} valBills={valBills}/>
+                                <SellValuta sellBills={sellBills}
+                                            bill={bill}
+                                            valBill={valBill}
+                                            setBill={setBill}
+                                            setState={setState}
+                                            setError={setError}
+                                            setTfa={setTfa}
+                                            setValBill={setValBill}
+                                            valBills={valBills}/>
                             }
+                        </div>
                         </div>
                     }
                     {state === 'Confirm' &&
@@ -130,16 +144,19 @@ console.log(111,currency)
                             setState={setState}
                             state={'Valuta'}
                             code={code}
+                            request={transact}
+                            error={error}
                             setCode={setCode}
                             confirm={Confirm}/> }
                     {state === 'success' &&
-                        <div className='buy_val'>
+                        <div className='buy_val info_box'>
                             <h1>Успешно</h1>
                             <br/>
                             <h3>{flag?'Покупка валюты':'Продажа валюты'}</h3>
                             <br/>
-                            <Description title={'Счет списания'} text={flag?setBill:valBill}/>
-                            <Description title={'Сколько'} text={flag?total:sum + getSymbolFromCurrency(valute)}/>
+                            <Description title={'Счет списания'} text={from}/>
+                            <Description title={'Сколько'} text={total + getSymbolFromCurrency(valute)}/>
+                            <Description title={flag?'Сумма покупки':'Сумма продажи'}text={buy + getSymbolFromCurrency("RUB")}/>
                             <button onClick={()=>nav('/')} className="myBtn">На главную</button>
                         </div>
                     }

@@ -9,6 +9,7 @@ const QuickPay = () => {
     return (
         <div className="quick--list info_box">
             <h2>Быстрая оплата</h2>
+            <br/>
             {!cookie.hist || !cookie.hist.length ?
             <p>
                 После оплаты услуг здесь появятся карточки быстрой оплаты

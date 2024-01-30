@@ -23,7 +23,7 @@
     width: 40%;
     height: 30%;
     padding-left: 2%;
-    margin-left: 15%;
+
     font-size: 20px;
 }
 .billData{
@@ -34,7 +34,6 @@
 }
 .add_bill{
     font-size: 20px;
-    margin-left: 10%;
     /*width: 40%;*/
     height: fit-content;
     width:fit-content;

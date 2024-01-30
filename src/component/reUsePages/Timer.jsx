@@ -14,12 +14,16 @@ const Timer = ({Request, error}) => {
         if(sec > 9) return (min + `:${sec}`)
         else  return (min + `:0${sec}`)
     }
+    const onClickHandler=(e)=>{
+        setSeconds(200)
+        Request(e)
+    }
     return (
         <div>
             {seconds && !error?
-                <p style={{marginLeft:"10px", color:"grey"}}>{getTime()}</p>
+                <p style={{marginLeft:"10px", color:"grey"}}>Через {getTime()} код можно получить повторно</p>
                 :
-                <button onClick={Request} className="btn__link">Отправить код повторно</button>
+                <button onClick={onClickHandler} className="btn__link">Отправить код повторно</button>
             }
         </div>
     );

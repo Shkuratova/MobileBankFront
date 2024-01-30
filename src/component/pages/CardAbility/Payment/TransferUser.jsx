@@ -14,7 +14,6 @@ import Loading from "../../../reUsePages/Loading";
 import CheckTransfer from "./TransferSteps/CheckTransfer";
 import CurInput from "../../../UI/defaultUI/Inputs/CurInput";
 import {useNavigate} from "react-router-dom";
-import {useCookies} from "react-cookie";
 
 export const TransferUser = observer(() => {
     const {bills} = AccountStore
@@ -27,8 +26,6 @@ export const TransferUser = observer(() => {
     const [billUser, setBillUser] = useState('')
     const [sum, setSum] = useState('')
     const[payBills, setPayBills] = useState([])
-    const [add, setAdd] = useState(false)
-
     const nav = useNavigate()
     useEffect(() => {
         setPayBills(bills.filter((c)=>c.balance != 0))
@@ -69,7 +66,6 @@ export const TransferUser = observer(() => {
         }
     }
     const postPay = async (e) => {
-        console.log('add',add)
         e.preventDefault()
         if (!sum) {
             setError('Поле не может быть пустым')
@@ -107,7 +103,7 @@ export const TransferUser = observer(() => {
             setError(e.response.data)
         }
     }
-    console.log(add)
+
 
     return (
         <>
@@ -165,9 +161,7 @@ export const TransferUser = observer(() => {
             {state ==='Check'&&
                 <CheckTransfer
                     from={bill}
-                    add={add}
                     confirm = {postPay}
-                    setAdd={setAdd}
                     to={billUser}
                     sum={sum  + ' '+ getSymbolFromCurrency(getCur(payBills, bill)[0].currency)}
                     setState={setState}/>}

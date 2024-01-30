@@ -1,11 +1,8 @@
-
-
 .infor{
     width: 55%;
    height: 20%;
     position: relative;
     display: inline-block;
-    margin-left: 10%;
 }
 .descr{
     padding: 2%;
@@ -17,6 +14,7 @@
 .bl{
     padding: 1%;
     margin-top: 2%;
+    font-size: 18px;
 }
 .spec{
     font-size: 20px;

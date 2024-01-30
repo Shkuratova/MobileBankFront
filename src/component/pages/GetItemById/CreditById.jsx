@@ -35,9 +35,9 @@ const CreditById = () => {
                 <div className="descr">
                     <h1  className="descr_txt">WorldSkills  Кредит наличными</h1>
                     <p className="descr_txt spec">{credit.account_number}</p>
-                    <h2 className="bl">Лимит {credit.description.max_debt_amount} {getSymbolFromCurrency(credit.currency)}</h2>
-                    <p className="bl">Процентная ставка: {credit.description.description.percent_rate}%</p>
-                    <p className="bl">Задолженность {credit.balance.replace('-','')} {getSymbolFromCurrency(credit.currency)}</p>
+                    <p className="bl"><b>Лимит:</b> {credit.description.max_debt_amount} {getSymbolFromCurrency(credit.currency)}</p>
+                    <p className="bl"><b>Процентная ставка:</b> {credit.description.description.percent_rate}%</p>
+                    <p className="bl"><b>Задолженность:</b> {credit.balance.replace('-','')} {getSymbolFromCurrency(credit.currency)}</p>
                     <Action path={'/credit/history/' + credit.account_number}
                             img={'/images/history.png'}
                             width={'50'}

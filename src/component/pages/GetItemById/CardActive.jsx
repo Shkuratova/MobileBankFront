@@ -49,16 +49,7 @@ const CardActive = ({card}) => {
                     width={'50'}
                     name = {'Оплатить'}/>
                 </div>
-            {/*<div className="abil">*/}
-            {/*    <div onClick={()=>setVisibleRe(true)}*/}
-            {/*         className="action">*/}
-            {/*        <img className="act_img"*/}
-            {/*             width='50'*/}
-            {/*             height='50'*/}
-            {/*             src='/images/rename.png'/>*/}
-            {/*        <p className='act_txt'>Переименовать</p>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+
                 <div style={{width:"50%"}} onClick={()=>setVisibleBlock(true)}
                      className="action">
                     <img className="act_img"

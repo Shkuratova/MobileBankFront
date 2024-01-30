@@ -13,17 +13,18 @@ const MainPage = () => {
     return (
         <>
         <div className="action--block">
+
             <NewAccount/>
-            <div style={{display:"flex", flexDirection:"row",padding:"2%",marginTop:"4%", justifyContent:"space-between"}}>
+            <div style={{display:"flex", flexDirection:"row",padding:"2%",marginTop:"5%", justifyContent:"space-between"}}>
                 <div onClick={()=>nav('/payment')}
-                    className="main--action info_box">
+                    className="main--action ">
                     <img  width={"50px"} height={"50px"} src="/images/transact.png"/>
                     <div className="mainTitle">
                         <h3>Переводы</h3>
                         <p style={{marginTop:"2%"}}>Перевести</p>
                     </div>
                 </div>
-                <div onClick={()=>nav('/payment/service')} className="main--action info_box">
+                <div onClick={()=>nav('/payment/service')} className="main--action">
                     <img width={"50px"} height={"50px"} src="/images/commune.png"/>
                     <div className="mainTitle">
                         <h3>Платежи</h3>

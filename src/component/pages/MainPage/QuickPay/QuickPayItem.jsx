@@ -17,7 +17,7 @@ const QuickPayItem = ({pay}) => {
     }
     return (
         <div onClick={onClickHandler} className="row-direct quick--item">
-            <h4>{pay.description}</h4>
+            <p>{pay.description}</p>
             <p>{pay.sum} {getSymbolFromCurrency(pay.currency)}</p>
         </div>
     );

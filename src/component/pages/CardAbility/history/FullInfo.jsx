@@ -40,7 +40,7 @@ const FullInfo = ({visible, setVisible, transaction}) => {
                     <h3 className='operation_chr'>{transaction.description.To.card_number}</h3>
             :<h3 className='operation_chr'>{transaction.description.To.account_number}</h3>}
             </div>
-
+            <br/>
             <button onClick={()=>setVisible(false)}
                 style={{height:"40px"}} className='myBtn'>Закрыть</button>
         </div>

@@ -41,12 +41,14 @@
 }
 .buy_val{
     background: #FFFFFF;
-    padding: 3% 3% 3%;
-    margin-left:10%;
+    padding: 2% 2% 3%;
     font-size: 18px;
     height: 70%;
     width: 50%;
     border-radius: 22px;
+}
+.valData{
+    padding: 2% 2% 2%;
 }
 .info{
     display: flex;

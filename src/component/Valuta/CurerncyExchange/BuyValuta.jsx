@@ -7,13 +7,17 @@ import '../../styles/Common.css'
 import '../valute.css'
 import ValutaStore from "../../../store/CurrencyStore";
 import CurInput from "../../UI/defaultUI/Inputs/CurInput";
+import TransferService from "../../../service/TransferService";
 
-const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill, error,setValBill, sum, setSum, transact}) => {
+const BuyValuta = ({valBills, sellBills, valBill,bill,  setError, setTfa, setState, setBill, error,setValBill}) => {
 
-    const{val, course, isLoad,getCourse} = ValutaStore
+    const{val, course, isLoad,setTotalSum,setFrom, setBuy,getCourse} = ValutaStore
     const p = useParams()
     const s = useNavigate()
+    const [sum, setSum] = useState(0)
+    const [total, setTotal] = useState(0)
     const [currency, setCurrency] = useState(null)
+
     useEffect(() => {
         if(course.length === 0)
             getCourse()
@@ -25,12 +29,27 @@ const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill,
             else
                 setCurrency(course[p.charcode])
         }
-
     }, [isLoad, val]);
     useEffect(() => {
        if(currency && sum)
         setTotal(Number((currency.PurchasePrice/currency.Nominal)*sum.replace(',','.')).toFixed(2))
     }, [sum, currency]);
+    const Transact = async (e)=>{
+        e.preventDefault()
+        setTotalSum(sum)
+        setFrom(bill)
+        setBuy(total)
+        const descr ='Покупка валюты'
+        try {
+            const response = await TransferService.Transfer(total, bill, valBill, descr)
+            console.log(response.data)
+            setError(null)
+            setTfa(response.data.tfa_token)
+            setState('Confirm')
+        }catch (e) {
+            setError(e.response.data)
+        }
+    }
 
     const onClickHandler = ()=>{
         localStorage.setItem('currency', val)
@@ -53,9 +72,9 @@ const BuyValuta = ({valBills, sellBills, valBill,bill, total, setTotal, setBill,
                     <div className='vall_bill'>
                         <CurInput sum={sum} setSum={setSum} text={'Количество'}/>
 
-                        {total>0?
-                        <h4>Итого к оплате:{total} </h4>:<></>}
-                        <button onClick={(e) => transact(e)}
+                        {total>0 &&
+                        <h4>Итого к оплате:{total} </h4>}
+                        <button onClick={Transact}
                                 className='myBtn'>Обменять
                         </button>
                     </div>
