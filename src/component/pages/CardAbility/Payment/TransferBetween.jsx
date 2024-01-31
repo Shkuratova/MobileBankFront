@@ -71,7 +71,7 @@ export const TransferBetween = observer(() => {
             setError(null)
         } catch (e) {
             setState('input')
-            setError(e.response.data)
+            setError(e.response.data.detail)
         }
     }
 
@@ -84,7 +84,7 @@ export const TransferBetween = observer(() => {
             setState('access')
         } catch (e) {
             setState('Confirm')
-            setError(e.response.data)
+            setError(e.response.data.detail)
         }
     }
 

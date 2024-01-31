@@ -12,11 +12,10 @@ import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import EnterLogin from "./EnterLogin";
 
 const RegForm = () => {
-    const{isAuth, SiqnIn, setAuth,   ConfirmLogin} = UserStore
+    const{setTfa, ConfirmReg} = UserStore
     const router = useNavigate()
     const [state, setState] = useState('SignUp')
 
-    const [tfa_token, setTfa] = useState('')
     const[code, setCode] = useState('')
     const [account, setAccount] = useState('')
     const[error,setError] = useState(null)
@@ -40,12 +39,7 @@ const RegForm = () => {
 
     const RegConfirm = async (e)=> {
         e.preventDefault()
-        try {
-            const response = await AuthService.confirmRegistration(tfa_token, code)
-            setAuth(true)
-        }catch (e) {
-            setError(e.response.data)
-        }
+        await ConfirmReg()
     }
     return (
         <>
@@ -70,7 +64,7 @@ const RegForm = () => {
             }
             {
                 state==='Reg' &&
-                <EnterLogin setState={setState} setTfa={setTfa} account={account}/>}
+                <EnterLogin setState={setState}  account={account}/>}
 
 
             {

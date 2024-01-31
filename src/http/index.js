@@ -1,4 +1,5 @@
 import axios from "axios";
+import {AUTH} from "./path";
 
 
 const $api = axios.create({
@@ -22,7 +23,7 @@ $api.interceptors.response.use((congig)=>{
     request._isExecute = false
     if(error.response.status == 403 && !request._isExecute) {
         request._isExecute = true
-        const response = await axios.post('/auth/update_api_tokens/',
+        const response = await axios.post(AUTH+'update_api_tokens/',
             {refresh_token:localStorage.getItem('ref_token')},
             {withCredentials: true})
         localStorage.setItem('token', response.data.access_token);

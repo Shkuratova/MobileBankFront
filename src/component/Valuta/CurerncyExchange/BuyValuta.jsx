@@ -46,7 +46,7 @@ const BuyValuta = ({valBills, sellBills, valBill,bill,  setError, setTfa, setSta
             setTfa(response.data.tfa_token)
             setState('Confirm')
         }catch (e) {
-            setError(e.response.data)
+            setError(e.response.data.detail)
         }
     }
 

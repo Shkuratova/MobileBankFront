@@ -78,7 +78,7 @@ const ExchangeValute = () => {
             setTfa(response.data.tfa_token)
             setState('Confirm')
         }catch (e) {
-                setError(e.response.data)
+                setError(e.response.data.detail)
         }
     }
     const Confirm = async (e)=>{
@@ -88,7 +88,7 @@ const ExchangeValute = () => {
             setError(null)
             setState('success')
         } catch (e) {
-            setError(e.response.data)
+            setError(e.response.data.detail)
         }
     }
     return (

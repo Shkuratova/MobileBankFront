@@ -3,10 +3,12 @@ import Input from "../../../UI/defaultUI/Inputs/Input";
 import {useNavigate} from "react-router-dom";
 import AuthService from "../../../../service/AuthService";
 import {EMPTY_FIELD, PASS_MATCH, PASS_PATTERN} from "../../../../consts/StringConsts";
+import {observer} from "mobx-react-lite";
+import UserStore from "../../../../store/UserStore";
 
-const EnterLogin = ({setTfa, setState, account}) => {
+const EnterLogin = ({ setState, account}) => {
     const router = useNavigate()
-
+    const {setTfa} = UserStore
     const[pas, setPas] = useState('')
     const[re_pas, setRePas] = useState('')
     const [log, setLog] = useState('')
@@ -36,7 +38,7 @@ const EnterLogin = ({setTfa, setState, account}) => {
                 setError(null)
                 setState('RegConfirm')
             }catch (e) {
-                setError(e.response.data)
+                 setError(e.response.data.detail)
             }
     }
     return (
@@ -71,4 +73,4 @@ const EnterLogin = ({setTfa, setState, account}) => {
     );
 };
 
-export default EnterLogin;
+export default observer(EnterLogin);

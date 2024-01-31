@@ -62,7 +62,7 @@ export const TransferUser = observer(() => {
 
             }
         } catch (error) {
-            setError(error.response.data)
+            setError(error.response.data.detail)
         }
     }
     const postPay = async (e) => {
@@ -86,7 +86,7 @@ export const TransferUser = observer(() => {
 
         } catch (e) {
             setState("chooseCard")
-            setError(e.response.data)
+            setError(e.response.data.detail)
         }
     }
 
@@ -99,7 +99,7 @@ export const TransferUser = observer(() => {
             setState('access')
         } catch (e) {
             setState('Confirm')
-            setError(e.response.data)
+            setError(e.response.data.detail)
         }
     }
 

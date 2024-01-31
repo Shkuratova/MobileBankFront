@@ -39,7 +39,7 @@ const ChangePassword = ({setSt}) => {
 
         }catch (e) {
             setIsLoad(false)
-          setError(e.response.data)
+          setError(e.response.data.detail)
         }
     }
     const ConfirmChange =async (e)=>{
@@ -55,6 +55,7 @@ const ChangePassword = ({setSt}) => {
             setState('execute')
             setIsLoad(false)
         }catch (e){
+            setError(e.response.data.detail)
             setIsLoad(false)
         }
     }

@@ -2,6 +2,7 @@ import {action, makeObservable, observable, runInAction} from "mobx";
 import PersonService from "../service/PersonService";
 import AuthService from "../service/AuthService";
 import axios from "axios";
+import {AUTH} from "../http/path";
 
 class UserStore{
     person = {firstName:'', lastName:'', thirdName:'',sex:'', email:'', telephone:'', login:'' }
@@ -46,7 +47,7 @@ class UserStore{
             this.setTfa(response.data.tfa_token)
             this.setAuthError(null)
         }catch (e) {
-            this.setAuthError(e.response.data)
+            this.setAuthError(e.response.data.detail)
         }
     }
     ConfirmLogin = async(code)=>{
@@ -57,7 +58,7 @@ class UserStore{
             localStorage.setItem('ref_token', response.data.refresh_token)
             this.setAuth(true)
         }catch (e) {
-            this.setAuthError(e.response.data)
+            console.log(e.response.data.detail)
         }
     }
     SiqnUp = async (login, pas, rePas)=>{
@@ -66,7 +67,7 @@ class UserStore{
             this.setTfa(response.data.tfa_token)
             this.setAuthError(null)
         }catch (e) {
-            this.setAuthError(e.response.data)
+            this.setAuthError(e.response.data.detail)
         }
     }
     ConfirmReg = async(code)=>{
@@ -77,13 +78,13 @@ class UserStore{
             this.setAuth(true)
             this.setAuthError(null)
         }catch (e) {
-            this.setAuthError(e.response.data)
+            this.setAuthError(e.response.data.detail)
         }
     }
     checkAuth = async ()=>{
         this.setLoad(true);
         try {
-            const response =  await axios.post('/auth/update_api_tokens/',
+            const response =  await axios.post(AUTH +'update_api_tokens/',
                 {refresh_token:localStorage.getItem('ref_token')},
                 {withCredentials: true})
             localStorage.setItem('token', response.data.access_token)

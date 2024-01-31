@@ -31,7 +31,7 @@ const ChangeLogin = ({setSt}) => {
             setLoad(false)
         }catch (e) {
             setLoad(false)
-            setError(e.response.data)
+            setError(e.response.data.detail)
         }
     }
     const ConfirmChange =async (e)=>{
@@ -48,7 +48,7 @@ const ChangeLogin = ({setSt}) => {
             setLoad(false)
         }catch (e){
             setLoad(false)
-           setError(e.response.data)
+           setError(e.response.data.detail)
         }
     }
     

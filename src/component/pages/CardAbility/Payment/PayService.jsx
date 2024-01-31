@@ -117,7 +117,7 @@ const PayService = observer(() => {
                 if(e.response.data.account_recv){
                     setWhereError(e.response.data.account_recv)
                 }else {
-                    setSumError(e.response.data)
+                    setSumError(e.response.data.detail)
                     setWhereError(null)
                 }
 
