@@ -1,22 +1,17 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
-import AuthService from "../../../../service/AuthService";
-import UserStore from "../../../../store/UserStore";
 import TransferService from "../../../../service/TransferService";
 import {ACCOUNT_PATTERN, EMPTY_FIELD, USER_DOESNT_EXIST} from "../../../../consts/StringConsts";
 import {billFormat} from "../../../../utils/Format";
 import '../Auth.css'
 import '../../../styles/Common.css'
-import EmailConfirm from "../../../reUsePages/EmailConfirm";
 import EnterLogin from "./EnterLogin";
 
 const RegForm = () => {
-    const{setTfa, ConfirmReg} = UserStore
     const router = useNavigate()
     const [state, setState] = useState('SignUp')
 
-    const[code, setCode] = useState('')
     const [account, setAccount] = useState('')
     const[error,setError] = useState(null)
     const inital= async (e)=>{
@@ -37,10 +32,7 @@ const RegForm = () => {
         }
     }
 
-    const RegConfirm = async (e)=> {
-        e.preventDefault()
-        await ConfirmReg()
-    }
+
     return (
         <>
             {state ==='SignUp' &&
@@ -64,12 +56,7 @@ const RegForm = () => {
             }
             {
                 state==='Reg' &&
-                <EnterLogin setState={setState}  account={account}/>}
-
-
-            {
-                state === 'RegConfirm' &&
-                <EmailConfirm code={code} setCode={setCode} confirm={RegConfirm} error={error}/>}
+                <EnterLogin setState={setState}  state={state} account={account}/>}
 
         </>
     );

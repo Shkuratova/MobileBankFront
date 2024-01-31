@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Input from "../../../UI/defaultUI/Inputs/Input";
 import {useNavigate} from "react-router-dom";
 import AuthService from "../../../../service/AuthService";
 import {EMPTY_FIELD, PASS_MATCH, PASS_PATTERN} from "../../../../consts/StringConsts";
 import {observer} from "mobx-react-lite";
 import UserStore from "../../../../store/UserStore";
+import EmailConfirm from "../../../reUsePages/EmailConfirm";
 
-const EnterLogin = ({ setState, account}) => {
+const EnterLogin = ({ setState,state,  account}) => {
     const router = useNavigate()
-    const {setTfa} = UserStore
+    const {SiqnUp, tfa, ConfirmReg} = UserStore
     const[pas, setPas] = useState('')
     const[re_pas, setRePas] = useState('')
+    const[code, setCode] = useState('')
     const [log, setLog] = useState('')
     const[errorPas,setErrorPas] = useState(null)
     const [loginError, setLoginError] = useState(null)
@@ -29,29 +31,32 @@ const EnterLogin = ({ setState, account}) => {
             return true
         }
     }
+    useEffect(() => {
+        if(tfa)
+            setState('RegConfirm')
+    }, [tfa]);
     const finalReg= async (e)=>{
         e.preventDefault()
         if(checkData())
-            try {
-                const response =await AuthService.registration(account.replace(/\s/g, ''), log, pas, re_pas)
-                setTfa(response.data.tfa_token)
-                setError(null)
-                setState('RegConfirm')
-            }catch (e) {
-                 setError(e.response.data.detail)
-            }
+           SiqnUp(log, pas, re_pas)
+    }
+    const RegConfirm = async (e)=> {
+        e.preventDefault()
+        await ConfirmReg()
     }
     return (
+        <>
+        {state === 'Reg' &&
         <div className="reg__modal">
             <button
-                onClick={()=>router('/')}
+                onClick={() => router('/')}
                 className='reg__link'>На главную
             </button>
             <h1 className="head__reg">Регистрация</h1>
             <Input value={log}
                    setValue={setLog}
                    text={"Логин"}/>
-            {loginError && <span className="error">{loginError}</span> }
+            {loginError && <span className="error">{loginError}</span>}
 
             <Input
                 value={pas}
@@ -65,11 +70,23 @@ const EnterLogin = ({ setState, account}) => {
                 setValue={setRePas}
                 type={"password"}
                 text={'Подтвердите пароль'}/>
-            {rePasError && <span className="error">{rePasError}</span> }
+            {rePasError && <span className="error">{rePasError}</span>}
             {error && <span className='error'>{error}</span>}
             <button onClick={(e) => finalReg(e)}
-                    className="myBtn">Зарегистрироваться</button>
+                    className="myBtn">Зарегистрироваться
+            </button>
         </div>
+            }
+            {
+                state === 'RegConfirm' &&
+                <EmailConfirm
+                    code={code}
+                    setCode={setCode}
+                    confirm={RegConfirm}
+                    request={finalReg}
+                    error={error}/>
+            }
+        </>
     );
 };
 
