@@ -43,7 +43,7 @@ const EnterLogin = ({setState,state,  account}) => {
     }
     const RegConfirm = async (e)=> {
         e.preventDefault()
-        await ConfirmReg()
+        await ConfirmReg(code)
     }
     return (
         <>
@@ -85,7 +85,10 @@ const EnterLogin = ({setState,state,  account}) => {
                     setCode={setCode}
                     confirm={RegConfirm}
                     request={finalReg}
+                    setState={setSt}
+                    state={'Registration'}
                     error={error}/>
+
             }
         </>
     );
