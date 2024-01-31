@@ -56,7 +56,8 @@ const RegForm = () => {
             }
             {
                 state==='Reg' &&
-                <EnterLogin setState={setState}  state={state} account={account}/>}
+                <EnterLogin setState={setState}   account={account}/>
+            }
 
         </>
     );

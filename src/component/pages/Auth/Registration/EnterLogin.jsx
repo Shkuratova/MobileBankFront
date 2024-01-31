@@ -18,6 +18,7 @@ const EnterLogin = ({setState,state,  account}) => {
     const [loginError, setLoginError] = useState(null)
     const [rePasError, setRePasError] = useState(null)
     const [error, setError] = useState(null)
+    const [st, setSt] = useState('Registration')
     const checkData = ()=>{
         let pas_er = pas?(pas.length>=8?null:PASS_PATTERN):EMPTY_FIELD
         let rePas_er =re_pas?null:EMPTY_FIELD
@@ -33,7 +34,7 @@ const EnterLogin = ({setState,state,  account}) => {
     }
     useEffect(() => {
         if(tfa)
-            setState('RegConfirm')
+            setSt('RegConfirm')
     }, [tfa]);
     const finalReg= async (e)=>{
         e.preventDefault()
@@ -46,7 +47,7 @@ const EnterLogin = ({setState,state,  account}) => {
     }
     return (
         <>
-        {state === 'Reg' &&
+        {st === 'Registration' &&
         <div className="reg__modal">
             <button
                 onClick={() => router('/')}
@@ -78,7 +79,7 @@ const EnterLogin = ({setState,state,  account}) => {
         </div>
             }
             {
-                state === 'RegConfirm' &&
+                st === 'RegConfirm' &&
                 <EmailConfirm
                     code={code}
                     setCode={setCode}
