@@ -61,9 +61,9 @@ class UserStore{
             console.log(e.response.data.detail)
         }
     }
-    SiqnUp = async (login, pas, rePas)=>{
+    SiqnUp = async (account, login, pas, rePas)=>{
         try {
-            const response = await AuthService.registration(login, pas, rePas);
+            const response = await AuthService.registration(account, login, pas, rePas);
             this.setTfa(response.data.tfa_token)
             this.setAuthError(null)
         }catch (e) {

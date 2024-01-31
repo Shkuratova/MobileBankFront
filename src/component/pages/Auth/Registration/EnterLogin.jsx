@@ -7,7 +7,7 @@ import {observer} from "mobx-react-lite";
 import UserStore from "../../../../store/UserStore";
 import EmailConfirm from "../../../reUsePages/EmailConfirm";
 
-const EnterLogin = ({ setState,state,  account}) => {
+const EnterLogin = ({setState,state,  account}) => {
     const router = useNavigate()
     const {SiqnUp, tfa, ConfirmReg} = UserStore
     const[pas, setPas] = useState('')
@@ -38,7 +38,7 @@ const EnterLogin = ({ setState,state,  account}) => {
     const finalReg= async (e)=>{
         e.preventDefault()
         if(checkData())
-           SiqnUp(log, pas, re_pas)
+           SiqnUp(account, log, pas, re_pas)
     }
     const RegConfirm = async (e)=> {
         e.preventDefault()
