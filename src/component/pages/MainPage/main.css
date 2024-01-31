@@ -16,7 +16,7 @@
     width:30%;
     margin-left: 8%;
     @media (max-width: 1000px) and (min-width: 750px){
-        width: 50%;
+        width:  35%;
     }
 
 }
@@ -36,15 +36,8 @@
     background: white;
     border-radius: 22px;
     padding: 2%;
+    margin-left: 5%;
     height: fit-content;
-
-    @media (max-width: 1000px) {
-        display: flex;
-        position: absolute;
-        margin-top: 80%;
-        margin-left: 340px;
-        width: 55%;
-    }
 
 }
 .valute--title{

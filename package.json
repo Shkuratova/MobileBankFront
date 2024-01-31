@@ -36,6 +36,7 @@
     "test": "jest",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://127.0.0.1:8000",
   "jest": {
     "transformIgnorePatterns": [
       "node_modules/(?!axios)"
