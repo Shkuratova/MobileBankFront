@@ -38,7 +38,7 @@ const EnterLogin = ({setState,state,  account}) => {
     const finalReg= async (e)=>{
         e.preventDefault()
         if(checkData())
-           SiqnUp(account, log, pas, re_pas)
+           SiqnUp(account.replace(/\s/g, ''), log, pas, re_pas)
     }
     const RegConfirm = async (e)=> {
         e.preventDefault()
