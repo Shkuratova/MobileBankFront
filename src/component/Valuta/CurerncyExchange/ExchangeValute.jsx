@@ -130,7 +130,6 @@ const ExchangeValute = () => {
                                             valBill={valBill}
                                             setBill={setBill}
                                             setState={setState}
-                                            setError={setError}
                                             setTfa={setTfa}
                                             setValBill={setValBill}
                                             valBills={valBills}/>

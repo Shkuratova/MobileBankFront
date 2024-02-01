@@ -1,12 +1,15 @@
 import axios from "axios";
 import {AUTH} from "./path";
+import {getCookie} from "./cookie";
 
 
 const $api = axios.create({
     withCredentials:true,
     headers:{
         'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        'X-Csrftoken':getCookie('csrftoken')
+
     }
 })
 
@@ -25,7 +28,11 @@ $api.interceptors.response.use((congig)=>{
         request._isExecute = true
         const response = await axios.post(AUTH+'update_api_tokens/',
             {refresh_token:localStorage.getItem('ref_token')},
-            {withCredentials: true})
+            {withCredentials: true,
+                    headers:{
+                        'X-Csrftoken':getCookie('csrftoken')
+                    }
+            })
         localStorage.setItem('token', response.data.access_token);
         localStorage.setItem('ref_token', response.data.access_token);
         return $api.request(request);

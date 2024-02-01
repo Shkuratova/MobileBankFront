@@ -8,8 +8,9 @@ import '../valute.css'
 import ValutaStore from "../../../store/CurrencyStore";
 import CurInput from "../../UI/defaultUI/Inputs/CurInput";
 import TransferService from "../../../service/TransferService";
+import {SUM_ERROR} from "../../../consts/StringConsts";
 
-const BuyValuta = ({valBills, sellBills, valBill,bill,  setError, setTfa, setState, setBill, error,setValBill}) => {
+const BuyValuta = ({valBills, sellBills, valBill,bill,   setTfa, setState, setBill, setValBill}) => {
 
     const{val, course, isLoad,setTotalSum,setFrom, setBuy,getCourse} = ValutaStore
     const p = useParams()
@@ -17,6 +18,7 @@ const BuyValuta = ({valBills, sellBills, valBill,bill,  setError, setTfa, setSta
     const [sum, setSum] = useState(0)
     const [total, setTotal] = useState(0)
     const [currency, setCurrency] = useState(null)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         if(course.length === 0)
@@ -36,6 +38,10 @@ const BuyValuta = ({valBills, sellBills, valBill,bill,  setError, setTfa, setSta
     }, [sum, currency]);
     const Transact = async (e)=>{
         e.preventDefault()
+        if(sum <= 0){
+            setError(SUM_ERROR)
+            return
+        }
         setTotalSum(sum)
         setFrom(bill)
         setBuy(total)
@@ -72,10 +78,11 @@ const BuyValuta = ({valBills, sellBills, valBill,bill,  setError, setTfa, setSta
                             <BillSelect bills={valBills} bill={valBill} onChange={value => setValBill(value)}/>}
                     </div>
                     <div className='vall_bill'>
-                        <CurInput sum={sum} setSum={setSum} text={'Количество'}/>
+                        <CurInput sum={sum} setSum={setSum}  error={error} text={'Количество'}/>
 
-                        {total>0 &&
+                        {(total>0 &&!error) &&
                         <h4>Итого к оплате:{total} </h4>}
+                        {error && <span className="error">{error}</span>}
                         <button onClick={Transact}
                                 className='myBtn'>Обменять
                         </button>

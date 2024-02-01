@@ -3,6 +3,7 @@ import PersonService from "../service/PersonService";
 import AuthService from "../service/AuthService";
 import axios from "axios";
 import {AUTH} from "../http/path";
+import {getCookie} from "../http/cookie";
 
 class UserStore{
     person = {firstName:'', lastName:'', thirdName:'',sex:'', email:'', telephone:'', login:'' }
@@ -86,7 +87,12 @@ class UserStore{
         try {
             const response =  await axios.post(AUTH +'update_api_tokens/',
                 {refresh_token:localStorage.getItem('ref_token')},
-                {withCredentials: true})
+                {
+                    withCredentials: true,
+                    headers:{
+                        'X-Csrftoken':getCookie('csrftoken')
+                    }
+                })
             localStorage.setItem('token', response.data.access_token)
             localStorage.setItem('ref_token', response.data.refresh_token)
             this.setAuth(true)

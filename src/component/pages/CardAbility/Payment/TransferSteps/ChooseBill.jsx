@@ -23,11 +23,12 @@ const ChooseBill = ({allBills, bills, bill,setBill, billExcept, billTo, setBillE
 
             <div className="cardFrom">
                 <p>Куда</p>
-                {billExcept.length &&
+                {billExcept.length ?
                     <BillSelect
                         bills={billExcept}
                         bill={billTo}
-                        onChange={value =>setBillTo(value)}/>
+                        onChange={value =>setBillTo(value)}/>:
+                    <input className="myInput" disabled={true}/>
                 }
             </div>
         </div>

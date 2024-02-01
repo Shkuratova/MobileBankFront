@@ -17,8 +17,10 @@ const PointItem = ({point, setPoint, coord}) => {
             }
     }, [coord]);
     useEffect(() => {
+        let time = point.description.schedule[date].split('-')
         if(point.description.schedule[date] ==='Круглосуточно' ||
-            (d.getHours()>= point.description.schedule[date].slice(0,2) && d.getHours()< point.description.schedule[date].slice(5,7))){
+            (Number(d.getHours()) >= Number(time[0].slice(0,2).replace(':',''))&&
+                Number(d.getHours())< Number(time[1].slice(0,2).replace(':','')))){
             setIsWork('Открыто')
         }else {
             setIsWork('Закрыто')

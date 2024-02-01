@@ -27,12 +27,12 @@ const YandexMap = () => {
     return (
         <YMaps query={{apikey:"008189ba-0f43-41e3-a99d-0581c46ee5d5"}}>
                 <div className="yandex-map">
+                    {isLoad ?
+                        <Loading/>:
+                        <>
                     {coord.length !== 0 &&
                         <div className="address_list">
                             <h2 style={{marginBottom: "4%"}}>Отделения банка</h2>
-                            {isLoad ?
-                                <Loading/>
-                                : <>
                                     {coord.map((c) => (
                                         <PointItem key={c.latitude}
                                                    coord={point}
@@ -40,9 +40,10 @@ const YandexMap = () => {
                                                    point={c}/>
                                     ))
                                     }
-                                </>
-                            }
+
                         </div>
+                    }
+                        </>
                     }
                     <Map
                         modules={["geolocation"]}
